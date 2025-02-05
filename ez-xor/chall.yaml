@@ -1,0 +1,21 @@
+name: ez-xor
+categories:
+  - crypto
+value: 75
+flag: bcactf{SkibiDiSuff_RizzleRme_Sigma_Land0_Auragon_Baron_Upgraded}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  Please be very ORZ and do some XORing.
+hints:
+  - Have you tried decoding it? Do you recognize the encoding?
+  - Have you tried applying a couple for XOR operations?
+files:
+  - src: ./flag.txt
+    dest: getbetter.txt
+authors:
+  - Colin Ding
+visible: true
+# TODO: deployment

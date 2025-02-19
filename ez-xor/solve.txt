@@ -1,1 +1,0 @@
-base 64 decode and then xor with key "B"

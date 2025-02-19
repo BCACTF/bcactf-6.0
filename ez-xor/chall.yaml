@@ -11,7 +11,8 @@ description: |-
   Please be very ORZ and do some XORing.
 hints:
   - Have you tried decoding it? Do you recognize the encoding?
-  - Have you tried applying a couple for XOR operations?
+  - Have you tried using the XOR operation?
+  - The key is one byte long.
 files:
   - src: ./flag.txt
     dest: getbetter.txt

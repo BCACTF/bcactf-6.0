@@ -1,0 +1,23 @@
+name: Back and Forth
+categories:
+  - algo
+value: 25
+flag: bcactf{r3v3Rs3_ThIs_To_wIn}
+description: |-
+  This challenge involves a scrambled flag. Your task is to unscramble it and retrieve the original flag.
+  The flag was scrambled by reversing the string, swapping the case, and replacing underscores with spaces.
+  
+  To solve it, you need to reverse the steps to get the flag back in its original form. Once you do, you should be able to see the flag!
+  
+  The flag will be saved in a file called **flag.txt**. Your goal is to unscramble it and find the correct flag.
+
+hints:
+  - Try reversing the string and swapping the case.
+  - Don't forget to replace spaces back with underscores after unscrambling!
+
+files:
+  - src: ./flag.txt
+    dest: flag.txt
+authors:
+  - Max Neri
+visible: true

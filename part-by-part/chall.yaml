@@ -1,0 +1,15 @@
+name: Part by Part
+categories:
+  - reverse
+value: 50
+flag: bcactf{p4rt_by_pa7t_8d2ia_m82d0lc}
+description: |-
+  This Java program is actually four programs.
+hints:
+  - What happens if you break the program?
+files:
+  - src: ./part_by_part.jar
+authors:
+  - Thomas Torossian
+visible: true
+# TODO: deployment

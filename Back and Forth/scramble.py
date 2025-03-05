@@ -4,7 +4,8 @@ def scramble_flag(flag):
     return scrambled.replace('_', ' ')  # Replace only underscores with spaces
 
 # Your flag (the answer to the challenge)
-flag = "BCACTF{r3v3Rs3_ThIs_To_wIn}"
+with open("flag.txt", "r") as f:
+    flag = f.read().strip()
 
 # Scramble the flag
 scrambled_flag = scramble_flag(flag)

@@ -9,7 +9,7 @@ description: |-
   For a small price, we can restore you to your best look!
 
 hints:
-  - Have you tried looking at yourself in the mirror?
+  - Have you tried looking at yourself in the mirror? (the next hint is a real one)
 files:
   - src: ./recovers.heic
 authors:

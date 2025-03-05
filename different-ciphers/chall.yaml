@@ -1,0 +1,21 @@
+name: different-ciphers
+categories:
+  - crypto
+value: 15
+flag: bcactf{cypher-abdjsl kt+9}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  opnpgs{plcure-noqwfy 01101011 01110100 00101011 00111001}
+hints:
+  - there is a space between the different ciphers
+files:
+  - src: ./flag.txt
+  - src: ./a.txt
+    dest: optionallyrenamethefile.txt
+authors:
+  - Elias Laforest
+visible: true
+# TODO: deployment

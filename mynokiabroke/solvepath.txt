@@ -1,0 +1,7 @@
+1. Decompile the jar into the two class files, then decompile those files into java code
+2. Install Sun Java Wireless Toolkit from https://www.oracle.com/java/technologies/sun-java-wireless-toolkit.html
+    (yes, that's sun, the company that owned java until oracle bought it in 2010. we're about decade behind that.)
+3. Figure out how to use Sun Java Wireless Toolkit (the internet archive is your friend)
+4. Change the password string in the AppMIDlet.java file into something typable
+5. Build and run the app, then type in the password string
+6. The flag is there, in all caps, wrapped in bcactf{}, and there are underscores where line breaks are displayed.

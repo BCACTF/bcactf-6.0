@@ -1,0 +1,16 @@
+name: dessert_time
+categories:
+  - misc
+value: 25
+flag: bcactf{4pplE_p1E}
+description: |-
+  I'm a very good planner, but my robotics competition really fried my brain! I remember eating something for the past few weeks but I just can't seem to remember what. Can you please help me? 
+  Here's my schedule for reference: https://docs.google.com/spreadsheets/d/152qYlpG-FRBdHEfemX1_zD6dX1y1BO2JVmlxRRTYhDM/edit?usp=sharing
+hints:
+  - I remember eating it early in the morning, but sometimes I would snack on it in the evening too.
+files:
+  - src: ./flag.txt
+  - src: ./schedule.xlsx
+authors:
+  - Juna Lee
+visible: true

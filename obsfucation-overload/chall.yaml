@@ -19,7 +19,7 @@ description: |-
 
 hints:
   - Ghidra is a free binary dissassembler and analyzer (u can try Binary Ninja too)
-  - Have you tried analyzing how the binary works?
+  - Have you tried analyzing how the binary works? You don't really need to run the binary for anything
 files:
   - src: ./overload
   - src: ./info.txt

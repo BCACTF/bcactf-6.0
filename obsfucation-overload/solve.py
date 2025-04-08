@@ -1,0 +1,43 @@
+def generate_key(username1, username2):
+    key = []
+    length = max(len(username1), len(username2))
+
+    # Step 1: XOR corresponding characters from both usernames
+    for i in range(length):
+        byte1 = ord(username1[i]) if i < len(username1) else 0
+        byte2 = ord(username2[i]) if i < len(username2) else 0
+
+        xor_result = byte1 ^ byte2
+        key.append(xor_result)
+
+    # Step 2: Perform bit shift (left rotate)
+    for i in range(len(key)):
+        key[i] = ((key[i] << (i % 8)) | (key[i] >> (8 - (i % 8)))) & 0xFF  # left rotate
+
+    # Step 3: Reverse the order of the key
+    key.reverse()
+
+    return key
+
+
+def decrypt_text(encrypted_text_hex, username1, username2):
+    encrypted_data = bytes.fromhex(encrypted_text_hex)
+    key = generate_key(username1, username2)
+
+    decrypted_data = bytearray(len(encrypted_data))
+    for i in range(len(encrypted_data)):
+        decrypted_data[i] = encrypted_data[i] ^ key[i % len(key)]
+
+    return decrypted_data.decode("utf-8")
+
+
+# Sample input
+username1 = "tienorz1234"
+username2 = "n006wm_backwards"
+encrypted_text_hex = "db7a2f75cf1bdb62f625d3f7f10a852ae67e7e26d522913df62e8bb0a62786458a6f7d64c219942af630d7f8f627dc2ecf64"  # This will be the encrypted hex string from the C++ program
+
+# Decrypt the text
+decrypted_text = decrypt_text(encrypted_text_hex, username1, username2)
+print(f"Decrypted Text: {decrypted_text}")
+
+# Decrypted Text: bcactf{1_l0v3_70_g00n_1n_gh1dr4_3v3ryd4y_y4y4rn4v}

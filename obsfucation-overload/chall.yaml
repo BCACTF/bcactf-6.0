@@ -3,28 +3,26 @@ categories:
   - rev
   - crypto
 value: 125 # TODO: balance points lmao
-flag: bcactf{l33t_0bfusc4t3d_r3v_fun}
+flag: bcactf{1_l0v3_70_g00n_1n_gh1dr4_3v3ryd4y_y4y4rn4v}
 # Alternatively:
 # flag:
 #   file: ./flag.txt
 # 
 description: |-
-  In the world of secret communication, encryption is the first line of defense. But what happens when that encryption becomes too complicated, too obfuscated to even be understood?
+  I've made an amazing new encryption software to share information with my bestest friend! 
+  my username is `tienorz1234` and my best friend's username is `n006wm_backwards`.
+  but, i forgot to code up the decryption logic.... that makes it even more secure!!
+  here's the encrypted flag and the binary I used to encrypt the flag to share with `n006wm_backwards`!
 
-  A mysterious encrypted message has been intercepted, and it’s up to you, the digital detective, to crack the code and retrieve the secret it holds. The encryption process, while seemingly complex, follows a set of deterministic rules. The message, when processed with the right key, can be decrypted and restored to its original form.
+  (you can see the information in info.txt if needed)
+  `db7a2f75cf1bdb62f625d3f7f10a852ae67e7e26d522913df62e8bb0a62786458a6f7d64c219942af630d7f8f627dc2ecf64`
 
-  In this challenge, you’re provided with a binary file containing an encrypted payload. You’ll need to reverse-engineer the encryption and extract the hidden flag. The encrypted data is manipulated using several reversible operations—XOR, bitwise shifts, and simple transformations.
-
-  But don’t be fooled: while these transformations are simple in nature, the key to success lies in identifying the right decryption process. Only by carefully reversing the operations will you reveal the flag, hidden under layers of confusion.
-
-  Are you ready to solve the puzzle, or will the encryption keep you locked out forever? The clock is ticking… The flag is waiting.
-
-  tldr; this is all chatgpt yap and dont worry, just start reversing alr
 hints:
-  - Ghidra is a free binary dissassembler and analyzer
+  - Ghidra is a free binary dissassembler and analyzer (u can try Binary Ninja too)
   - Have you tried analyzing how the binary works?
 files:
   - src: ./overload
+  - src: ./info.txt
 authors:
   - Colin
 visible: true

@@ -1,3 +1,1 @@
-first disassemble binary to realize that you can use --access to dump an encrypted flag. this is XORed with 0x2A to begin, and you generate a key based on the identifier, which is used to XOR the data again. it is also shifted and transformed in a reversible way (add 0x10 and XOR w/ key)
-
-see solve.py which will be released at end for example solution
+its a pretty trivial reverse engineering, you just need to understand that it is xoring and find the xor key, which can be done by reverse engineering the keygen logic in the binary

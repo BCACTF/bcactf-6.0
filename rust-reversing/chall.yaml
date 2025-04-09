@@ -1,0 +1,17 @@
+name: Rust Reversing
+categories:
+  - rev
+value: 25
+flag: bcactf{w0w_rUsT_reverse}
+description: |-
+  Ghidra now supports rust, so have fun
+hints:
+  - Some of the characters get added
+files:
+  - src: ./flag.txt
+  - src: ./a.txt
+    dest: optionallyrenamethefile.txt
+authors:
+  - Joshua Peisach
+visible: true
+# TODO: deployment

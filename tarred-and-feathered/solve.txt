@@ -1,0 +1,4 @@
+use `tar -tzf challenge.tar.gz` to see that there is a hidden file in a parent directory
+it has a zero-width space so u have to be careful when reading the flag
+you will only see the note.txt when you extract normally cuz the other is in a parent directory
+then js read the flag

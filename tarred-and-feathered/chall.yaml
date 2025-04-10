@@ -1,0 +1,27 @@
+name: Example Problem
+categories:
+  - forensics
+value: 50
+flag: bcactf{you_tarred_me_apart_1bf1fb1}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  A mysterious archive has surfaced, claiming to contain a hidden message. The archive, challenge.tar.gz, appears to be a simple backup of some logs and documents. At first glance, nothing seems out of the ordinary, just a innocuous file with a trivial name.
+
+  However, not everything is as it seems. Somewhere deep within the contents of this archive lies a secret, concealed beneath layers of deception. You will need to look beyond the obvious and piece together clues that are meant to mislead. Only the most observant will be able to find the hidden flag.
+
+  Time is of the essence, and the clock is ticking. Can you uncover the truth, or will you be left chasing shadows?
+
+hints:
+  - Not everything in the archive is what it seems. Look beyond the visible files.
+  - Zero-width spaces are sneaky characters. They are invisible in most cases but can be detected with the right tools.
+  - Don’t just look in the obvious directories. The flag might be hiding in plain sight but requires a bit of extra attention to detail.
+  - If `ls` doesn’t help you spot the file, try using commands that display all characters, even hidden ones.
+files:
+  - src: ./challenge.tar.gz
+authors:
+  - Colin
+visible: true
+# TODO: deployment

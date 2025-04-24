@@ -1,0 +1,18 @@
+name: Good Comms
+categories:
+  - misc
+value: 100
+flag: bcactf{1_w0n_7h3_c45h_cup_8y_u51n6_66w4v3_70_741k_70_my_du0}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  So I was playing duos cash cup with my duo Tien, but he said he told me the flag in the comms?
+  I couldn't find it, can you?
+files:
+  - src: ./comms.wav
+authors:
+  - Colin
+visible: true
+# TODO: deployment

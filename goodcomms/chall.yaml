@@ -13,7 +13,7 @@ description: |-
 files:
   - src: ./comms.wav
 hints:
-  -
+  - Look for some suspicious audio??
 authors:
   - Colin
 visible: true

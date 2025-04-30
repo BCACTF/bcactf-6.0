@@ -12,6 +12,8 @@ description: |-
   I couldn't find it, can you?
 files:
   - src: ./comms.wav
+hints:
+  -
 authors:
   - Colin
 visible: true

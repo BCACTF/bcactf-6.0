@@ -3,8 +3,7 @@ categories:
   - crypto
 value: 50
 # Alternatively:
-flag:
-  file: bcactf{nepetalactone}
+flag: bcactf{nepetalactone}
 
 description: |-
   I found the secret compound that Generic Perfume Corp. uses in their products. Unfortunately, it seems to be hashed. 

@@ -1,6 +1,6 @@
 name: Tarred and Feathered
 categories:
-  - forensics
+  - foren
 value: 50
 flag: bcactf{you_tarred_me_apart_1bf1fb1}
 # Alternatively:

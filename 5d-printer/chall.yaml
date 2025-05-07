@@ -1,7 +1,7 @@
 name: 5d printing
 categories:
   - rev
-value: 175
+value: 100
 flag: bcactf{7h47_f3311n6_wh3n_my_3d_pr1n73r_cr05535_71m311n35}
 # Alternatively:
 # flag:

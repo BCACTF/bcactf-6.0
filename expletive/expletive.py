@@ -12,7 +12,7 @@ while True:
         print("invalid input")
     else:
         if len(cmds) > BUFFER_SIZE:
-            print("bcactf{this_is_a_flag}")
+            print("bcactf{fudG3_5hOo7_d4rn100}")
             break
         else:
             print("nope")

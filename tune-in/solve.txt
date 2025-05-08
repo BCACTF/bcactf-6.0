@@ -1,0 +1,3 @@
+use smth like ffmpeg or audacity to extract the channel with the sstv data
+then just decode with sstv, theres a nice python tool on github
+you might need to strech the image a little bit to see flag more clearly

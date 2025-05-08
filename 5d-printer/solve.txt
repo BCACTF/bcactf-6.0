@@ -1,3 +1,0 @@
-figure out this from the comment only py file:
-
-commands are sorted by U (and secondarily by V) so that the correct sequential toolpath is recovered. the script then plots the figure

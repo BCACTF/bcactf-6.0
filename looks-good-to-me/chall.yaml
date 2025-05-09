@@ -1,0 +1,22 @@
+name: helpful feedback
+categories:
+  - rev
+value: 125
+flag: bcactf{100k5_600d_70_m3_51r}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  wow, i found this program that mirrors _________!
+  when i do something good they say nothing, and something wrong they immediately exit!
+
+  also, c++ is the best functional programming language
+hints:
+  - hint hint, hint hint hint, hint hint hint hint
+files:
+  - src: ./help
+authors:
+  - Colin
+visible: true
+# TODO: deployment

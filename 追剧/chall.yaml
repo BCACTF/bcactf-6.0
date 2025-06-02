@@ -13,8 +13,8 @@ description: |-
 
   can you find this information
   - the name of what i was watching (in english)
-  - the episode number (numeric)
-  - the name of the current competition
+  - the episode number (numeric, no leading zeros if necessary)
+  - the name of the current competition (subtitles are advised, in ENGLISH)
 
   replace all spaces with underscores, all lowercase, remove any non alphanumeric characters
   join the three sections in that order with dashes

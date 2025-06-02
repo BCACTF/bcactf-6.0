@@ -9,8 +9,9 @@ flag: bcactf{we_are_not_gooners_trust_me}
 # 
 description: |-
   aside from BCACTF, i think bca has some ctf teams too?
+  please do not fuzz/brute-force. also, i heard some of us are big **bots**.
 hints:
-  - look on ctftime perhaps??
+  - look on ctftime perhaps?? or use google
 authors:
   - Arnav
   - Colin

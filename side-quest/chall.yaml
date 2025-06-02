@@ -1,0 +1,18 @@
+name: side quest
+categories:
+  - misc
+value: 50
+flag: bcactf{we_are_not_gooners_trust_me}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  aside from BCACTF, i think bca has some ctf teams too?
+hints:
+  - look on ctftime perhaps??
+authors:
+  - Arnav
+  - Colin
+visible: true
+# TODO: deployment

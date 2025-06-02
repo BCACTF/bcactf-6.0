@@ -1,0 +1,29 @@
+name: 追剧
+categories:
+  - misc
+value: 150
+flag: bcactf{go_go_squid-16-doppler_peak_finals}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  i was hopping on some **追剧** last night...
+  but i forgot what i was watching!!
+
+  can you find this information
+  - the name of what i was watching (in english)
+  - the episode number (numeric)
+  - the name of the current competition
+
+  replace all spaces with underscores, all lowercase, remove any non alphanumeric characters
+  join the three sections in that order with dashes
+hints:
+  - no hints for osint, make ticket if u need
+files:
+  - src: ./ss.png
+authors:
+  - Colin
+  - Arnav
+visible: true
+# TODO: deployment

@@ -2,7 +2,7 @@ name: 追剧
 categories:
   - misc
 value: 150
-flag: bcactf{go_go_squid-16-doppler_peak_finals}
+flag: bcactf{go_go_squid-5-doppler_peak_finals}
 # Alternatively:
 # flag:
 #   file: ./flag.txt

@@ -1,29 +1,21 @@
-name: Example Problem
+name: the ancients
 categories:
-  - misc
-value: 25
+  - rev
+value: 200
 flag: bcactf{this_is_a_flag}
 # Alternatively:
 # flag:
 #   file: ./flag.txt
 # 
 description: |-
-  Look at this example problem.
-  This is the problem description.
-  You will be able to add **markdown**!
-  Here is a separate paragraph.
-  Wow!
-  
-  Take your flag: bcactf{this_is_a_flag}
+  i hear even the ancient chinese knew how to code.
+  take a look at this relic i found from their archives...
+  maybe you can find a flag that this program book accepts?
 hints:
-  - Have you tried turning it off and on again?
-  - Have you tried forcing an unexpected reboot?
+  - first identify this programming language, then rev
 files:
-  - src: ./flag.txt
-  - src: ./a.txt
-    dest: optionallyrenamethefile.txt
+  - src: ./relic.svg
 authors:
-  - John Doe
-  - Jane Smith
+  - Colin
 visible: true
 # TODO: deployment

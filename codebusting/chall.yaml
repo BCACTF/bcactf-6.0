@@ -8,16 +8,11 @@ flag: bcactf{this_is_a_flag}
 #   file: ./flag.txt
 # 
 description: |-
-  Look at this example problem.
-  This is the problem description.
-  You will be able to add **markdown**!
-  Here is a separate paragraph.
-  Wow!
+  legends say im a professional buster.
+  let's see if you have what it takes to be a pro buster too
   
-  Take your flag: bcactf{this_is_a_flag}
 hints:
-  - Have you tried turning it off and on again?
-  - Have you tried forcing an unexpected reboot?
+  - take a look at scioly.org codebusters wiki
 files:
   - src: ./flag.txt
   - src: ./a.txt

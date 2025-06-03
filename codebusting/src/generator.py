@@ -332,7 +332,7 @@ def genQuoteLength(min, max):
 
 
 def genSpanishQuote(min, max):
-    json_file = open("spanish.json", "r", encoding="mbcs")
+    json_file = open("spanish.json", "r")
     data = json.load(json_file)
     l = []
     for p in data["quotes"]:

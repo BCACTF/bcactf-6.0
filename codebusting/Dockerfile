@@ -17,11 +17,11 @@ RUN chmod +x ynetd
 
 # copy over source and set permissions
 COPY flag.txt .
-COPY bustinglib/ .
+COPY src/ .
 
 RUN chown -R root:root /home/ctf
 
 # run and expose
 USER ctf
 EXPOSE 8148
-CMD ["./ynetd", "-p", "8148", "python3 physics-test.py 2>&1"]
+CMD ["./ynetd", "-p", "8148", "python3 server.py 2>&1"]

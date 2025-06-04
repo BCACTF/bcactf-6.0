@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
 from pwn import *
 
-# Configuration
 context.log_level = 'debug'
 binary = './still_water_mango'
 
-# Connect to the challenge
-conn = remote('localhost', 9999)
+conn = remote('localhost', 9999) # prob gonna need to adjust later
 
-# Helper functions for menu interaction
 def menu(choice):
     conn.recvuntil(b'> ')
     conn.sendline(str(choice).encode())

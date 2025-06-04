@@ -2,11 +2,8 @@ name: still water + mango
 categories:
   - binex
 value: 150
-flag: bcactf{111_3d63_1n_y0ur_h0u53_7h3n_111_347_m4n6035}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
+flag:
+  file: ./flag.txt
 description: |-
   I'm like, "still water + mango"
   Seen yo goofy ahh and you a beta lil' bro

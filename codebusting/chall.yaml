@@ -1,12 +1,9 @@
 name: codeBusting
 categories:
   - algo
-value: 25
-flag: bcactf{this_is_a_flag}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
+value: 100
+flag:
+  file: ./flag.txt
 description: |-
   legends say im a professional buster.
   let's see if you have what it takes to be a pro buster too
@@ -14,9 +11,7 @@ description: |-
 hints:
   - take a look at scioly.org codebusters wiki
 files:
-  - src: ./flag.txt
-  - src: ./a.txt
-    dest: optionallyrenamethefile.txt
+  - src: ./server.py
 authors:
   - Colin Ding
 visible: true

@@ -17,8 +17,12 @@ RUN chmod +x ynetd
 
 # copy over source and set permissions
 COPY flag.txt .
+
+COPY server.py .
+
 COPY quotes.txt .
 COPY spanish.json .
+COPY words.txt .
 
 RUN chown -R root:root /home/ctf
 

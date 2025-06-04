@@ -16,8 +16,8 @@ COPY --from=build ynetd ynetd
 RUN chmod +x ynetd
 
 # copy over source and set permissions
-COPY physics-test.py physics-test.py 
 COPY flag.txt .
+COPY bustinglib/ .
 
 RUN chown -R root:root /home/ctf
 

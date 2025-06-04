@@ -7,7 +7,8 @@ flag:
 description: |-
   legends say im a professional buster.
   let's see if you have what it takes to be a pro buster too
-  
+
+  the server file you have is exactly the one running on the server
 hints:
   - take a look at scioly.org codebusters wiki
 files:
@@ -15,4 +16,7 @@ files:
 authors:
   - Colin Ding
 visible: true
-# TODO: deployment
+deploy:
+  nc:
+    build: .
+    expose: 8148/tcp

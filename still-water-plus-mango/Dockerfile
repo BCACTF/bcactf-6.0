@@ -16,7 +16,7 @@ WORKDIR /home/ctf
 COPY --from=build ynetd .
 RUN chmod +x ynetd
 
-COPY --from=build chall chall
+COPY --from=build swpm swpm
 COPY flag.txt .
 
 RUN chown -R root:root /home/ctf

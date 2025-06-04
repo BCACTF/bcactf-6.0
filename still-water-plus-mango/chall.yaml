@@ -1,29 +1,31 @@
-name: Example Problem
+name: still water + mango
 categories:
-  - misc
-value: 25
-flag: bcactf{this_is_a_flag}
+  - binex
+value: 150
+flag: bcactf{111_3d63_1n_y0ur_h0u53_7h3n_111_347_m4n6035}
 # Alternatively:
 # flag:
 #   file: ./flag.txt
 # 
 description: |-
-  Look at this example problem.
-  This is the problem description.
-  You will be able to add **markdown**!
-  Here is a separate paragraph.
-  Wow!
-  
-  Take your flag: bcactf{this_is_a_flag}
+  I'm like, "still water + mango"
+  Seen yo goofy ahh and you a beta lil' bro
+  I just wanna chill, got knee surgery tomorrow
+  Married to the V-bucks, introduced her to Vexbolts
+  Told her I'm like Ninja, got a taper faded low
+  She my rizz queen, let her eat Feastables
+  We be gooning up, watch how far them reels scroll
+  We just set a goal, Turkish Quandale Dingle
+  At 56 a gyatt, 5 a hundred gyatts though
+  Man, I swear I love her and it come with egg roll
+  Hit the rizz club, we be getting ratio'd
+  Everybody glazing, we just comment those who know
+  In love with the lunchly, I ain't eatin lunchables
 hints:
-  - Have you tried turning it off and on again?
-  - Have you tried forcing an unexpected reboot?
+  - have you tried getting rizzy or being more skibidi?
 files:
-  - src: ./flag.txt
-  - src: ./a.txt
-    dest: optionallyrenamethefile.txt
+  - src: ./swpm
 authors:
-  - John Doe
-  - Jane Smith
+  - Colin
 visible: true
 # TODO: deployment

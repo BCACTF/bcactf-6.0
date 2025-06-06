@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pwn import *
 
-context.log_level = 'debug'
+# context.log_level = 'debug'
 binary = './still_water_mango'
 
 conn = remote('localhost', 9999) # prob gonna need to adjust later

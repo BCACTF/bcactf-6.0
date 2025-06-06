@@ -18,7 +18,7 @@ void setup() {
 
 void win() {
     if (secret_ingredient != NULL && strcmp(secret_ingredient, "respected") == 0) {
-        printf("🌊 Still water + mango = Respected 🥭\n");
+        printf("guess u not a beta lil bro... good job\n");
         system("/bin/sh");
     } else {
         printf("You haven't unlocked the secret ingredient yet!\n");

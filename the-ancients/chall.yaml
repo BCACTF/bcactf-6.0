@@ -10,9 +10,12 @@ flag: bcactf{this_is_a_flag}
 description: |-
   i hear even the ancient chinese knew how to code.
   take a look at this relic i found from their archives...
-  maybe you can find a flag that this program book accepts?
+  legends say that it's supposed to produce the correct flag??
+
+  but something's wrong...
 hints:
   - first identify this programming language, then rev
+  - u might need to "fix" the program...
 files:
   - src: ./relic.svg
 authors:

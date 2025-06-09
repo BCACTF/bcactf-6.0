@@ -1,7 +1,7 @@
 name: still water + mango
 categories:
   - binex
-value: 150
+value: 100
 flag:
   file: ./flag.txt
 description: |-

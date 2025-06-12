@@ -11,11 +11,9 @@ description: |-
   i hear even the ancient chinese knew how to code.
   take a look at this relic i found from their archives...
   it can check your flag for you!
-
-  but something's wrong...
 hints:
   - first identify this programming language, then rev
-  - bcactf{FAKE_FLAG} is a fake flag (duh) and just a placeholer
+  - bcactf{FAKE_FLAG} is a fake flag (duh) and just a placeholder
 files:
   - src: ./chall.zip
 authors:

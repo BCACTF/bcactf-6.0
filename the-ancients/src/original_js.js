@@ -1,67 +1,52 @@
 function createFlagChecker() {
-    // Hardcoded secrets
-    var secretA = 123;
-    var secretB = 45;
-    var secretC = 67;
-    var secretD = 89;
+  // Simple transformation keys
+  var key1 = 11;
+  var key2 = 22;
+  var key3 = 33;
+  var key4 = 44;
+  
+  // Store encoded version of flag to check against
+  var encodedFlag = [109,121,130,143,127,124,156,153,132,117,87,158,62,74,88,139,65,136,84,96,66,117,87,158,62,74,88,139,65,136,84,96,66,117,87,158,62,74,88,139,65,136,84,96,66,117,87,158,62,74,88,139,65,136,85,154,111,124,85,99,115,73,147,139,123,136,81,98,125,74,142,153,62,122,128,99,115,71,86,169];
+  
+  function encodeFlag(flag) {
+    var result = [];
+    var i = 0;
     
-    // This function will check if a given flag is correct
-    function checkFlag(flag) {
-        var checksum = 1337;
-        var i = 0;
-        
-        // Process each character in the flag
-        while (i < flag.length) {
-            var charCode = flag.charCodeAt(i);
-            
-            // Apply different transformations based on position
-            if (i % 4 == 0) {
-                charCode = (charCode * 7 + 3) % 256;
-            }
-            if (i % 4 == 1) {
-                charCode = (charCode * 3 + 5) % 256;
-            }
-            if (i % 4 == 2) {
-                charCode = (charCode * 11 - 7) % 256;
-            }
-            if (i % 4 == 3) {
-                charCode = (charCode * 5 + 9) % 256;
-            }
-            
-            // Apply position-based secret
-            if (i % 4 == 0) {
-                charCode = (charCode + secretA) % 256;
-            }
-            if (i % 4 == 1) {
-                charCode = (charCode + secretB) % 256;
-            }
-            if (i % 4 == 2) {
-                charCode = (charCode + secretC) % 256;
-            }
-            if (i % 4 == 3) {
-                charCode = (charCode + secretD) % 256;
-            }
-            
-            // Update checksum
-            checksum = (checksum * 31 + charCode) % 65521;
-            
-            i = i + 1;
-        }
-        
-        // The expected checksum for the real flag
-        // Replace this with the checksum for your actual flag
-        var expectedChecksum = 63740;
-        
-        // Compare and return result
-        return checksum == expectedChecksum;
+    while (i < flag.length) {
+      var charCode = flag.charCodeAt(i);
+      var encoded;
+      
+      // Simple reversible transformations based on position
+      if (i % 4 == 0) {
+        encoded = (charCode + key1) % 256;
+      } else if (i % 4 == 1) {
+        encoded = (charCode + key2) % 256;
+      } else if (i % 4 == 2) {
+        encoded = (charCode + key3) % 256;
+      } else {
+        encoded = (charCode + key4) % 256;
+      }
+      
+      result.push(encoded);
+      i = i + 1;
     }
     
-    return checkFlag;
+    return result;
+  }
+  // Check if the provided flag matches the expected flag
+  function checkFlag(flag) {
+    var encoded = encodeFlag(flag);
+    
+    return (encoded.toString() == encodedFlag.toString());
+  }
+  
+  return checkFlag;
 }
 
-// Create the checker function
-var verifyFlag = createFlagChecker();
+// Create the checker
+var flagChecker = createFlagChecker();
 
-// Test with a flag
-var result = verifyFlag("bcactf{FAKE_FLAG}");
+
+// Test the checker
+var result = flagChecker("bcactf{my_6r347_6r347_6r347_6r347_6r347_6r347_6r347_6r4ndf47h3r_pr06r4mm3d_7h15}");
 console.log("Flag check result:", result);

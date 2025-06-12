@@ -1,122 +1,95 @@
-var createFlagChecker = _ => {};
-createFlagChecker = () => {
-  var MI4MI4YI1 = 123;
-  var MI4MI4ER4 = 45;
-  var MI4MI4SAN1 = 67;
-  var MI4MI4SI4 = 89;
-  var checkFlag = _ => {};
-  checkFlag = flag => {
-    var checksum = 1337;
+var JIAN4LI4JIAN3CHA2QI4 = _ => {};
+JIAN4LI4JIAN3CHA2QI4 = () => {
+  var GUAN1JIAN4YI1 = 11;
+  var GUAN1JIAN4ER4 = 22;
+  var GUAN1JIAN4SAN1 = 33;
+  var GUAN1JIAN4SI4 = 44;
+  var encodedFlag = [];
+  encodedFlag.push(109, 121, 130, 143, 127, 124, 156, 153, 132, 117, 87, 158, 62, 74, 88, 139, 65, 136, 84, 96, 66, 117, 87, 158, 62, 74, 88, 139, 65, 136, 84, 96, 66, 117, 87, 158, 62, 74, 88, 139, 65, 136, 84, 96, 66, 117, 87, 158, 62, 74, 88, 139, 65, 136, 85, 154, 111, 124, 85, 99, 115, 73, 147, 139, 123, 136, 81, 98, 125, 74, 142, 153, 62, 122, 128, 99, 115, 71, 86, 169);
+  var BIAN1MA3BIAO1ZHI4 = _ => {};
+  BIAN1MA3BIAO1ZHI4 = flag => {
+    var JIE2GUO3 = [];
     var i = 0;
     while (true) {
       const _ans1 = flag.length;
-      var JI3XIN1 = false;
+      var CHEN2DING1 = false;
       if (i < _ans1) {
-        JI3XIN1 = true;
+        CHEN2DING1 = true;
       };
-      if (JI3XIN1 == 0) {
+      if (CHEN2DING1 == 0) {
         break;
       };
-      var ZI3CHEN2 = _ => {};
-      ZI3CHEN2 = _a0 => {
+      var JIA3SHI2 = _ => {};
+      JIA3SHI2 = _a0 => {
         return flag.charCodeAt(_a0, );
       };
-      const _ans2 = ZI3CHEN2(i);
+      const _ans2 = JIA3SHI2(i);
       var ZI4YUAN2DAI4MA3 = _ans2;
+      var encoded = {};
       const _ans3 = i % 4;
-      var XU1SHI2 = _ans3;
-      if (XU1SHI2 == 0) {
-        const _ans4 = ZI4YUAN2DAI4MA3 * 7;
-        var ZI3CHEN2BA1 = _ans4;
-        const _ans5 = ZI3CHEN2BA1 + 3;
-        var HAI4WU4 = _ans5;
-        const _ans6 = HAI4WU4 % 256;
-        ZI4YUAN2DAI4MA3 = _ans6;
+      var XIN1SI4 = _ans3;
+      if (XIN1SI4 == 0) {
+        const _ans4 = ZI4YUAN2DAI4MA3 + GUAN1JIAN4YI1;
+        var JI3GENG1 = _ans4;
+        const _ans5 = JI3GENG1 % 256;
+        encoded = _ans5;
+      } else {
+        const _ans6 = i % 4;
+        var DI4SHI2 = _ans6;
+        if (DI4SHI2 == 1) {
+          const _ans7 = ZI4YUAN2DAI4MA3 + GUAN1JIAN4ER4;
+          var CHEN2GUI3 = _ans7;
+          const _ans8 = CHEN2GUI3 % 256;
+          encoded = _ans8;
+        } else {
+          const _ans9 = i % 4;
+          var YIN2WU3 = _ans9;
+          if (YIN2WU3 == 2) {
+            const _ans10 = ZI4YUAN2DAI4MA3 + GUAN1JIAN4SAN1;
+            var GENG1BING3 = _ans10;
+            const _ans11 = GENG1BING3 % 256;
+            encoded = _ans11;
+          } else {
+            const _ans12 = ZI4YUAN2DAI4MA3 + GUAN1JIAN4SI4;
+            var ZI3XU1 = _ans12;
+            const _ans13 = ZI3XU1 % 256;
+            encoded = _ans13;
+          };
+        };
       };
-      const _ans7 = i % 4;
-      var SI4WU3 = _ans7;
-      if (SI4WU3 == 1) {
-        const _ans8 = ZI4YUAN2DAI4MA3 * 3;
-        var REN2CHEN2 = _ans8;
-        const _ans9 = REN2CHEN2 + 5;
-        var JI3WU3 = _ans9;
-        const _ans10 = JI3WU3 % 256;
-        ZI4YUAN2DAI4MA3 = _ans10;
-      };
-      const _ans11 = i % 4;
-      var ER4CHEN2 = _ans11;
-      if (ER4CHEN2 == 2) {
-        const _ans12 = ZI4YUAN2DAI4MA3 * 11;
-        var ER4SHEN1 = _ans12;
-        const _ans13 = ER4SHEN1 - 7;
-        var WU4JIA3 = _ans13;
-        const _ans14 = WU4JIA3 % 256;
-        ZI4YUAN2DAI4MA3 = _ans14;
-      };
-      const _ans15 = i % 4;
-      var YI3WU3 = _ans15;
-      if (YI3WU3 == 3) {
-        const _ans16 = ZI4YUAN2DAI4MA3 * 5;
-        var GENG1YIN2 = _ans16;
-        const _ans17 = GENG1YIN2 + 9;
-        var ZHI1GENG1 = _ans17;
-        const _ans18 = ZHI1GENG1 % 256;
-        ZI4YUAN2DAI4MA3 = _ans18;
-      };
-      const _ans19 = i % 4;
-      var CHEN2CHEN2 = _ans19;
-      if (CHEN2CHEN2 == 0) {
-        const _ans20 = ZI4YUAN2DAI4MA3 + MI4MI4YI1;
-        var XU1WEI4 = _ans20;
-        const _ans21 = XU1WEI4 % 256;
-        ZI4YUAN2DAI4MA3 = _ans21;
-      };
-      const _ans22 = i % 4;
-      var JI3YI3 = _ans22;
-      if (JI3YI3 == 1) {
-        const _ans23 = ZI4YUAN2DAI4MA3 + MI4MI4ER4;
-        var BING3YI3 = _ans23;
-        const _ans24 = BING3YI3 % 256;
-        ZI4YUAN2DAI4MA3 = _ans24;
-      };
-      const _ans25 = i % 4;
-      var YI3GENG1 = _ans25;
-      if (YI3GENG1 == 2) {
-        const _ans26 = ZI4YUAN2DAI4MA3 + MI4MI4SAN1;
-        var CHOU3JIA3 = _ans26;
-        const _ans27 = CHOU3JIA3 % 256;
-        ZI4YUAN2DAI4MA3 = _ans27;
-      };
-      const _ans28 = i % 4;
-      var GENG1MAO3 = _ans28;
-      if (GENG1MAO3 == 3) {
-        const _ans29 = ZI4YUAN2DAI4MA3 + MI4MI4SI4;
-        var SI4XIN1 = _ans29;
-        const _ans30 = SI4XIN1 % 256;
-        ZI4YUAN2DAI4MA3 = _ans30;
-      };
-      const _ans31 = checksum * 31;
-      var DI4WEI4 = _ans31;
-      const _ans32 = DI4WEI4 + ZI4YUAN2DAI4MA3;
-      var SI4REN2 = _ans32;
-      const _ans33 = SI4REN2 % 65521;
-      checksum = _ans33;
-      const _ans34 = i + 1;
-      i = _ans34;
+      JIE2GUO3.push(encoded);
+      const _ans14 = i + 1;
+      i = _ans14;
     };
-    var _ans35 = 63740;
-    var REN2YIN2 = false;
-    if (checksum == _ans35) {
-      REN2YIN2 = true;
-    };
-    return REN2YIN2;
+    return JIE2GUO3;
   };
-  return checkFlag;
+  var JIAN3CHA2BIAO1ZHI4 = _ => {};
+  JIAN3CHA2BIAO1ZHI4 = flag => {
+    const _ans15 = BIAN1MA3BIAO1ZHI4(flag);
+    encoded = _ans15;
+    var YIN2YIN2 = _ => {};
+    YIN2YIN2 = () => {
+      return encoded.toString();
+    };
+    const _ans16 = YIN2YIN2();
+    var WU4YI3 = _ans16;
+    var MAO3WEI4 = _ => {};
+    MAO3WEI4 = () => {
+      return encodedFlag.toString();
+    };
+    const _ans17 = MAO3WEI4();
+    var WEI4ER4 = false;
+    if (WU4YI3 == _ans17) {
+      WEI4ER4 = true;
+    };
+    return WEI4ER4;
+  };
+  return JIAN3CHA2BIAO1ZHI4;
 };
-const _ans36 = createFlagChecker();
-var verifyFlag = _ans36;
-const _ans37 = verifyFlag("bcactf{FAKE_FLAG}");
-var result = _ans37;
-var _ans38 = "Flag check result:";
-var _ans39 = result;
-console.log(_ans38, _ans39);
+const _ans18 = JIAN4LI4JIAN3CHA2QI4();
+var BIAO1ZHI4JIAN3CHA2QI4 = _ans18;
+const _ans19 = BIAO1ZHI4JIAN3CHA2QI4("bcactf{FAKE_FLAG}");
+JIE2GUO3 = _ans19;
+var _ans20 = "標誌檢查結果:";
+var _ans21 = JIE2GUO3;
+console.log(_ans20, _ans21);

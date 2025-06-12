@@ -1,5 +1,0 @@
-actually fix .wy wenyan source code
-update the flag in chall.yaml
-
-compile and add .svg file here with the online tool
-https://ide.wy-lang.org/

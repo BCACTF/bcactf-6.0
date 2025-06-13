@@ -1,3 +1,5 @@
+# i am going to be completely honest and admit that idk if this is even pwn. its yappage
+# wtv tho its a working thing that solves it, and also idrk if the UAF is even real or not
 #!/usr/bin/env python3
 from pwn import *
 

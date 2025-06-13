@@ -1,8 +1,7 @@
 name: Obsfucation Overload
 categories:
   - rev
-  - crypto
-value: 125
+value: 75
 flag: bcactf{1_l0v3_70_g00n_1n_gh1dr4_3v3ryd4y_y4y4rn4v}
 description: |-
   I've made an amazing new encryption software to share information with my bestest friend! 

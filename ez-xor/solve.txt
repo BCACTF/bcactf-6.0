@@ -1,1 +1,1 @@
-base 64 decode and then xor with key "B"
+https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)XOR_Brute_Force(1,100,0,'Standard',false,true,false,'bcactf%7B')&input=SUNFaklUWWtPUkVwS3lBckJpc1JOeVFrSFJBck9EZ3VKeEF2SngwUkt5VXZJeDBPSXl3bWNoMEROekFqSlMwc0hRQWpNQzBzSFJjeUpUQWpKaWNtUHc9PQ

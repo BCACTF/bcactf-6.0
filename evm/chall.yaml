@@ -3,11 +3,6 @@ categories:
   - rev
 value: 200
 flag: bcactf{5011d11y_r3v3r53_3n61n33r3d_600d_j08}
- 
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
 description: |-
   in the big 25', we only use the top languages for everything.
   i even signed a **contract** to do things, hopefully it has some interesting **functions** for you
@@ -19,4 +14,3 @@ files:
 authors:
   - Colin
 visible: true
-# TODO: deployment

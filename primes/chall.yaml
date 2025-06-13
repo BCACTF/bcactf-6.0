@@ -1,0 +1,16 @@
+name: primes
+categories:
+  - crypto
+value: 50
+flag: bcactf{factorize}
+description: |-
+  We have some very prime numbers.. except some. Please find a word related to prime numbers hidden somewhere in this list. WRAP YOUR ANSWER IN bcactf{}
+hints:
+  - Are all the numbers prime?
+  - What are the indices of the non-prime numbers
+files:
+  - src: ./primes.txt
+authors:
+  - Colin
+visible: true
+# TODO: deployment

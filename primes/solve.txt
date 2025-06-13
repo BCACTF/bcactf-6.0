@@ -1,0 +1,1 @@
+find indexes of non-primes, turn into characters, solve anagram to get "factorize", wrap in bcactf{factorize}

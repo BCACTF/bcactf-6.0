@@ -1,0 +1,2 @@
+its skibid lang which compiles to brainfuck
+just search up online interpreter

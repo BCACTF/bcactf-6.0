@@ -1,12 +1,8 @@
 name: ez-xor
 categories:
   - crypto
-value: 75
+value: 50
 flag: bcactf{SkibiDiSuff_RizzleRme_Sigma_Land0_Auragon_Baron_Upgraded}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
 description: |-
   Please be very ORZ and do some XORing.
 hints:
@@ -14,9 +10,7 @@ hints:
   - Have you tried using the XOR operation?
   - The key is one byte long.
 files:
-  - src: ./flag.txt
-    dest: getbetter.txt
+  - src: ./encoded_flag.txt
 authors:
-  - Colin Ding
+  - Colin
 visible: true
-# TODO: deployment

@@ -1,12 +1,8 @@
 name: primes
 categories:
-  - algo
-value: 100
+  - crypto
+value: 50
 flag: bcactf{factorize}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
 description: |-
   We have some very prime numbers.. except some. Please find a word related to prime numbers hidden somewhere in this list. WRAP YOUR ANSWER IN bcactf{}
 hints:
@@ -14,8 +10,7 @@ hints:
   - What are the indices of the non-prime numbers
 files:
   - src: ./primes.txt
-    dest: primes.txt
 authors:
-  - Colin Ding
+  - Colin
 visible: true
 # TODO: deployment

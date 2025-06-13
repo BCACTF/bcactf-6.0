@@ -1,12 +1,8 @@
 name: Tarred and Feathered
 categories:
   - foren
-value: 50
+value: 75
 flag: bcactf{you_tarred_me_apart_1bf1fb1}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
 description: |-
   A mysterious archive has surfaced, claiming to contain a hidden message. The archive, challenge.tar.gz, appears to be a simple backup of some logs and documents. At first glance, nothing seems out of the ordinary, just a innocuous file with a trivial name.
 
@@ -24,4 +20,3 @@ files:
 authors:
   - Colin
 visible: true
-# TODO: deployment

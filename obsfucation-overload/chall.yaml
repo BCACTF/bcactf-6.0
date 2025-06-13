@@ -2,12 +2,8 @@ name: Obsfucation Overload
 categories:
   - rev
   - crypto
-value: 125 # TODO: balance points lmao
+value: 125
 flag: bcactf{1_l0v3_70_g00n_1n_gh1dr4_3v3ryd4y_y4y4rn4v}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
 description: |-
   I've made an amazing new encryption software to share information with my bestest friend! 
   my username is `tienorz1234` and my best friend's username is `n006wm_backwards`.
@@ -16,9 +12,8 @@ description: |-
 
   (you can see the information in info.txt if needed)
   `db7a2f75cf1bdb62f625d3f7f10a852ae67e7e26d522913df62e8bb0a62786458a6f7d64c219942af630d7f8f627dc2ecf64`
-
 hints:
-  - Ghidra is a free binary dissassembler and analyzer (u can try Binary Ninja too)
+  - Ghidra is a free binary dissassembler and analyzer (u can try Binary Ninja too) or ida or smth
   - Have you tried analyzing how the binary works? You don't really need to run the binary for anything
 files:
   - src: ./overload
@@ -26,4 +21,3 @@ files:
 authors:
   - Colin
 visible: true
-# TODO: deployment

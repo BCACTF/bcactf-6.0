@@ -6,7 +6,7 @@ let uname: string, pwd: string, adminHash: string;
 async function readLine(promptText: string): Promise<string> {
   await Deno.stdout.write(new TextEncoder().encode(promptText));
   const buf = new Uint8Array(1024);
-  const n = <number>await Deno.stdin.read(buf);
+  const n = <number> await Deno.stdin.read(buf);
   if (n === null) return "";
   return new TextDecoder().decode(buf.subarray(0, n)).trim();
 }
@@ -25,7 +25,9 @@ async function menu() {
 
 async function signUp() {
   uname = await readLine("Enter a username for the administrator: ");
-  pwd = await readLine("Enter a secure password for the administrator account: ");
+  pwd = await readLine(
+    "Enter a secure password for the administrator account: ",
+  );
   adminHash = hash(encoder.encode(uname + ";" + pwd));
 
   const next = await readConfirm("Would you like to view the flag now?");
@@ -42,10 +44,11 @@ async function login() {
   console.log("Choose an account to log into: ");
   const user = await readLine("Enter username: ");
   const password = await readLine("Enter password: ");
-  if (password === pwd) {
+  if (user === uname || password === pwd) {
     console.log(
       "HEY. I sure hope you're not trying to break into the admin account.",
     );
+    Deno.exit(0);
   }
 
   if (!verify(encoder.encode(user + ";" + password), adminHash)) {

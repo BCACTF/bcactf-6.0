@@ -1,0 +1,24 @@
+name: Math Checker
+categories:
+  - rev
+value: 100
+flag: bcactf{18893}
+description: |-
+  My math teacher made this program to check a math problem. Unfortunately, he designed it
+  before the C Programming Language was made, so I can't really decompile it that well.
+  Can you figure out the correct answer? 
+  
+  (Wrap the 5-digit answer in the flag format, so if the correct program input were `12345`, the flag would 
+  be `bcactf{12345}`)
+hints:
+  - No hints, good luck!
+files:
+  - src: /app/math
+    dest: math
+    container: static
+authors:
+  - Mudasir Ali
+visible: true
+deploy:
+  static:
+    build: .

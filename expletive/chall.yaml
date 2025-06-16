@@ -13,7 +13,7 @@ hints:
   - Have you tried thinking about the title?
 files:
   - file: ./flag.txt
-  - src: ./a.txt
+  - src: expletive.py
     dest: optionallyrenamethefile.txt
 authors:
   - Sylvia Lee

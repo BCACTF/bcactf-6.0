@@ -12,7 +12,7 @@ while True:
         print("invalid input")
     else:
         if len(cmds) > BUFFER_SIZE:
-            print("bcactf{fudG3_5hOo7_d4rn100}")
+            print(open("flag.txt", "r").read())
             break
         else:
             print("nope")

@@ -8,7 +8,12 @@ description: |-
 hints:
   - No hints, good luck!
 files:
+  - src: /app/target/release/tbd
+    dest: rust-reversing
+    container: static
 authors:
   - Joshua Peisach
 visible: true
-# TODO: deployment
+deploy:
+  static:
+    build: .

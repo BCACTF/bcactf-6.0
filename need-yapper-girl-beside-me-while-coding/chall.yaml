@@ -1,13 +1,11 @@
-name: need yapper girl beside me while coding
+name: locked out
 categories:
   - misc
-value: 100
+value: 150
 flag:
   file: ./flag.txt
 description: |-
-  https://ctftime.org/team/389076
-
-  (this is not me, i do not endorse, etc etc etc)
+  just lock in instead of getting locked out
 hints:
   - just use your get out of jail free card
 files:

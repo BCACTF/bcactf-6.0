@@ -47,13 +47,6 @@ std::string toHex(const std::vector<uint8_t>& data) {
     return hex_str;
 }
 
-void showMenu() {
-    std::cout << "Welcome to the Encryption Service!" << std::endl;
-    std::cout << "1. Encrypt Text" << std::endl;
-    std::cout << "2. Decrypt Text (access not granted)" << std::endl;
-    std::cout << "3. Exit" << std::endl;
-}
-
 int main(int argc, char* argv[]) {
     bool accessGranted = false;
     if (argc >= 2 && std::string(argv[1]) == "--access") {
@@ -62,7 +55,6 @@ int main(int argc, char* argv[]) {
 
     if (!accessGranted) {
         std::cout << "Access Denied! Please provide the correct flag to proceed." << std::endl;
-        showMenu();
         return 1;
     }
 

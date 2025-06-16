@@ -1,4 +1,4 @@
-name: Obsfucation Overload
+name: bfffl
 categories:
   - rev
 value: 75
@@ -15,9 +15,13 @@ hints:
   - try analyzing the binary's encryption logic (free online dissassembler at [cloud.binary.ninja](https://cloud.binary.ninja/))
   - Have you tried analyzing how the binary works? You don't really need to run the binary for anything
 files:
-  - src: ./overload
   - src: ./info.txt
+  - src: chall
+    dest: bfffl
+    container: static
 authors:
   - Colin
 visible: true
-# TODO: deploy? not too sure how to do setup for static rev
+deploy:
+  static:
+    build: .

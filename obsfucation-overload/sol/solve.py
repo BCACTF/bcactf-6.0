@@ -32,12 +32,10 @@ def decrypt_text(encrypted_text_hex, username1, username2):
 
 
 # Sample input
-username1 = "tienorz1234"
-username2 = "n006wm_backwards"
-encrypted_text_hex = "db7a2f75cf1bdb62f625d3f7f10a852ae67e7e26d522913df62e8bb0a62786458a6f7d64c219942af630d7f8f627dc2ecf64"  # This will be the encrypted hex string from the C++ program
+username1 = "hun73r12"
+username2 = "__purten75"
+encrypted_text_hex = "08544f76b472694f3c03045c1b4aa6246027635f59684626f1644d016442355a5b20f74b2a4b0b5a13684026b74b2a4b610035515c24f37a7605"  # This will be the encrypted hex string from the C++ program
 
 # Decrypt the text
 decrypted_text = decrypt_text(encrypted_text_hex, username1, username2)
 print(f"Decrypted Text: {decrypted_text}")
-
-# Decrypted Text: bcactf{1_l0v3_70_g00n_1n_gh1dr4_3v3ryd4y_y4y4rn4v}

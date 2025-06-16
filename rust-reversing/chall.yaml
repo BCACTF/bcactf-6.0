@@ -6,7 +6,7 @@ flag: bcactf{w0w_rUsT_reverse}
 description: |-
   Ghidra now supports rust, so have fun
 hints:
-  - Some of the characters get added
+  - No hints, good luck!
 files:
   - src: ./flag.txt
   - src: ./a.txt

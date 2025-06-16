@@ -34,5 +34,5 @@ fn main() {
     flaggie.push('b');
     flaggie.push('c');
     yeet(&mut flaggie);
-    println!("go find the flag in ghidra");
+    println!("go find the flag");
 }

@@ -4,13 +4,10 @@ categories:
 value: 25
 flag: bcactf{w0w_rUsT_reverse}
 description: |-
-  Ghidra now supports rust, so have fun
+  Ever tried reverse engineering a Rust binary?
 hints:
   - No hints, good luck!
 files:
-  - src: ./flag.txt
-  - src: ./a.txt
-    dest: optionallyrenamethefile.txt
 authors:
   - Joshua Peisach
 visible: true

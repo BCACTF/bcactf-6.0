@@ -13,4 +13,7 @@ files:
 authors:
   - Colin
 visible: true
-# TODO: deployment
+deploy:
+  nc:
+    build: .
+    expose: 7331/tcp

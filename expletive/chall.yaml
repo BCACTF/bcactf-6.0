@@ -1,21 +1,19 @@
 name: expletive
 categories:
   - misc
-value: 10
-flag: bcactf{fudG3_5hOo7_d4rn100}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
+value: 25
+flag:
+  file: ./flag.txt
 description: |-
-# oh no! it seems like only some of the characters on my keyboard are working... 
+  oh no! it seems like only some of the characters on my keyboard are working... 
 hints:
   - Have you tried thinking about the title?
 files:
-  - file: ./flag.txt
   - src: ./expletive.py
-    dest: optionallyrenamethefile.txt
 authors:
   - Sylvia Lee
 visible: true
-
+deploy:
+  nc:
+    build: .
+    expose: 9990/tcp

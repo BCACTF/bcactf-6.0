@@ -1,7 +1,7 @@
 name: locked out REVENGE
 categories:
   - misc
-value: 125
+value: 200
 flag:
   file: ./flag.txt
 description: |-

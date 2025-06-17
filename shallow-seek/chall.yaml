@@ -1,0 +1,18 @@
+name: "ShallowSeek"
+categories:
+  - binex
+value: 25
+flag:
+  file: ./flag.txt
+
+description: |-
+  Our brand new AI, ShallowSeek, is the latest and greatest LLM created to date. 
+  You can talk to it about anything! (Well, anything the government lets you)
+hints:
+ - None # there's no way this is the right way to do it right
+files:
+  - src: ./shallowseek.c
+    dest: src.c
+authors:
+  - Jacob K.
+visible: true

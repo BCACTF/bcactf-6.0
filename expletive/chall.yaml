@@ -1,0 +1,19 @@
+name: expletive
+categories:
+  - misc
+value: 25
+flag:
+  file: ./flag.txt
+description: |-
+  oh no! it seems like only some of the characters on my keyboard are working... 
+hints:
+  - Have you tried thinking about the title?
+files:
+  - src: ./expletive.py
+authors:
+  - Sylvia Lee
+visible: true
+deploy:
+  nc:
+    build: .
+    expose: 9990/tcp

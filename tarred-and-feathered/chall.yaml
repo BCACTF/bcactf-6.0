@@ -9,6 +9,7 @@ description: |-
   however, not everything is as it seems. the flag is in the archive, but where? i couldn't find it, can you?
 hints:
   - Not everything in the archive is what it seems. Look beyond the visible files.
+  - how can you get more information about what files are in the archive?
 files:
   - src: ./challenge.tar.gz
 authors:

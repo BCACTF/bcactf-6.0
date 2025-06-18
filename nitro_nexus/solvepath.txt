@@ -1,0 +1,6 @@
+It is impossible to beat the game in under 15 seconds, so one must edit the time limit.
+
+1. Use a .net decompiler like dnSpy to open the game executable.
+2. Search for the time limit variable (under the "Objective" class).
+3. Edit the value to a higher number and save.
+4. Beat the game in order to read the flag.

@@ -1,12 +1,16 @@
 use john the ripper/hashcrack to crack hashes
 
-the ZIP password is:
-
 
 the PDF password is:
 amber1!
 
-
+docx password is:
+alin1988
 
 
 redaction should be simple to get around, it's just black highlight + black text or white text on white background, you can copy the text for example or use pdftools
+
+for the docx:
+    one part is found in just the edit logs or on the side, it's kidna obious
+
+    the last part can be helped by hints, unzip the docx and look in the hidden file and decode the hex

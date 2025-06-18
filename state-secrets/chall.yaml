@@ -11,8 +11,9 @@ description: |-
 hints:
   - do you know what hash cracking is? all passwords (if blind cracking) can be found in `rockyou.txt`
   - if you are having trouble constructing the flag, remember that there might be some underscores you missed. also, the flag is a valid english statement in l33t sp34k
+  - if you are stuck on the last part of the flag check the "docx theme cache"
 files:
-  - src: ./secrets.zip
+  - src: ./state_secrets.zip
 authors:
   - Colin
 visible: true

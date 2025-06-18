@@ -16,6 +16,6 @@ files:
   - src: ./morse_encodings.py
   - src: ciphertext.txt
 authors:
-  - Nikhil Palempalle (Snippet)
+  - Nikhil Palempalle
 visible: true
 # TODO: deployment

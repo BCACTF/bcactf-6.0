@@ -1,0 +1,3 @@
+This is a modified version of the classic fractionated morse cipher where, instead of 3 symbols, there are 4.
+
+Tips and strategies to decrypt fractionated morse cipher: https://toebes.com/codebusters/Samples/Solving_Fractionated_Morse.htm

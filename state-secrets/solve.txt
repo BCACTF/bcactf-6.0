@@ -1,0 +1,12 @@
+use john the ripper/hashcrack to crack hashes
+
+the ZIP password is:
+
+
+the PDF password is:
+amber1!
+
+
+
+
+redaction should be simple to get around, it's just black highlight + black text or white text on white background, you can copy the text for example or use pdftools

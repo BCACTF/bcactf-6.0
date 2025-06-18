@@ -10,6 +10,7 @@ description: |-
   we extracted a number of "state secrets". it's said the flag can be found among them. but i can't open anything...
 hints:
   - do you know what hash cracking is? all passwords (if blind cracking) can be found in `rockyou.txt`
+  - if you are having trouble constructing the flag, remember that there might be some underscores you missed. also, the flag is a valid english statement in l33t sp34k
 files:
   - src: ./secrets.zip
 authors:

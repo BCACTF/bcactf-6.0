@@ -4,8 +4,8 @@ categories:
 value: 100
 flag: bcactf{4272460937500}
 description: |-
-  Please determine the number of matrices in GL_2(Z/1953125Z)
-  that have trace 48 and determinant 1 (mod 1953125).
+  Please determine the number of matrices in SL_2(Z/1953125Z)
+  that have trace 48 (mod 1953125).
   The answer is a positive integer, so wrap it in bcactf{} with no commas.
 hints:
   - Use a script!

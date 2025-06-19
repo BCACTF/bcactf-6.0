@@ -1,0 +1,10 @@
+use `tar -tzf challenge.tar.gz` to see that there is a hidden file in a parent directory
+it has a zero-width space so u have to be careful when reading the flag
+you will only see the note.txt when you extract normally cuz the other is in a parent directory
+then js read the flag
+
+===== from mudasir =====
+tar tvf challenge.tar.gz # list out files
+mkdir challenge # create folder to store output
+gunzip challenge.tar.gz # convert tar.gz to .tar
+tar -Pxf challenge.tar --transform='s/.*\///' --force-local -C challenge # extract tar to subfolder, flattening directory structure

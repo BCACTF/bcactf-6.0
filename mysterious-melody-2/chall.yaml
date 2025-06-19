@@ -1,0 +1,27 @@
+name: Mysterious Melody 2
+categories:
+  - foren
+value: 200
+flag: bcactf{Ebmaj7}
+description: |-
+  Attend, brave soul, to this melodic quest,
+  Where riddles lie in symphony's soft crest.
+  The audio's dawn, not music but a code,
+  Doth whisper secrets in a hex-lit mode.
+
+  Yet once that cryptic veil is swept away,
+  A master's hand begins a bold ballet—
+  Rachmaninoff, in fervent, grand display,
+  His Third Concerto's first proud arc doth play.
+
+  So listen well, where numbers speak in tone,
+  Then let the maestro's tempest guide you home.
+  
+  The flag should be enclosed in bcactf{}.
+hints:
+  - First focus on the first two minutes of the audio file.
+files:
+  - src: ./final_audio.mp3
+authors:
+  - Michael
+visible: true

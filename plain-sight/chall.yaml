@@ -1,0 +1,14 @@
+name: plain-sight
+categories:
+  - misc
+value: 50
+flag: bcactf{Now_y0U_s3e_mE}
+description: |-
+  Can you help find my flag? I tried asking around but all I found was this poem.
+hints:
+  - 
+files:
+  - src: ./hiding_in_plain_sight.pdf
+authors:
+  - Lam To
+visible: true

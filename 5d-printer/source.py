@@ -7,15 +7,11 @@ This script reads the flag from standard input and generates a scrambled 5MF fil
 The commands are intentionally output in a random order so that the correct ordering
 must be recovered by sorting by the extra dimensions.
 
-The printer is “5D” because, in addition to X, Y, and Z (with Z always 0 here),
+The printer is “5D” because, in addition to X, Y, and Z (only printing the first layer --> Z=0),
 each command carries:
     U = (subpath_index * 100) + (t * 100)
     V = 50 * sin(2*pi*t)
 where t is the normalized progression along that command segment.
-    
-Usage:
-    python publish_me_generate_5mf.py
-Then paste the flag string when prompted.
 """
 
 import sys, math, random

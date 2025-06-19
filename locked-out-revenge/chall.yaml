@@ -13,7 +13,7 @@ files:
   - src: ./server.py
 authors:
   - Colin
-visible: true
+visible: false
 deploy:
   nc:
     build: .

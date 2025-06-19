@@ -93,7 +93,7 @@ _start:
     cmp edx, 0
     jne exit
 
-    ; simple check if input[5] == 1
+    ; simple check if input[5] == 2
     movzx eax, byte [buf+5]
     cmp eax, '2'
     jne exit

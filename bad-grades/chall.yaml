@@ -8,7 +8,7 @@ description: |-
 
   Remember to wrap the final flag in 'bcactf{}'.
 hints:
-  - 
+  - no hints for this chall
 files:
   - src: ./transcript.txt
 authors:

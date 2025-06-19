@@ -1,4 +1,3 @@
 look at the emojis to see that it is orzing
 then look on github for orz compression
-use that
-lowk shld be 50 pt, maybe if there wasnt the emojis it wld be too guessy tho
+use that to decode the flag file

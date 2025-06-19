@@ -1,0 +1,4 @@
+- Use one of the many Chemistry Databases to manually search for the compound
+    - Some of the chemistry APIs have limited bandwidth so they might not be able to process constant requests
+    - Best solution is to download a chemistry database that only contains SMILES strings
+- Build a rainbow table using said API

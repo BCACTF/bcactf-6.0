@@ -2,14 +2,14 @@ name: Math Checker
 categories:
   - rev
 value: 100
-flag: bcactf{18893}
+flag: bcactf{1889328893}
 description: |-
   My math teacher made this program to check a math problem. Unfortunately, he designed it
   before the C Programming Language was made, so I can't really decompile it that well.
   Can you figure out the correct answer? 
   
-  (Wrap the 5-digit answer in the flag format, so if the correct program input were `12345`, the flag would 
-  be `bcactf{12345}`)
+  (Wrap the answer in the flag format, so if the correct program input were `123`, the flag would 
+  be `bcactf{123}`)
 hints:
   - No hints, good luck!
 files:

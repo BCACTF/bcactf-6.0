@@ -1,7 +1,7 @@
 name: Mysterious Melody 2
 categories:
   - misc
-value: 100
+value: 200
 flag: bcactf{Ebmaj7}
 description: |-
   Attend, brave soul, to this melodic quest,
@@ -19,8 +19,7 @@ description: |-
   
   The flag should be enclosed in bcactf{}.
 hints:
-  - Are all the numbers prime?
-  - What are the indices of the non-prime numbers
+  - First focus on the first two minutes of the audio file.
 files:
   - src: ./final_audio.mp3
 authors:

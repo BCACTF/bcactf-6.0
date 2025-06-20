@@ -5,8 +5,8 @@
 #include <math.h>
 
 // Generated encrypted flag constants
-const unsigned char encrypted_flag[] = { 0x77, 0x62, 0x61, 0x32, 0x78, 0x6d, 0x74, 0x1b, 0x35, 0x53, 0x26, 0x04, 0x6c, 0x5e, 0x01, 0x1b, 0x70, 0x42, 0x30, 0x0c, 0x63, 0x4e, 0x1a, 0x19, 0x33, 0x46, 0x27, 0x51 };
-const int flag_length = 28;
+const unsigned char encrypted_flag[] = { 0x48, 0x2c, 0x15, 0xfa, 0xca, 0x85, 0x73, 0x1d, 0x22, 0x03, 0xad, 0xac, 0xd7, 0x71, 0x04, 0x21, 0x4b, 0xaf, 0xaa, 0xb6, 0x63, 0x07, 0x2b, 0x09, 0x91, 0xb5, 0xb3, 0x23, 0x06, 0x69, 0xb5, 0xd8 };
+const int flag_length = 32;
 
 // Key derivation constants
 const int key_multiplier = 37;
@@ -27,26 +27,10 @@ int is_prime_slow(long long n) {
     return 1;
 }
 
-// Complex mathematical transformation for flag decryption
-unsigned char complex_decrypt_byte(unsigned char encrypted_byte, int position) {
-    // Generate key using position
-    int base_key = (position * key_multiplier + key_offset) % 256;
-    
-    // Add some complex but deterministic mathematical operations
-    double floating_modifier = sin(position * 0.1) * 100;
-    int int_modifier = (int)floating_modifier % 256;
-    
-    // XOR with multiple layers
-    unsigned char step1 = encrypted_byte ^ base_key;
-    unsigned char step2 = step1 ^ (int_modifier & 0xFF);
-    unsigned char step3 = step2 ^ (int_modifier & 0xFF);  // XOR twice to cancel out
-    
-    // Apply bit rotation based on position
-    int rotation = position % 8;
-    unsigned char rotated = (step3 << rotation) | (step3 >> (8 - rotation));
-    
-    // Final XOR to get original character
-    return rotated ^ ((rotation * 13) % 256) ^ ((rotation * 13) % 256);  // Cancel out again
+// Simple decryption function - just XOR with position-based key
+unsigned char decrypt_byte(unsigned char encrypted_byte, int position) {
+    int key = (position * key_multiplier + key_offset) % 256;
+    return encrypted_byte ^ key;
 }
 
 // Wasteful computation function
@@ -55,7 +39,7 @@ void waste_time() {
     fflush(stdout);
     
     // Calculate some large fibonacci numbers (very slow)
-    for (int i = 35; i <= 38; i++) {
+    for (int i = 5000; i <= 10000; i++) {
         printf("Computing fibonacci(%d)...\n", i);
         fflush(stdout);
         long long result = slow_fibonacci(i);
@@ -66,9 +50,9 @@ void waste_time() {
     fflush(stdout);
     
     // Find some primes in a slow way
-    long long start = 1000000;
-    int found = 0;
-    for (long long i = start; found < 3; i++) {
+    long long start = 100000000000;
+    long long found = 0;
+    for (long long i = start; found < 1000000000; i++) {
         if (is_prime_slow(i)) {
             printf("Found prime: %lld\n", i);
             found++;
@@ -79,7 +63,7 @@ void waste_time() {
     fflush(stdout);
     
     // Useless matrix multiplication
-    const int size = 500;
+    const int size = 1000000000;
     double **matrix_a = malloc(size * sizeof(double*));
     double **matrix_b = malloc(size * sizeof(double*));
     double **result = malloc(size * sizeof(double*));
@@ -120,9 +104,9 @@ void waste_time() {
 }
 
 void decrypt_and_print_flag() {
-    printf("\n" "="*50 "\n");
+    printf("\n==================================================\n");
     printf("DECRYPTION SEQUENCE INITIATED\n");
-    printf("="*50 "\n");
+    printf("==================================================\n");
     
     char *flag = malloc(flag_length + 1);
     if (!flag) {
@@ -130,7 +114,7 @@ void decrypt_and_print_flag() {
         exit(1);
     }
     
-    printf("Applying multi-layer cryptographic transformations...\n");
+    printf("Applying cryptographic transformations...\n");
     
     for (int i = 0; i < flag_length; i++) {
         // Add artificial delay for each character
@@ -139,7 +123,7 @@ void decrypt_and_print_flag() {
         printf("Decrypting byte %d/%d...\r", i + 1, flag_length);
         fflush(stdout);
         
-        flag[i] = complex_decrypt_byte(encrypted_flag[i], i);
+        flag[i] = decrypt_byte(encrypted_flag[i], i);
     }
     
     flag[flag_length] = '\0';

@@ -8,8 +8,12 @@ description: |-
 hints:
   - learn how to patch a binary maybe? try nopping things
 files:
-  - src: ./flag.txt
+  - src: /app/slow_flag
+    dest: slow_flag
+    container: static
 authors:
   - Colin
 visible: true
-# TODO: deployment
+deploy:
+  static:
+    build: .

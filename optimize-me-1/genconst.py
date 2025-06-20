@@ -2,7 +2,7 @@
 import hashlib
 
 def generate_flag_constants():
-    flag = "CTF{0pt1m1z4t10n_m4st3r_2023}"
+    flag = "bcactf{0pt1m1z4t10n_m4st3r_2025}"
     
     # Convert flag to bytes and create encrypted constants
     flag_bytes = flag.encode('utf-8')

@@ -1,0 +1,2 @@
+just get https://github.com/RickdeJager/StegSeek
+and use it

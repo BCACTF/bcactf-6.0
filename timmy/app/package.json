@@ -1,0 +1,24 @@
+{
+    "name": "timmy",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "preview": "vite preview",
+        "prepare": "svelte-kit sync || echo ''"
+    },
+    "devDependencies": {
+        "@sveltejs/kit": "^2.16.0",
+        "@sveltejs/vite-plugin-svelte": "^5.0.0",
+        "svelte": "^5.0.0",
+        "vite": "^6.0.0"
+    },
+    "dependencies": {
+        "@sveltejs/adapter-node": "^5.2.12",
+        "focus-trap": "^7.6.4",
+        "joi": "^17.13.3",
+        "sharp": "^0.33.5"
+    }
+}

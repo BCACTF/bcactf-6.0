@@ -1,0 +1,19 @@
+name: Rust Reversing
+categories:
+  - rev
+value: 25
+flag: bcactf{w0w_rUsT_reverse}
+description: |-
+  Ever tried reverse engineering a Rust binary?
+hints:
+  - No hints, good luck!
+files:
+  - src: /app/target/release/tbd
+    dest: rust-reversing
+    container: static
+authors:
+  - Joshua Peisach
+visible: true
+deploy:
+  static:
+    build: .

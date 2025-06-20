@@ -1,0 +1,19 @@
+name: optimize me 2
+categories:
+  - rev
+value: 100
+flag: bcactf{this_is_a_flag}
+description: |-
+  just optimize me!
+hints:
+  - how can you speed up the binary? this time, you can't just randomly nop stuff, it's actually calculating the flag!
+files:
+  - src: /app/slow_flag
+    dest: slow_flag
+    container: static
+authors:
+  - Colin
+visible: true
+deploy:
+  static:
+    build: .

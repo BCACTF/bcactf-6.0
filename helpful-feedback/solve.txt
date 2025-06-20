@@ -1,0 +1,2 @@
+reverse engineer and "unpack" values from the floats
+then xor to decode flag

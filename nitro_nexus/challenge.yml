@@ -17,6 +17,4 @@ flags:
 hints:
 - There is no way anyone can beat the game in the time alloted.
 - If only there was a way to slow down time... or increase the time limit.
-files:
-- flag.txt
 state: visible

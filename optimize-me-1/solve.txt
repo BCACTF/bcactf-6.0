@@ -1,0 +1,1 @@
+just nop out the call to `waste_time()`

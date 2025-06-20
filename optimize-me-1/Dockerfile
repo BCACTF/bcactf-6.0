@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y wget gcc tar make bzip2 nasm && rm -rf 
 
 WORKDIR /app
 
-COPY main.asm .
+COPY slow_flag.c .
 COPY Makefile .
 
 RUN make 

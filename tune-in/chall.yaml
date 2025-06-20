@@ -1,0 +1,20 @@
+name: tune in
+categories:
+  - foren
+value: 50
+flag: bcactf{1_4m_11573n1n6_8055_54y_7h3_w0rd}
+# Alternatively:
+# flag:
+#   file: ./flag.txt
+# 
+description: |-
+  my boss radioed me a message but I can't hear it.
+  he told me to tune in, can you help me out?
+hints:
+  - look for suspicious audio
+files:
+  - src: ./transmission.wav
+authors:
+  - Colin
+visible: true
+# TODO: deployment

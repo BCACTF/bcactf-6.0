@@ -121,7 +121,7 @@ def convert_ctf_infra_to_ctfd(input_file, output_file=None, extract_files=True):
             nc_config = deploy_config['nc']
             if 'expose' in nc_config:
                 port = nc_config['expose'].split('/')[0]  # Extract port from "8148/tcp"
-                ctfd_data['connection_info'] = f'nc hostname {port}'
+                ctfd_data['connection_info'] = f'nc challs.bcactf.com {port}'
         elif 'static' in deploy_config:
             # Static deployment - build and extract files
             ctfd_data['protocol'] = None
@@ -209,8 +209,12 @@ def convert_ctf_infra_to_ctfd(input_file, output_file=None, extract_files=True):
         # Use additional categories as topics
         ctfd_data['topics'] = categories[1:]
     
-    # Remove null/empty values to clean up the output
-    ctfd_data = {k: v for k, v in ctfd_data.items() if v is not None and v != []}
+    # Remove null/empty values to clean up the output, but keep important null fields
+    important_null_fields = ['host', 'image', 'protocol', 'connection_info', 'next']
+    ctfd_data = {
+        k: v for k, v in ctfd_data.items() 
+        if v is not None and v != [] or k in important_null_fields
+    }
     
     # Determine output file
     if output_file is None:

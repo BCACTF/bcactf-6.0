@@ -1,1 +1,4 @@
 just nop out the call to `waste_time()`
+
+https://binary.ninja/2017/12/15/change-is-in-the-air.html#two-click-patching
+

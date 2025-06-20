@@ -1,0 +1,15 @@
+name: Nimber
+categories:
+  - crypto
+value: 75
+flag: bcactf{N1mB3r_M@st3rM1Nd}
+description: |-
+  Hmmm... I have all these heaps, do you want to play nim? 
+hints:
+  - Have you tried nimsum with all the heaps?
+  - Have you tried nimsum with heap key and the flag?
+files:
+  - src: ./nimber.txt
+authors:
+  - Michael Zhang
+visible: true

@@ -1,0 +1,1 @@
+convert percent numeric and letter grades from hex into flag

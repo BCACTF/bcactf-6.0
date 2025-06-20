@@ -1,0 +1,16 @@
+name: bad-grades
+categories:
+  - misc
+value: 50
+flag: bcactf{s1eepsI#C1(aS$}
+description: |-
+  Josh has terrible grades, figure out why!
+
+  Remember to wrap the final flag in 'bcactf{}'.
+hints:
+  - no hints for this chall
+files:
+  - src: ./transcript.txt
+authors:
+  - Lam To
+visible: true

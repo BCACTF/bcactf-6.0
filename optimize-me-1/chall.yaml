@@ -1,0 +1,15 @@
+name: optimize me 1
+categories:
+  - rev
+value: 50
+flag: bcactf{this_is_a_flag}
+description: |-
+  just optimize me!
+hints:
+  - learn how to patch a binary maybe? try nopping things
+files:
+  - src: ./flag.txt
+authors:
+  - Colin
+visible: true
+# TODO: deployment

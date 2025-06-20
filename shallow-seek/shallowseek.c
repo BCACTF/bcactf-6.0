@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 
 		// no buffer overflow for you
 		if (strlen(input) == 64) {
-			printf("%s", "Invalid input: use less than 64 characters")
+			printf("%s", "Invalid input: use less than 64 characters");
 			continue;
 		}
 		

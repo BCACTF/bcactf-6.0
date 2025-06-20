@@ -1,0 +1,7 @@
+to solve this, you really just need to
+1) figure out that it is the ethereum virtual machine and look for a decompiler/disassembler
+    - dedaub is a nice online one in my experience
+    - also, you may experience it decompiling something that's not the flagchecker function, just delete bytes up to another starting (i forgot, its like 0x6080 or smth)
+2) just rev from here, see solve.py for how you can reverse the operations on the stored "encrypted" flag to get the original flag
+
+if anyone can find something like a debugger for evm then you could just place a breakpoint ig but idk if those exist at all

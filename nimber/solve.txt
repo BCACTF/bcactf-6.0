@@ -1,0 +1,3 @@
+calcualte nim-sum of heaps (XOR), to get a key of 0xd0daa
+
+then you xor that with the encrypted flag

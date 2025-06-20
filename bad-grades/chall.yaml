@@ -1,6 +1,6 @@
 name: bad-grades
 categories:
-  - crypto
+  - misc
 value: 50
 flag: bcactf{s1eepsI#C1(aS$}
 description: |-

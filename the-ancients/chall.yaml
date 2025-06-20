@@ -1,0 +1,17 @@
+name: the ancients
+categories:
+  - rev
+value: 250
+flag: bcactf{my_6r347_6r347_6r347_6r347_6r347_6r347_6r347_6r4ndf47h3r_pr06r4mm3d_7h15}
+description: |-
+  i hear even the ancient chinese knew how to code.
+  take a look at this relic i found from their archives...
+  it can check your flag for you!
+hints:
+  - first identify this programming language, then rev
+  - bcactf{FAKE_FLAG} is a fake flag (duh) and just a placeholder
+files:
+  - src: ./chall.zip
+authors:
+  - Colin
+visible: true

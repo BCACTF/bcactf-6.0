@@ -6,6 +6,10 @@ char *begin = "Sorry, but \"";
 char *end = "\" is beyond my current scope. Let's talk about something else.\n";
 
 int main(int argc, char **argv) {
+	setbuf(stdout, NULL);
+    setbuf(stdin, NULL);
+    setbuf(stderr, NULL);
+
 	char input[64];
 	char flag[64];
 	fgets(flag, 64, fopen("flag.txt", "r"));

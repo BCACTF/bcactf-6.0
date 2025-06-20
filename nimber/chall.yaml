@@ -1,21 +1,15 @@
-name: Simple Nimble
+name: Nimble
 categories:
   - crypto
-value: 45
+value: 50
 flag: bcactf{N1mB3r_M@st3rM1Nd}
-# Alternatively:
-# flag:
-#   file: ./flag.txt
-# 
 description: |-
-  Look at this example problem.
   Hmmm... I have all these heaps, do you want to play nim? 
 hints:
-  - Have you tried nim with all the heaps(Binary XOR)?
-  - Have you tried nim with heap key and the flag?
+  - Have you tried nimsum with all the heaps?
+  - Have you tried nimsum with heap key and the flag?
 files:
-  - src: ./challenge.txt
+  - src: ./nimble.txt
 authors:
   - Michael Zhang
 visible: true
-# TODO: deployment

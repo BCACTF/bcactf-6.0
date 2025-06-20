@@ -1,0 +1,19 @@
+name: optimize me 1
+categories:
+  - rev
+value: 50
+flag: bcactf{0pt1m1z4t10n_m4st3r_2025}
+description: |-
+  just optimize me!
+hints:
+  - learn how to patch a binary maybe? try nopping things
+files:
+  - src: /app/slow_flag
+    dest: slow_flag
+    container: static
+authors:
+  - Colin
+visible: true
+deploy:
+  static:
+    build: .

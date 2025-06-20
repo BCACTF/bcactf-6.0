@@ -15,8 +15,12 @@ description: |-
 hints:
   - hint hint, hint hint hint, hint hint hint hint
 files:
-  - src: ./help
+  - src: /app/help
+    dest: helpful_feedback
+    container: static
 authors:
   - Colin
 visible: true
-# TODO: deployment
+deploy:
+  static:
+    build: .

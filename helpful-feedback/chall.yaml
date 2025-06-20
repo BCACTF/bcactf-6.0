@@ -1,7 +1,7 @@
 name: helpful feedback
 categories:
   - rev
-value: 125
+value: 175
 flag: bcactf{100k5_600d_70_m3_51r}
 # Alternatively:
 # flag:

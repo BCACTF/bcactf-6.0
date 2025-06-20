@@ -1,0 +1,16 @@
+name: optimize me 1
+author: Colin
+category: rev
+description: just optimize me!
+attribution: Written by Colin
+value: 50
+type: standard
+version: '0.1'
+image: .
+flags:
+- bcactf{0pt1m1z4t10n_m4st3r_2025}
+hints:
+- learn how to patch a binary maybe? try nopping things
+files:
+- slow_flag
+state: visible

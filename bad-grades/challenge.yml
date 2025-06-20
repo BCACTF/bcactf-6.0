@@ -1,0 +1,18 @@
+name: bad-grades
+author: Lam To
+category: misc
+description: 'Josh has terrible grades, figure out why!
+
+
+  Remember to wrap the final flag in ''bcactf{}''.'
+attribution: Written by Lam To
+value: 50
+type: standard
+version: '0.1'
+flags:
+- bcactf{s1eepsI#C1(aS$}
+hints:
+- no hints for this chall
+files:
+- transcript.txt
+state: visible

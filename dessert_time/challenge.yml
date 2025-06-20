@@ -1,0 +1,19 @@
+name: dessert_time
+author: Juna Lee
+category: misc
+description: "I'm a very good planner, but my robotics competition really fried my\
+  \ brain! I remember eating something for the past few weeks but I just can't seem\
+  \ to remember what. Can you please help me? \nHere's my [schedule](https://docs.google.com/spreadsheets/d/152qYlpG-FRBdHEfemX1_zD6dX1y1BO2JVmlxRRTYhDM/edit?usp=sharing)\
+  \ for reference"
+attribution: Written by Juna Lee
+value: 25
+type: standard
+version: '0.1'
+flags:
+- bcactf{4pplE_p1E}
+hints:
+- I remember eating it early in the morning, but sometimes I would snack on it in
+  the evening too.
+files:
+- flag.txt
+state: visible

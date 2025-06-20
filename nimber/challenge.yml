@@ -1,0 +1,16 @@
+name: Nimber
+author: Michael Zhang
+category: crypto
+description: 'Hmmm... I have all these heaps, do you want to play nim? '
+attribution: Written by Michael Zhang
+value: 75
+type: standard
+version: '0.1'
+flags:
+- bcactf{N1mB3r_M@st3rM1Nd}
+hints:
+- Have you tried nimsum with all the heaps?
+- Have you tried nimsum with heap key and the flag?
+files:
+- nimber.txt
+state: visible

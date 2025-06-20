@@ -1,0 +1,15 @@
+name: Part by Part
+author: Thomas Torossian
+category: rev
+description: This Java program is actually four programs.
+attribution: Written by Thomas Torossian
+value: 50
+type: standard
+version: '0.1'
+flags:
+- bcactf{p4rt_by_pa7t_8d2ia_m82d0lc}
+hints:
+- What happens if you break the program?
+files:
+- part_by_part.jar
+state: visible

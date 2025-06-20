@@ -1,0 +1,20 @@
+name: locked out REVENGE
+author: Colin
+category: misc
+description: 'i heard you locked in last time. see if you can do it again!
+
+  the flag is in `./flag.txt` btw so u dont gotta do any crazy RCE'
+attribution: Written by Colin
+value: 200
+type: standard
+version: '0.1'
+image: .
+protocol: tcp
+connection_info: nc hostname 7330
+flags:
+- bcactf{h0w_4r3_y0u_50_10ck3d_1n_w7f_pvjbf}
+hints:
+- just use your get out of jail free card
+files:
+- server.py
+state: hidden

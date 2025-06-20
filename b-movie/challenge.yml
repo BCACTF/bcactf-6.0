@@ -1,0 +1,19 @@
+name: BMovie
+author: Mudasir Ali
+category: crypto
+description: I cannot possibly Blieve that you could break into my highly secured,
+  bee-crypted vault
+attribution: Written by Mudasir Ali
+value: 50
+type: standard
+version: '0.1'
+image: .
+protocol: tcp
+connection_info: nc hostname 9990
+flags:
+- bcactf{!_c@n7_BEE_l1ev3_!t_fwrhiu}
+hints:
+- There are no hints, good luck!
+files:
+- src/main.ts
+state: visible

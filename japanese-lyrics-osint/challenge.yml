@@ -1,0 +1,38 @@
+name: Japanese Lyrics OSINT
+author: Michael
+category: misc
+description: 'Out of the top 25 most streamed songs in Japan according to Wikipedia,
+
+  we picked a song (with Japanese lyrics) and translated a line from Japanese to English
+
+  using various large language models. Here were the results (each line is a different
+  translation):
+
+
+  An unending, unending flavor has seeped in.
+
+  There''s a taste that won''t go away, it''s stained into me.
+
+  The taste that won''t disappear, won''t disappear, has soaked in deeply.
+
+  The taste that doesn''t fade, doesn''t fade, is deeply ingrained.
+
+
+  What is the name of the song, according to its English Wikipedia page?
+
+  Wrap the name in bcactf{}. It''s case-sensitive, so please follow the case
+
+  as it is on Wikipedia.'
+attribution: Written by Michael
+value: 100
+type: standard
+version: '0.1'
+flags:
+- bcactf{Kaibutsu}
+hints:
+- The difficulty in this challenge perhaps lies in gathering the lyrics to the top
+  25 most streamed songs. But maybe there's an easy way to get that done?
+- The same word is translated as "unending", "won't go away", "won't disappear", and
+  "doesn't fade". It may be worth finding out what word that is.
+- What is the Japanese word for flavor/taste?
+state: visible

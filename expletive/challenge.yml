@@ -1,0 +1,19 @@
+name: expletive
+author: Sylvia Lee
+category: misc
+description: 'oh no! it seems like only some of the characters on my keyboard are
+  working... '
+attribution: Written by Sylvia Lee
+value: 25
+type: standard
+version: '0.1'
+image: .
+protocol: tcp
+connection_info: nc hostname 9990
+flags:
+- bcactf{fudG3_5hOo7_d4rn100}
+hints:
+- Have you tried thinking about the title?
+files:
+- expletive.py
+state: visible

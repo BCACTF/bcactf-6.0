@@ -1,0 +1,29 @@
+name: 5d printing
+author: Colin
+category: rev
+description: 'here at the prestigious Bergen County Academies, a group of underground
+  engineers has created:
+
+
+  the world''s first **5D PRINTER!!!!**
+
+
+  i made some gcode and a 5MF file, and printed it. it gave me the flag!! too bad
+  u dont have a 5d printer LMAO!
+
+
+  btw to save my 5D material i only printed the first layer if that helps u'
+attribution: Written by Colin
+value: 100
+type: standard
+version: '0.1'
+flags:
+- bcactf{7h47_f3311n6_wh3n_my_3d_pr1n73r_cr05535_71m311n35}
+hints:
+- have you actually looked at the provided "source" yet smh??
+- figure out what the other two dimensions are used for
+- try going to micro center and buying a 5d printer, then just run the GCODE
+files:
+- flag.5mf
+- source.py
+state: visible

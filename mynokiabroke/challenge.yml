@@ -1,0 +1,22 @@
+name: My Nokia Broke
+author: Jacob K.
+category: rev
+description: 'Hi, I downloaded this MIDlet app on my new Nokia, but it''s asking for
+  a password. Does anyone know what the password is?
+
+
+  Note: the flag is all caps, wrapped in bcactf{}, and there are underscores where
+  line breaks are displayed.'
+attribution: Written by Jacob K.
+value: 75
+type: standard
+version: '0.1'
+flags:
+- bcactf{J2M3_1S_GR34T}
+hints:
+- You can emulate a J2ME-capable flip phone at https://www.oracle.com/java/technologies/sun-java-wireless-toolkit.html
+- Having trouble getting it to run? You can find various tutorials on the internet
+  archive.
+files:
+- MyNokiaBroke.jar
+state: visible

@@ -1,0 +1,15 @@
+name: History
+author: Thomas Torossian
+category: foren
+description: Oh no! My history homework is due tomorrow.
+attribution: Written by Thomas Torossian
+value: 50
+type: standard
+version: '0.1'
+flags:
+- bcactf{1-1043-1t4li4n-b7ainr0t-d221-5092}
+hints:
+- Is there any more information we can get about the document?
+files:
+- my_history_homework.docx
+state: visible

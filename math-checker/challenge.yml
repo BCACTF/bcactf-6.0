@@ -1,0 +1,20 @@
+name: Math Checker
+author: Mudasir Ali
+category: rev
+description: "My math teacher made this program to check a math problem. Unfortunately,\
+  \ he designed it\nbefore the C Programming Language was made, so I can't really\
+  \ decompile it that well.\nCan you figure out the correct answer? \n\n(Wrap the\
+  \ answer in the flag format, so if the correct program input were `123`, the flag\
+  \ would \nbe `bcactf{123}`)"
+attribution: Written by Mudasir Ali
+value: 100
+type: standard
+version: '0.1'
+image: .
+flags:
+- bcactf{1889328893}
+hints:
+- No hints, good luck!
+files:
+- math
+state: visible

@@ -1,0 +1,30 @@
+name: osint torture
+author: Arnav
+category: misc
+description: "I got bored and made a little something. It may not be easy though!\n\
+  This challenge consists of **3 parts**.\n  - For part 1, I require the name of this\
+  \ famous historical game. When you type it in, do NOT have spaces. Use correct capitalization.\
+  \ PascalCase. An example of such a game might be TheImmortalGame.\n  - For part\
+  \ 2, I require just the number of the address I must contact if I want to visit\
+  \ this company. That is, if the \"company\" was Bergen County Academies, the number\
+  \ might be 200.\n  - For part 3, I am looking for ONE key word. You will know what\
+  \ the word is when you get it. Put it uppercase. By \"you will know\", you will\
+  \ find something online that explicitly says something along the lines of \"the\
+  \ word you are looking for is:\".\n\nSeparate the parts with underscores. \n\nNote:\
+  \ Once you solve the challenge, open a ticket, and I’ll allow you to do “part4”\
+  \ for a special badge I’ll mail you! “part4” is not part of the flag though, it’s\
+  \ just for fun :) \n\nExample flag: *bcactf{ImmortalGame_67_ORZ}*"
+attribution: Written by Arnav
+value: 225
+type: standard
+version: '0.1'
+flags:
+- bcactf{StopDragonMyHeartAround_307_BMW}
+hints:
+- its not actually torture just get good at the game (it has been testsolved so it
+  is solveable)
+files:
+- part1.png
+- part2.png
+- part3.txt
+state: visible

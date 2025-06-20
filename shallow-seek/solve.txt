@@ -1,0 +1,1 @@
+Input precisely 68 characters to overflow buffer and print out the flag. The code marked "no buffer overflow for you" claims to stop this, but doesn't actually work.

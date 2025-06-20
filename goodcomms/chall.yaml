@@ -1,0 +1,18 @@
+name: Good Comms
+categories:
+  - foren
+value: 175
+flag: bcactf{1_w0n_7h3_c45h_cup_8y_u51n6_66w4v3_70_741k_70_my_du0}
+description: |-
+  So I was playing duos cash cup with my duo Tien, but he said he told me the flag in the comms?
+  I couldn't find it, can you?
+
+  gg 👋
+files:
+  - src: ./comms.wav
+hints:
+  - Look for some suspicious audio??
+  - the last line of the description is a clue
+authors:
+  - Colin
+visible: true

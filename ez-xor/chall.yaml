@@ -1,0 +1,16 @@
+name: ez-xor
+categories:
+  - crypto
+value: 50
+flag: bcactf{SkibiDiSuff_RizzleRme_Sigma_Land0_Auragon_Baron_Upgraded}
+description: |-
+  Please be very ORZ and do some XORing.
+hints:
+  - Have you tried decoding it? Do you recognize the encoding?
+  - Have you tried using the XOR operation?
+  - The key is one byte long.
+files:
+  - src: ./encoded_flag.txt
+authors:
+  - Colin
+visible: true

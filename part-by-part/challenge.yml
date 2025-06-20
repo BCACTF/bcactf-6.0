@@ -6,6 +6,9 @@ attribution: Written by Thomas Torossian
 value: 50
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{p4rt_by_pa7t_8d2ia_m82d0lc}
 hints:

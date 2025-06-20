@@ -18,6 +18,9 @@ attribution: Written by Arnav
 value: 225
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{StopDragonMyHeartAround_307_BMW}
 hints:

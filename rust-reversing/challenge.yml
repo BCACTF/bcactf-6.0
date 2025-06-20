@@ -7,6 +7,8 @@ value: 25
 type: standard
 version: '0.1'
 image: .
+protocol: null
+host: null
 flags:
 - bcactf{w0w_rUsT_reverse}
 hints:

@@ -8,6 +8,9 @@ attribution: Written by Michael P
 value: 50
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{th!ss_@!e_83klts_fr_b!n@na_f$_l@gOrz}
 hints:

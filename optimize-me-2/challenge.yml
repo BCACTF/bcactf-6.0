@@ -7,6 +7,8 @@ value: 100
 type: standard
 version: '0.1'
 image: .
+protocol: null
+host: null
 flags:
 - bcactf{sl0w_m4th_f4st_c0d3}
 hints:

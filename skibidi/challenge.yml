@@ -9,6 +9,9 @@ attribution: Written by Colin
 value: 50
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{516m4_516m4_0n_7h3_w411_wh0_15_7h3_5k181d1357_0f_7h3m_411}
 hints:

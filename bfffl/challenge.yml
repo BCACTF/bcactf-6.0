@@ -12,6 +12,8 @@ value: 100
 type: standard
 version: '0.1'
 image: .
+protocol: null
+host: null
 flags:
 - bcactf{7h4nk5_f0r_7h3_h31p_y0u_mu57_83_my_n3w_8357_fr13nd}
 hints:

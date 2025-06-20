@@ -10,6 +10,9 @@ attribution: Written by Michael
 value: 100
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{4272460937500}
 hints:

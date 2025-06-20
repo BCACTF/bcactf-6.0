@@ -6,6 +6,9 @@ attribution: Written by Michael Zhang
 value: 75
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{N1mB3r_M@st3rM1Nd}
 hints:

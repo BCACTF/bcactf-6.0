@@ -11,6 +11,9 @@ attribution: Written by Colin
 value: 200
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{5011d11y_r3v3r53_3n61n33r3d_600d_j08}
 hints:

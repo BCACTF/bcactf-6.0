@@ -9,7 +9,8 @@ type: standard
 version: '0.1'
 image: .
 protocol: tcp
-connection_info: nc hostname 9990
+connection_info: nc challs.bcactf.com 9990
+host: null
 flags:
 - bcactf{!_c@n7_BEE_l1ev3_!t_fwrhiu}
 hints:

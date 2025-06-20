@@ -8,6 +8,9 @@ attribution: Written by Colin
 value: 100
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{1_701d_y0u_17_w45_7h3r3}
 hints:

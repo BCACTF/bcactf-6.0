@@ -13,7 +13,8 @@ type: standard
 version: '0.1'
 image: .
 protocol: tcp
-connection_info: nc hostname 8148
+connection_info: nc challs.bcactf.com 8148
+host: null
 flags:
 - bcactf{7h47_f3311n6_wh3n_1_8u57_411_0v3r_7h3_c0d35}
 hints:

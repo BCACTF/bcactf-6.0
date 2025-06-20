@@ -11,6 +11,9 @@ attribution: Written by Jacob K.
 value: 75
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{J2M3_1S_GR34T}
 hints:

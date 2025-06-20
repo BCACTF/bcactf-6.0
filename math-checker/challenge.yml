@@ -11,6 +11,8 @@ value: 100
 type: standard
 version: '0.1'
 image: .
+protocol: null
+host: null
 flags:
 - bcactf{1889328893}
 hints:

@@ -13,6 +13,8 @@ value: 175
 type: standard
 version: '0.1'
 image: .
+protocol: null
+host: null
 flags:
 - bcactf{100k5_600d_70_m3_51r}
 hints:

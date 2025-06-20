@@ -7,6 +7,9 @@ attribution: Written by Lam To
 value: 50
 type: standard
 version: '0.1'
+image: null
+protocol: null
+host: null
 flags:
 - bcactf{Now_y0U_s3e_mE}
 hints:

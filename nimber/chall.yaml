@@ -1,4 +1,4 @@
-name: Nimble
+name: Nimber
 categories:
   - crypto
 value: 50
@@ -9,7 +9,7 @@ hints:
   - Have you tried nimsum with all the heaps?
   - Have you tried nimsum with heap key and the flag?
 files:
-  - src: ./nimble.txt
+  - src: ./nimber.txt
 authors:
   - Michael Zhang
 visible: true

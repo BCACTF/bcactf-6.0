@@ -1,0 +1,15 @@
+name: History
+categories:
+  - foren
+value: 50
+flag: bcactf{1-1043-1t4li4n-b7ainr0t-d221-5092}
+description: |-
+  Oh no! My history homework is due tomorrow.
+hints:
+  - Is there any more information we can get about the document?
+files:
+  - src: ./my_history_homework.docx
+authors:
+  - Thomas Torossian
+visible: true
+# TODO: deployment

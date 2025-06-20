@@ -1,7 +1,7 @@
 name: Nimber
 categories:
   - crypto
-value: 50
+value: 75
 flag: bcactf{N1mB3r_M@st3rM1Nd}
 description: |-
   Hmmm... I have all these heaps, do you want to play nim? 

@@ -1,79 +1,55 @@
 #!/usr/bin/env python3
-import hashlib
 import sys
-from functools import lru_cache
-
-# Global memoization caches
-_fib_cache = {}
-_prime_cache = []
-_hash_cache = {}
+import math
 
 
-def fibonacci_iterative_memoized(n):
-    """Calculate fibonacci number with memoization"""
-    if n in _fib_cache:
-        return _fib_cache[n]
-
+def fibonacci_modular_fast(n, mod=256):
+    """
+    Calculate fibonacci(n) % mod using matrix exponentiation
+    Memory: O(log n), Time: O(log n), but still CPU intensive for large n
+    """
     if n <= 1:
-        _fib_cache[n] = n
-        return n
+        return n % mod
 
-    # Find the highest cached value to start from
-    start = 0
-    a, b = 0, 1
+    def matrix_mult_mod(A, B, mod):
+        return [
+            [
+                (A[0][0] * B[0][0] + A[0][1] * B[1][0]) % mod,
+                (A[0][0] * B[0][1] + A[0][1] * B[1][1]) % mod,
+            ],
+            [
+                (A[1][0] * B[0][0] + A[1][1] * B[1][0]) % mod,
+                (A[1][0] * B[0][1] + A[1][1] * B[1][1]) % mod,
+            ],
+        ]
 
-    # Check if we have any cached values to start from
-    for cached_n in sorted(_fib_cache.keys()):
-        if cached_n < n:
-            start = cached_n
-            if cached_n == 0:
-                a = 0
-            elif cached_n == 1:
-                b = 1
-            else:
-                a = _fib_cache[cached_n - 1] if cached_n - 1 in _fib_cache else a
-                b = _fib_cache[cached_n]
+    def matrix_power_mod(matrix, power, mod):
+        if power == 1:
+            return [
+                [matrix[0][0] % mod, matrix[0][1] % mod],
+                [matrix[1][0] % mod, matrix[1][1] % mod],
+            ]
 
-    # Calculate from start to n, caching intermediate results
-    for i in range(max(2, start + 1), n + 1):
-        temp = a + b
-        _fib_cache[i] = temp
-        a, b = b, temp
+        if power % 2 == 0:
+            half = matrix_power_mod(matrix, power // 2, mod)
+            return matrix_mult_mod(half, half, mod)
+        else:
+            return matrix_mult_mod(
+                matrix, matrix_power_mod(matrix, power - 1, mod), mod
+            )
 
-    return _fib_cache[n]
-
-
-@lru_cache(maxsize=1000000)
-def is_prime_cached(n):
-    """Check if number is prime with caching"""
-    if n < 2:
-        return False
-    if n == 2:
-        return True
-    if n % 2 == 0:
-        return False
-
-    # Use 6k±1 optimization for better performance
-    if n == 3:
-        return True
-    if n % 3 == 0:
-        return False
-
-    i = 5
-    while i * i <= n:
-        if n % i == 0 or n % (i + 2) == 0:
-            return False
-        i += 6
-
-    return True
+    # Fibonacci matrix [[1,1],[1,0]]
+    fib_matrix = [[1, 1], [1, 0]]
+    result_matrix = matrix_power_mod(fib_matrix, n, mod)
+    return result_matrix[0][1]
 
 
-def sieve_of_eratosthenes(limit):
-    """Generate primes up to limit using Sieve of Eratosthenes"""
+def simple_sieve(limit):
+    """Basic sieve for finding primes up to limit"""
     is_prime = [True] * (limit + 1)
     is_prime[0] = is_prime[1] = False
 
-    for i in range(2, int(limit**0.5) + 1):
+    for i in range(2, int(math.sqrt(limit)) + 1):
         if is_prime[i]:
             for j in range(i * i, limit + 1, i):
                 is_prime[j] = False
@@ -81,119 +57,132 @@ def sieve_of_eratosthenes(limit):
     return [i for i in range(2, limit + 1) if is_prime[i]]
 
 
-def get_nth_prime_optimized(n):
-    """Get the nth prime number with optimized algorithms"""
-    global _prime_cache
+def get_nth_prime_direct(n):
+    """
+    Find nth prime by generating primes directly - more reliable
+    """
+    if n <= 0:
+        raise ValueError("n must be positive")
 
-    # If we already have enough primes cached, return from cache
-    if len(_prime_cache) >= n:
-        return _prime_cache[n - 1]
+    # Handle small cases with known primes
+    if n <= 25:
+        small_primes = [
+            2,
+            3,
+            5,
+            7,
+            11,
+            13,
+            17,
+            19,
+            23,
+            29,
+            31,
+            37,
+            41,
+            43,
+            47,
+            53,
+            59,
+            61,
+            67,
+            71,
+            73,
+            79,
+            83,
+            89,
+            97,
+        ]
+        return small_primes[n - 1]
 
-    # Estimate upper bound for nth prime using prime number theorem
+    # For larger n, use a more conservative upper bound
+    # Upper bound formula: p_n < n * ln(n) + n * ln(ln(n)) for n >= 6
+    ln_n = math.log(n)
     if n >= 6:
-        # Approximation: p_n ≈ n * ln(n) + n * ln(ln(n))
-        import math
-
-        ln_n = math.log(n)
-        upper_bound = int(n * (ln_n + math.log(ln_n) - 1 + 1.8 * math.log(ln_n) / ln_n))
-        upper_bound = max(upper_bound, n * 15)  # Safety margin
+        upper_bound = int(n * (ln_n + math.log(ln_n)) * 1.2)  # 20% safety margin
     else:
         upper_bound = 30
 
-    # If we need a lot of primes, use sieve
-    if n > 1000 and len(_prime_cache) < n // 2:
-        print(f"Using sieve to generate primes up to {upper_bound}...", file=sys.stderr)
-        _prime_cache = sieve_of_eratosthenes(upper_bound)
-        if len(_prime_cache) >= n:
-            return _prime_cache[n - 1]
+    # Make sure upper bound is reasonable
+    upper_bound = max(upper_bound, n * 15)
 
-    # Fill cache incrementally if sieve wasn't enough
-    candidate = _prime_cache[-1] + 1 if _prime_cache else 2
+    # print(
+    #     f"  Generating primes up to {upper_bound} to find prime #{n}...",
+    #     file=sys.stderr,
+    # )
 
-    while len(_prime_cache) < n:
-        if is_prime_cached(candidate):
-            _prime_cache.append(candidate)
-        candidate += 1
+    # Generate all primes up to the upper bound
+    primes = simple_sieve(upper_bound)
 
-        # Progress indicator for large computations
-        if len(_prime_cache) % 10000 == 0:
-            print(f"Found {len(_prime_cache)} primes...", file=sys.stderr)
+    if len(primes) >= n:
+        return primes[n - 1]
+    else:
+        # If we still don't have enough primes, expand the search
+        # print(f"  Need more primes, expanding search...", file=sys.stderr)
+        upper_bound *= 2
+        primes = simple_sieve(upper_bound)
 
-    return _prime_cache[n - 1]
-
-
-def compute_hash_chain_cached(seed, position, iterations):
-    """Compute hash chain with caching"""
-    cache_key = (seed, position, iterations)
-
-    if cache_key in _hash_cache:
-        return _hash_cache[cache_key]
-
-    input_str = f"{seed}{position}"
-    current_hash = input_str.encode()
-
-    # Use SHA256 directly for better performance
-    for _ in range(iterations):
-        current_hash = hashlib.sha256(current_hash).digest()
-
-    result = current_hash[0]
-    _hash_cache[cache_key] = result
-    return result
+        if len(primes) >= n:
+            return primes[n - 1]
+        else:
+            raise RuntimeError(
+                f"Could not find prime #{n} even with upper bound {upper_bound}"
+            )
 
 
 def generate_flag_constants(flag):
     """
-    Generate constants for a flag where decryption requires all three expensive computations
+    Generate constants using fibonacci and prime computations only
     """
     flag_bytes = flag.encode("utf-8")
 
     print("// Generated constants for computationally expensive flag decryption")
-    print(
-        "// Flag must be decrypted using ALL THREE mathematical computations combined"
-    )
+    print("// Flag must be decrypted using fibonacci and prime computations")
+    print("// Using high-CPU, low-memory algorithms")
     print()
 
-    # We'll use all three methods together to encrypt each byte
-    fib_base = 1000000
-    prime_start = 1000000
-    hash_iterations = 500000
-    hash_seed = "CTF_SEED_2023"
+    # More reasonable constants that are still very expensive with naive methods
+    # but manageable for generation
+    fib_base = 10000  # F(1M) - still very expensive with recursive method
+    prime_start = 500000  # 50,000th prime - expensive but manageable
 
     print("const int fibonacci_base = {};".format(fib_base))
     print("const int prime_start_index = {};".format(prime_start))
-    print(f"const int hash_iterations = {hash_iterations};")
-    print(f'const char hash_seed[] = "{hash_seed}";')
     print()
 
-    # Pre-compute some primes if we need many
-    max_prime_needed = prime_start + len(flag_bytes)
-    print(f"Pre-computing primes up to #{max_prime_needed}...", file=sys.stderr)
-
-    # Encrypt each byte using combination of all three methods
     print("const unsigned char encrypted_flag[] = {", end="")
 
     for i, byte in enumerate(flag_bytes):
-        print(
-            f"Processing character {i+1}/{len(flag_bytes)}: '{chr(byte)}'",
-            file=sys.stderr,
-        )
+        # print(
+        #     f"\nProcessing character {i+1}/{len(flag_bytes)}: '{chr(byte)}'",
+        #     file=sys.stderr,
+        # )
 
-        # Get keys from all three methods
-        print(f"  Computing fibonacci({fib_base + i})...", file=sys.stderr)
-        fib_key = fibonacci_iterative_memoized(fib_base + i) % 256
+        # Fibonacci using matrix exponentiation (CPU intensive but low memory)
+        # print(
+        #     f"  Computing F({fib_base + i}) mod 256 using matrix exponentiation...",
+        #     file=sys.stderr,
+        # )
+        fib_key = fibonacci_modular_fast(fib_base + i, 256)
+        # print(f"    Fibonacci key: {fib_key}", file=sys.stderr)
 
-        print(f"  Finding prime #{prime_start + i}...", file=sys.stderr)
-        prime_key = get_nth_prime_optimized(prime_start + i) % 256
+        # Prime using direct sieve generation
+        # print(f"  Finding prime #{prime_start + i}...", file=sys.stderr)
+        prime_val = get_nth_prime_direct(prime_start + i)
+        prime_key = prime_val % 256
+        # print(
+        #     f"    Prime #{prime_start + i} = {prime_val}, key = {prime_key}",
+        #     file=sys.stderr,
+        # )
 
-        print(
-            f"  Computing hash chain with {hash_iterations} iterations...",
-            file=sys.stderr,
-        )
-        hash_key = compute_hash_chain_cached(hash_seed, i, hash_iterations)
-
-        # Combine all three keys using XOR
-        combined_key = fib_key ^ prime_key ^ hash_key
+        # Combine both keys using XOR
+        combined_key = fib_key ^ prime_key
         encrypted = byte ^ combined_key
+
+        # print(
+        #     f"  Keys: fib={fib_key}, prime={prime_key}, combined={combined_key}",
+        #     file=sys.stderr,
+        # )
 
         if i > 0:
             print(",", end="")
@@ -204,29 +193,19 @@ def generate_flag_constants(flag):
     print(f"const int flag_length = {len(flag_bytes)};")
     print()
 
-    # Verification info
     print(f"// Original flag: {flag}")
-    print("// Each byte encrypted with: byte XOR fib_key XOR prime_key XOR hash_key")
-
-    # Print some debug info
-    print(f"// Fibonacci cache size: {len(_fib_cache)}", file=sys.stderr)
-    print(f"// Prime cache size: {len(_prime_cache)}", file=sys.stderr)
-    print(f"// Hash cache size: {len(_hash_cache)}", file=sys.stderr)
+    print("// Each byte encrypted with: byte XOR fib_key XOR prime_key")
+    print(
+        "// These constants will take a VERY LONG TIME to compute with naive algorithms:"
+    )
+    print(
+        f"// - Fibonacci F({fib_base}) to F({fib_base + len(flag_bytes) - 1}) using recursive method"
+    )
+    print(
+        f"// - Primes #{prime_start} to #{prime_start + len(flag_bytes) - 1} using trial division"
+    )
 
     return flag
-
-
-# For backwards compatibility, keep the old function names as aliases
-def fibonacci_iterative(n):
-    return fibonacci_iterative_memoized(n)
-
-
-def is_prime(n):
-    return is_prime_cached(n)
-
-
-def get_nth_prime(n):
-    return get_nth_prime_optimized(n)
 
 
 if __name__ == "__main__":
@@ -236,7 +215,7 @@ if __name__ == "__main__":
         flag = "bcactf{sl0w_m4th_f4st_c0d3}"
 
     print(f"Generating constants for flag: {flag}", file=sys.stderr)
-    print(f"This may take a while for large constants...", file=sys.stderr)
+    print("Using CPU-intensive but memory-efficient algorithms...", file=sys.stderr)
 
     generate_flag_constants(flag)
 

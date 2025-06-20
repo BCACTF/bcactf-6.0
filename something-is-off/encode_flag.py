@@ -1,7 +1,8 @@
 import os
 import sys
 import random
-import string
+import binascii
+
 
 def corrupt_word(word, bit):
     """
@@ -21,18 +22,21 @@ def corrupt_word(word, bit):
     char = word[index]
 
     if char.isalpha():
-        if bit == '1':
+        if bit == "1":
             # Shift forward in the alphabet
-            new_char = chr((ord(char.lower()) - ord('a') + 1) % 26 + ord('a'))
+            new_char = chr((ord(char.lower()) - ord("a") + 1) % 26 + ord("a"))
         else:
             # Shift backward in the alphabet
-            new_char = chr((ord(char.lower()) - ord('a') - 1) % 26 + ord('a'))
+            new_char = chr((ord(char.lower()) - ord("a") - 1) % 26 + ord("a"))
 
         # Preserve case
         new_char = new_char.upper() if char.isupper() else new_char
-        word = word[:index] + new_char + word[index + 1:]
+        word = word[:index] + new_char + word[index + 1 :]
+    else:
+        return None
 
     return word
+
 
 def corrupt_text(input_text, binary_string):
     """
@@ -58,21 +62,23 @@ def corrupt_text(input_text, binary_string):
 
         # If all binary bits are used, continue processing the rest of the words
         if binary_index >= len(binary_string):
-            corrupted_words.extend(words[len(corrupted_words):])
+            corrupted_words.extend(words[len(corrupted_words) :])
             break
 
-    return ' '.join(corrupted_words)
+    return " ".join(corrupted_words)
+
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: python script.py <input_file> <binary_string>")
+        print("Usage: python script.py <input_file> <flag>")
         sys.exit(1)
 
     input_file = sys.argv[1]
-    binary_string = sys.argv[2]
+    flag = sys.argv[2]
+    binary_string = bin(int(binascii.hexlify(flag.strip().encode()), 16))[2:]
 
     # Validate binary string
-    if not all(bit in '01' for bit in binary_string):
+    if not all(bit in "01" for bit in binary_string):
         print("Error: Binary string must contain only 0s and 1s.")
         sys.exit(1)
 
@@ -81,7 +87,7 @@ def main():
         print(f"Error: File '{input_file}' does not exist.")
         sys.exit(1)
 
-    with open(input_file, 'r') as file:
+    with open(input_file, "r") as file:
         input_text = file.read().strip()
 
     # Corrupt the text
@@ -89,10 +95,11 @@ def main():
 
     # Output the corrupted text
     output_file = f"corrupted_{os.path.basename(input_file)}"
-    with open(output_file, 'w') as file:
+    with open(output_file, "w") as file:
         file.write(corrupted_text)
 
     print(f"Corrupted text written to '{output_file}'.")
+
 
 if __name__ == "__main__":
     main()

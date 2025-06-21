@@ -7,7 +7,7 @@ description:
 
   To find the secret, run the following
   run (+ (+ (car (cdr (cons 1 (cons 125 2)))) (- (* 3 14) (factorial 0))) (cdr (cons 1 1)))
-attribution: Written by Puhalethi
+attribution: Written by Puhalenthi
 value: 150
 type: standard
 version: '0.1'

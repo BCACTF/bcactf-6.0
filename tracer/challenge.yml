@@ -1,0 +1,17 @@
+name: Tracer
+author: Thomas
+category: web
+description: I made a cool recursive function to totally-securely compare two strings. I can't imagine that anything is wrong with it!
+value: 125
+attribution: Written by Thomas
+type: standard
+version: '0.1'
+image: .
+protocol: null
+host: null
+flags:
+  - bcactf{0ut_0f_1d34s_4e8b4577e8e4}
+hints:
+files:
+  - main.js
+state: hidden

@@ -1,0 +1,5 @@
+Timmy Bobbins is struggling to pass his alchemy class. His teacher lets him
+retake the final exam as many times as he wants, but the questions are uniquely
+generated every time Timmy begins the exam. If Timmy's parents find out that he
+didn't pass the class, they will be very disappointed. Help Timmy score 25/25
+on his impossible final exam so he can make his parents proud!

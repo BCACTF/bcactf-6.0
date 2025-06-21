@@ -15,8 +15,6 @@ protocol: null
 host: null
 flags:
 - bcactf{1889328893}
-hints:
-- No hints, good luck!
 files:
 - math
 state: visible

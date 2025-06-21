@@ -1,0 +1,33 @@
+; The program uses lambda calculus and you start off with nothing (other than the 3 basic types of statements). A possible execution order would be:
+
+; Creates the integers from 0 to 500
+populate 0 500
+
+; BOOLEANS AND BRANCHING
+true = λx.λy.x
+false = \f.\x.x ; same as 0
+if = λb.λT.λF.((b T) F)
+
+; NUMBER OPERATIONS
+pred = λn.λf.λx.n (λg.λh.h (g f)) (λu.x) (λu.u)
++ = λm.λn.λf.λx.(m f) ((n f) x)
+* = λn.λm.λf.λx.n (m f) x
+- = λm.λn.(n pred) m
+zero? = \n.n (\x.false) true
+
+
+
+; LINKED LISTS
+cons = λx.λy.λf.f x y
+
+; makes a cons pair (x y)
+car = λp.p true
+cdr = λp.p false
+
+; Y COMBINATOR
+Y = λf. (λx. f(x x)) (λx. f(x x))
+
+; factorial
+factorial = Y \f.\n.(if (zero? n) 1 (* n (f (- n 1))))
+
+run (+ (+ (car (cdr (cons 1 (cons 125 2)))) (- (* 3 14) (factorial 0))) (cdr (cons 1 1)))

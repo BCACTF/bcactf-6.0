@@ -1,0 +1,15 @@
+name: Temps
+author: Thomas
+category: web
+attribution: Written by Thomas
+description: Find out when this web app was compiled. Report your answer as a Unix timestamp in milliseconds wrapped with `bcactf{}`. (For example, the date "Wed, 01 Jan 2020 05:00:00 GMT" would be reported as `bcactf{1577854800000}`)
+value: 75
+type: standard
+version: '0.1'
+image: .
+protocol: null
+host: null
+flags:
+  - bcactf{1735776187591}
+hints:
+state: hidden

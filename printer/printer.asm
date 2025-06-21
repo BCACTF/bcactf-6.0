@@ -6,10 +6,51 @@ section .data
     flag_len    equ 35
     flag        times flag_len db 0
 
+    newline db 0xA
+    buf db "0x00000000", 0  ; Placeholder buffer for address
+
 section .text
     global _start
 
 _start:
+    ; Get the address of _start (or any label)
+    mov eax, _start
+
+    ; Save EAX (the address) to be converted to hex string
+    push eax
+    mov esi, buf + 2  ; Skip '0x'
+    mov ecx, 8        ; 8 hex digits
+
+.convert_loop:
+    pop eax
+    push eax          ; keep original for next iteration
+    rol eax, 4
+    and al, 0xF
+    cmp al, 10
+    jl .digit
+    add al, 'A' - 10
+    jmp .store
+.digit:
+    add al, '0'
+.store:
+    mov [esi], al
+    inc esi
+    loop .convert_loop
+
+    ; write(1, buf, 10)
+    mov eax, 4          ; sys_write
+    mov ebx, 1          ; stdout
+    mov ecx, buf
+    mov edx, 10         ; length of '0x' + 8 hex digits
+    int 0x80
+
+    ; write(1, newline, 1)
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, newline
+    mov edx, 1
+    int 0x80
+
     ; write(1, prompt, prompt_len)
     mov eax, 4          ; sys_write
     mov ebx, 1          ; stdout

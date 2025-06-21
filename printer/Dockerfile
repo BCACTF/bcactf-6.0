@@ -18,6 +18,5 @@ COPY flag.txt .
 
 RUN chown -R root:root /home/ctf 
 
-USER ctf
 EXPOSE 9092
-CMD ["./ynetd", "-p", "9092", "setarch -R ./printer"]
+CMD ["./ynetd", "-p", "9092", "./printer"]

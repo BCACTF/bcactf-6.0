@@ -5,8 +5,7 @@ RUN apt-get update && apt-get install -y wget gcc && rm -rf /var/lib/apt/lists/*
     && gcc -o ynetd ynetd.c && rm ynetd.c && chmod +x ./ynetd
 
 
-FROM amazoncorretto:latest
-
+FROM sapmachine:jdk-ubuntu
 
 RUN useradd -m -d /home/ctf -u 12345 ctf
 WORKDIR /home/ctf
@@ -15,8 +14,6 @@ COPY --from=build ynetd .
 RUN chmod +x ynetd
 COPY lambda-lab.jar .
 EXPOSE 9991
-
-RUN chown -R root:root /home/ctf
 
 USER ctf
 

@@ -18,7 +18,6 @@ host: null
 flags:
 - bcactf{my_lambD4_lAb_i5_S711l_n07_gr4dEd_y3T_nGr445}
 files:
-- lambda-lab.jar
 - docs.txt
 hints:
 - It seems that you can't run the statement immediately. Maybe define what everything means

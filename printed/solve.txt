@@ -1,0 +1,3 @@
+just enter %4$s
+
+this leaks the 4th thing off the stack. you can find the number by gdb or trial and error

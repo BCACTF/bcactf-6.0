@@ -1,0 +1,20 @@
+name: Printed
+author: Mudasir Ali
+category: binex
+description: lol i fixed my printer. it just prints stuff now, you can use it now
+  i guess.
+attribution: Written by Mudasir Ali
+value: 50
+type: standard
+version: '0.1'
+image: .
+protocol: tcp
+connection_info: nc challs.bcactf.com 8626
+host: null
+flags:
+- 'bcactf{mY_pr!nt3r_d0esnt_do_th@7_vrfhu}'
+hints:
+- this vuln is completely unrelated to the similarly named challenge `printer`
+files:
+- printed.c
+state: visible

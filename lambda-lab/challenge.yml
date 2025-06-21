@@ -11,8 +11,9 @@ attribution: Written by Puhalethi
 value: 150
 type: standard
 version: '0.1'
-image: null
-protocol: null
+image: .
+protocol: tcp
+connection_info: nc challs.bcactf.com 9991
 host: null
 flags:
 - bcactf{my_lambD4_lAb_i5_S711l_n07_gr4dEd_y3T_nGr445}

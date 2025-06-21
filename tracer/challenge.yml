@@ -12,4 +12,6 @@ host: null
 flags:
   - bcactf{0ut_0f_1d34s_4e8b4577e8e4}
 hints:
+files:
+  - main.js
 state: hidden

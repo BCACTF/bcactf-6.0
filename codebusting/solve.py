@@ -268,25 +268,26 @@ def solve_challenge():
             
             log.info(f"Found {len(potential_answers)} potential matches")
             
-            # Let the user choose the answer or type their own
-            if potential_answers:
-                print("\nPotential answers:")
-                for idx, answer in enumerate(potential_answers[:5]):  # Show top 5
-                    print(f"{idx+1}. {answer}")
-                print("0. Type your own answer")
-                
-                choice = input("Select an answer (1-5, or 0): ")
-                if choice == "0":
-                    answer = input("Enter your answer: ")
-                else:
-                    try:
-                        answer = potential_answers[int(choice)-1]
-                    except:
-                        answer = input("Invalid choice. Enter your answer manually: ")
-            else:
-                print("No matches found. Please solve manually:")
-                print(f"Ciphertext: {ciphertext}")
-                answer = input("Enter your answer: ")
+            # # Let the user choose the answer or type their own
+            # if potential_answers:
+            #     print("\nPotential answers:")
+            #     for idx, answer in enumerate(potential_answers[:5]):  # Show top 5
+            #         print(f"{idx+1}. {answer}")
+            #     print("0. Type your own answer")
+            #
+            #     choice = input("Select an answer (1-5, or 0): ")
+            #     if choice == "0":
+            #         answer = input("Enter your answer: ")
+            #     else:
+            #         try:
+            #             answer = potential_answers[int(choice)-1]
+            #         except:
+            #             answer = input("Invalid choice. Enter your answer manually: ")
+            # else:
+            #     print("No matches found. Please solve manually:")
+            #     print(f"Ciphertext: {ciphertext}")
+            #     answer = input("Enter your answer: ")
+            answer = potential_answers[0]
             
             # Send the answer
             conn.sendline(answer.encode())

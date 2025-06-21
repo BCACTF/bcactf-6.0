@@ -20,5 +20,5 @@ files:
 - lambda-lab.jar
 - docs.txt
 hints:
-- It seems that you can't run the statement immediatley. Maybe define what everything means
+- It seems that you can't run the statement immediately. Maybe define what everything means
 state: visible

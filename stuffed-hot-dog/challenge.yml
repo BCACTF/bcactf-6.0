@@ -2,8 +2,7 @@ name: A Stuffed Hot Dog
 author: Nikhil Palempalle
 category: crypto
 description: 'Have you ever had a hotdog with 8 frankfurters? Well, now you have!
-
-              *Note: You may assume that the private key (d) is small'
+              You may assume that the private key (d) is small'
 attribution: Written by Nikhil Palempalle
 value: 100
 type: standard
@@ -13,8 +12,6 @@ protocol: null
 host: null
 flags:
 - bcactf{WIENeR$-@7t4ck-$t1L1-w0rkS}
-hints:
-- 
 files:
 - ciphertext.txt
 state: visible

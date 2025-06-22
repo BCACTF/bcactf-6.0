@@ -1,6 +1,9 @@
 
 Lambda Lab - Basic Command Reference
 
+0. ;
+Comment
+
 1. =
 Defines a new variable or named expression.
 

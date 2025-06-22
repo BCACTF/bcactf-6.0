@@ -1,0 +1,25 @@
+name: Morse Marsh
+author: Nikhil Palempalle
+category: crypto
+description: 'Hey! Take a look at this marsh!
+
+  Be careful there might be a (singular) **thorn** somewhere
+
+  Wrap your decoded text in this format: bcactf{DECODED_FLAG_HERE}'
+attribution: Written by Nikhil Palempalle
+value: 150
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{This_is_the_Þ_you_are_looking_for_123_Please_proceed_4567_The_quick_brown_fox_jumped_over_the_lazy_dog_890}
+hints:
+- thorn = Þ
+- Lookup fractionated morse cipher
+- This hint's first word is the first word of the plaintext
+files:
+- morse_encodings.py
+- ciphertext.txt
+state: visible

@@ -1,0 +1,17 @@
+name: Recovery Shop
+categories:
+  - foren
+value: 50
+flag: bcactf{th!ss_@!e_83klts_fr_b!n@na_f$_l@gOrz}
+
+description: |-
+  Welcome to the recovery shop!
+  For a small price, we can restore you to your best look!
+
+hints:
+  - Have you tried looking at yourself in the mirror? (the next hint is a real one)
+files:
+  - src: ./recovers.heic
+authors:
+  - Michael P
+visible: true

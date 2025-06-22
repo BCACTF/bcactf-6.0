@@ -1,0 +1,22 @@
+Every class in JVM bytecode includes the "sourcefile" attribute, which contains
+the name of the Java file from which the class was compiled. When an exception
+is thrown and a stack trace is printed, the "sourcefile" attribute of each class
+in the stack trace is printed along with the class name.
+
+Example:
+Exception in thread "main" java.util.InputMismatchException
+        at java.base/java.util.Scanner.throwFor(Scanner.java:964)
+Note how Scanner.java is printed in the stacktrace.
+
+In the JAR file included in this challenge, the classes Part1, Part2, Part3, and
+Part4 have had their sourcefile attributes manually set to the respective pieces
+of the flag. You can reveal this attribute by either using a bytecode editor to
+analyze each class, or by causing the application to throw an exception and print
+a stack trace.
+
+To print part 1 of the flag, select 1 in the program's command line interface.
+Then, type an invalid input (non-integer). As a result, the program will throw
+an exception, and a stack trace will be printed. The first part of the flag will
+be visible in the stacktrace.
+
+Do this for each part of the program to get the full flag.

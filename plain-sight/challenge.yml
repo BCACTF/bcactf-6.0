@@ -1,0 +1,19 @@
+name: plain-sight
+author: Lam To
+category: foren
+description: Can you help find my flag? I tried asking around but all I found was
+  this poem.
+attribution: Written by Lam To
+value: 50
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{Now_y0U_s3e_mE}
+hints:
+- no hints for this chall
+files:
+- hiding_in_plain_sight.pdf
+state: visible

@@ -1,0 +1,20 @@
+name: Recovery Shop
+author: Michael P
+category: foren
+description: 'Welcome to the recovery shop!
+
+  For a small price, we can restore you to your best look!'
+attribution: Written by Michael P
+value: 50
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{th!ss_@!e_83klts_fr_b!n@na_f$_l@gOrz}
+hints:
+- Have you tried looking at yourself in the mirror? (the next hint is a real one)
+files:
+- recovers.heic
+state: visible

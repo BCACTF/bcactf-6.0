@@ -1,0 +1,21 @@
+name: Morse Marsh
+categories:
+  - crypto
+value: 150
+flag:
+  file: ./flag.txt
+description: |-
+  Hey! Take a look at this marsh!
+  Be careful there might be a (singular) **thorn** somewhere
+  Wrap your decoded text in this format: bcactf{DECODED_FLAG_HERE}
+hints:
+  - "thorn = Þ"
+  - "Lookup fractionated morse cipher"
+  - "This hint's first word is the first word of the plaintext"
+files:
+  - src: ./morse_encodings.py
+  - src: ciphertext.txt
+authors:
+  - Nikhil Palempalle
+visible: true
+# TODO: deployment

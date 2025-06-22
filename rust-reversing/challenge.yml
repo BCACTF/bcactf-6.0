@@ -1,0 +1,18 @@
+name: Rust Reversing
+author: Joshua Peisach
+category: rev
+description: Ever tried reverse engineering a Rust binary?
+attribution: Written by Joshua Peisach
+value: 25
+type: standard
+version: '0.1'
+image: .
+protocol: null
+host: null
+flags:
+- bcactf{w0w_rUsT_reverse}
+hints:
+- No hints, good luck!
+files:
+- rust-reversing
+state: visible

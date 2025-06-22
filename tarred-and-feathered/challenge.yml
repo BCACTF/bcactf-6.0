@@ -1,0 +1,24 @@
+name: Tarred and Feathered
+author: Colin
+category: foren
+description: 'i recently exfiltrated this archive from a suspect''s computer. they
+  illegally stole all of our flags.
+
+
+  however, not everything is as it seems. the flag is in the archive, but where? i
+  couldn''t find it, can you?'
+attribution: Written by Colin
+value: 75
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{you_tarred_me_apart_1bf1fb1}
+hints:
+- Not everything in the archive is what it seems. Look beyond the visible files.
+- how can you get more information about what files are in the archive?
+files:
+- challenge.tar.gz
+state: visible

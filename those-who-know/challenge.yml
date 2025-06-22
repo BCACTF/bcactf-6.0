@@ -1,0 +1,20 @@
+name: those who know
+author: Colin
+category: foren
+description: 'grr!! compression is NOT encryption!!!
+
+  🤦🙇 (hint hint, what am i doing here??)'
+attribution: Written by Colin
+value: 75
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{i_am_the_one_who_knows_aba12321}
+hints:
+- understand what emoticon could represent what the two emojis are doing
+files:
+- flag
+state: visible

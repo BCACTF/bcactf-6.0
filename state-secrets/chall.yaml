@@ -1,0 +1,19 @@
+name: state secrets
+categories:
+  - foren
+value: 150
+flag: bcactf{75_463ncy_d035n7_kn0w_h0w_70_u53_600d_p455w0rd5_0r_r3d4c7_pr0p3r1y}
+description: |-
+  the BIA (bca intelligence agency) is stepping it up.
+  we recently infiltrated the **un**official government agency SIA!
+
+  we extracted a number of "state secrets". it's said the flag can be found among them. but i can't open anything...
+hints:
+  - do you know what hash cracking is? all passwords (if blind cracking) can be found in `rockyou.txt`. take a look at john the ripper / hashcat.
+  - if you are having trouble constructing the flag, remember that there might be some underscores you missed. also, the flag is a valid english statement in l33t sp34k
+  - if you are stuck on the last part of the flag check the "docx theme cache"
+files:
+  - src: ./state_secrets.zip
+authors:
+  - Colin
+visible: true

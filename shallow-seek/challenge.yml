@@ -1,0 +1,21 @@
+name: ShallowSeek
+author: Jacob K.
+category: binex
+description: "Our brand new AI, ShallowSeek, is the latest and greatest LLM created\
+  \ to date. \nYou can talk to it about anything! (Well, anything the government lets\
+  \ you)"
+attribution: Written by Jacob K.
+value: 25
+type: standard
+version: '0.1'
+image: .
+protocol: tcp
+connection_info: nc challs.bcactf.com 34343
+host: null
+flags:
+- bcactf{s0rRy_1_cAn7_741K_4B0U7_7ha7_R16h7_N0w_GfhNkl0iP2BK}
+hints:
+- No hints for this challenge, good luck!
+files:
+- shallowseek.c
+state: visible

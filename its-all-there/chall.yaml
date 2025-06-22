@@ -1,0 +1,16 @@
+name: its all there
+categories:
+  - foren
+value: 100
+flag:
+  file: ./flag.txt
+description: |-
+  this is a picture of my king.
+  he knows where the flag is
+hints:
+  - its in foren for a reason
+files:
+  - src: ./goonking.jpg
+authors:
+  - Colin
+visible: true

@@ -1,0 +1,15 @@
+name: those who know
+categories:
+  - foren
+value: 75
+flag: bcactf{i_am_the_one_who_knows_aba12321}
+description: |-
+  grr!! compression is NOT encryption!!!
+  🤦🙇 (hint hint, what am i doing here??)
+hints:
+  - understand what emoticon could represent what the two emojis are doing
+files:
+  - src: ./flag
+authors:
+  - Colin
+visible: true

@@ -1,0 +1,20 @@
+name: tune in
+author: Colin
+category: foren
+description: 'my boss radioed me a message but I can''t hear it.
+
+  he told me to tune in, can you help me out?'
+attribution: Written by Colin
+value: 50
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{1_4m_11573n1n6_8055_54y_7h3_w0rd}
+hints:
+- look for suspicious audio
+files:
+- transmission.wav
+state: visible

@@ -1,0 +1,23 @@
+name: nitro_nexus
+author: Puhalenthi
+category: misc
+description: 'I couldn''t afford the new Mario Kart game, so my friend gave me a copy
+  of Nitro Nexus.
+
+  I''m a GOD at racing games, but theres only one problem... I can''t get past the
+  first level.
+
+  The builds can be found [here](https://drive.google.com/drive/folders/1L39C3J49w4awgTqAO-UCdICT79UQ_9WK?usp=sharing)'
+attribution: Written by Puhalenthi
+value: 75
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{mEgaLoDOn}
+hints:
+- There is no way anyone can beat the game in the time alloted.
+- If only there was a way to slow down time... or increase the time limit.
+state: visible

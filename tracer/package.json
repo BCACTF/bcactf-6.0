@@ -1,0 +1,10 @@
+{
+    "name": "tracer",
+    "version": "1.0.0",
+    "private": true,
+    "main": "main.js",
+    "dependencies": {
+        "express": "^5.1.0"
+    },
+    "type": "module"
+}

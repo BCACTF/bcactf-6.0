@@ -1,0 +1,12 @@
+name: Flag Flag
+category: foren
+description: It's a flag—inside a flag.
+attribution: Written by Thomas
+value: 25
+type: standard
+version: '0.1'
+flags:
+  - bcactf{1jN7uYkj}
+files:
+  - flag-flag.png
+state: hidden

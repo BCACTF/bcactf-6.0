@@ -1,0 +1,2 @@
+Rename the given file to a photoshop one (.psd) and open it in a free online editor for photoshop.
+Use the crop tool to extend the image and assemble the flag bits in top to bottom order.

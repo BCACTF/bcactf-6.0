@@ -1,0 +1,20 @@
+name: Matrix Conjugacy Easy
+author: Michael
+category: algo
+description: 'Please determine the number of matrices in SL_2(Z/1953125Z)
+
+  that have trace 48 (mod 1953125).
+
+  The answer is a positive integer, so wrap it in bcactf{} with no commas.'
+attribution: Written by Michael
+value: 100
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{4272460937500}
+hints:
+- Use a script!
+state: visible

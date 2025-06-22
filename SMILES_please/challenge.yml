@@ -1,0 +1,23 @@
+name: SMILES Please!
+author: Nikhil Palempalle
+category: crypto
+description: "I found the secret compound that Generic Perfume Corp. uses in their\
+  \ products. Unfortunately, it seems to be hashed. \nI believe the compound is a\
+  \ relatively well-known chemical and the plaintext is the compound's canonical SMILES\
+  \ string.\nCan you find the name of this mystery compound given its hash (in SHA256)?\n\
+  Wrap the common name (i.e. excluding words that distinguish stereoisomers) of the\
+  \ compound in bcactf{} and make everything lowercase"
+attribution: Written by Nikhil Palempalle
+value: 100
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{nepetalactone}
+hints:
+- Have you looked through any chemistry databases?
+files:
+- compound.txt
+state: visible

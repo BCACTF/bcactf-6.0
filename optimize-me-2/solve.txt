@@ -1,0 +1,25 @@
+just see this output from the genconst.py
+
+you may consider using the faster functions in the binary but i think it could be faster to just roll your own decryption algo
+
+
+python3 genconst.py
+Generating constants for flag: bcactf{sl0w_m4th_f4st_c0d3}
+Using CPU-intensive but memory-efficient algorithms...
+// Generated constants for computationally expensive flag decryption
+// Flag must be decrypted using fibonacci and prime computations
+// Using high-CPU, low-memory algorithms
+
+const int fibonacci_base = 10000;
+const int prime_start_index = 500000;
+
+const unsigned char encrypted_flag[] = { 0xea, 0x09, 0x12, 0x47, 0x98, 0x2d, 0xdb, 0x17, 0xd5, 0xbe, 0xe3, 0xde, 0xcf, 0x62, 0xb3, 0xb2, 0x73, 0xaf, 0xe6, 0xe1, 0xb5, 0x5f, 0xc3, 0x19, 0x0e, 0xfd, 0xe2 };
+
+const int flag_length = 27;
+
+// Original flag: bcactf{sl0w_m4th_f4st_c0d3}
+// Each byte encrypted with: byte XOR fib_key XOR prime_key
+// These constants will take a VERY LONG TIME to compute with naive algorithms:
+// - Fibonacci F(10000) to F(10026) using recursive method
+// - Primes #500000 to #500026 using trial division
+Generation complete!

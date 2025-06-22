@@ -1,0 +1,20 @@
+name: primes
+author: Colin
+category: crypto
+description: We have some very prime numbers.. except some. Please find a word related
+  to prime numbers hidden somewhere in this list. WRAP YOUR ANSWER IN bcactf{}
+attribution: Written by Colin
+value: 50
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{factorize}
+hints:
+- Are all the numbers prime?
+- What are the indices of the non-prime numbers
+files:
+- primes.txt
+state: visible

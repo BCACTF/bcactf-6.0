@@ -1,0 +1,26 @@
+name: bfffl
+author: Colin
+category: rev
+description: "I've made an amazing new encryption software to share information with\
+  \ my bestest friend! \nmy username is `hun73r12` and my best friend's username is\
+  \ `__purten75`.\nbut, i forgot to code up the decryption logic.... that makes it\
+  \ even more secure!!\nhere's the encrypted flag and the binary I used to encrypt\
+  \ the flag to share with `__purten75`!\n\n(you can see the information in info.txt\
+  \ if needed)\n`08544f76b472694f3c03045c1b4aa6246027635f59684626f1644d016442355a5b20f74b2a4b0b5a13684026b74b2a4b610035515c24f37a7605`"
+attribution: Written by Colin
+value: 100
+type: standard
+version: '0.1'
+image: .
+protocol: null
+host: null
+flags:
+- bcactf{7h4nk5_f0r_7h3_h31p_y0u_mu57_83_my_n3w_8357_fr13nd}
+hints:
+- try analyzing the binary's encryption logic (free online dissassembler at [cloud.binary.ninja](https://cloud.binary.ninja/))
+- Have you tried analyzing how the binary works? You don't really need to run the
+  binary for anything
+files:
+- info.txt
+- bfffl
+state: visible

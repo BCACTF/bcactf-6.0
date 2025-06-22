@@ -1,0 +1,19 @@
+name: BMovie
+categories:
+  - crypto
+value: 50
+flag:
+  file: ./src/flag.txt
+description: |-
+  I cannot possibly Blieve that you could break into my highly secured, bee-crypted vault
+hints:
+  - There are no hints, good luck!
+files:
+  - src: ./src/main.ts
+authors:
+  - Mudasir Ali
+visible: true
+deploy:
+  nc:
+    build: .
+    expose: 9990/tcp

@@ -1,0 +1,2 @@
+notice that mispelled words ahave exactly one wrong, and that it is either one before or behind the correct letter
+from there turn it into binary and decode

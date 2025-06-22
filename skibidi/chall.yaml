@@ -1,0 +1,15 @@
+name: skibidi
+categories:
+  - rev
+value: 50
+flag: bcactf{516m4_516m4_0n_7h3_w411_wh0_15_7h3_5k181d1357_0f_7h3m_411}
+description: |-
+  As a True Sigma, I now only write code in the best programming language of all time.
+  See if you can figure out what the flag is.
+hints:
+  - Look at the file extension...
+files:
+  - src: ./brainrot.skibidi
+authors:
+  - Colin
+visible: true

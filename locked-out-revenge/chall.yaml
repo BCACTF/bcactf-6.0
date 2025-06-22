@@ -1,0 +1,20 @@
+name: locked out REVENGE
+categories:
+  - misc
+value: 200
+flag:
+  file: ./flag.txt
+description: |-
+  i heard you locked in last time. see if you can do it again!
+  the flag is in `./flag.txt` btw so u dont gotta do any crazy RCE
+hints:
+  - just use your get out of jail free card
+files:
+  - src: ./server.py
+authors:
+  - Colin
+visible: false
+deploy:
+  nc:
+    build: .
+    expose: 7330/tcp

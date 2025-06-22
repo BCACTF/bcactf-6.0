@@ -1,0 +1,4 @@
+either upload pdf and open in google docs, then you can see the image with the flag
+
+or you can use pdftools, pdfimages -all hiding_in_plain_sight.pdf output
+

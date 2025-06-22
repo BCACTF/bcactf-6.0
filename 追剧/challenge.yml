@@ -1,0 +1,36 @@
+name: 追剧
+author: Colin, Arnav
+category: misc
+description: 'i was hopping on some **追剧** last night...
+
+  but i forgot what i was watching!!
+
+
+  can you find this information
+
+  - the name of what i was watching (in english)
+
+  - the episode number (numeric)
+
+  - the name of the current competition (the official one from the screen, it is 2
+  words)
+
+
+  replace all spaces with underscores, all lowercase, remove any non alphanumeric
+  characters
+
+  join the three sections in that order with dashes'
+attribution: Written by Colin, Arnav
+value: 150
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{go_go_squid-5-doppler_summit}
+hints:
+- no hints for osint, make ticket if u need
+files:
+- ss.png
+state: visible

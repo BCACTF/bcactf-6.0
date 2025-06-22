@@ -1,0 +1,24 @@
+name: helpful feedback
+author: Colin
+category: rev
+description: 'wow, i found this program that mirrors _________!
+
+  when i do something good they say nothing, and something wrong they immediately
+  exit!
+
+
+  also, c++ is the best functional programming language'
+attribution: Written by Colin
+value: 175
+type: standard
+version: '0.1'
+image: .
+protocol: null
+host: null
+flags:
+- bcactf{100k5_600d_70_m3_51r}
+hints:
+- hint hint, hint hint hint, hint hint hint hint
+files:
+- helpful_feedback
+state: visible

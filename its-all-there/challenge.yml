@@ -1,0 +1,20 @@
+name: its all there
+author: Colin
+category: foren
+description: 'this is a picture of my king.
+
+  he knows where the flag is'
+attribution: Written by Colin
+value: 100
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{1_701d_y0u_17_w45_7h3r3}
+hints:
+- its in foren for a reason
+files:
+- goonking.jpg
+state: visible

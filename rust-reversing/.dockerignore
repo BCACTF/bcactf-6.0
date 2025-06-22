@@ -1,0 +1,2 @@
+# avoid rebuilding docker image when chall.yaml file is updated
+chall.yaml

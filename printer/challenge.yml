@@ -1,0 +1,18 @@
+name: Printer
+author: Mudasir Ali
+category: binex
+description: hey. i heard youre good with computers. my printer isn't working. it
+  asks me what i want to print, but doesnt print it.
+attribution: Written by Mudasir Ali
+value: 75
+type: standard
+version: '0.1'
+image: .
+protocol: tcp
+connection_info: nc challs.bcactf.com 9092
+host: null
+flags:
+- bcactf{o0p$_mY_pR!n73R_br0ke_fhu}
+files:
+- printer
+state: visible

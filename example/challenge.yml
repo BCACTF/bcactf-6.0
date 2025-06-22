@@ -1,0 +1,31 @@
+name: Example Problem
+author: John Doe, Jane Smith
+category: misc
+description: 'Look at this example problem.
+
+  This is the problem description.
+
+  You will be able to add **markdown**!
+
+  Here is a separate paragraph.
+
+  Wow!
+
+
+  Take your flag: bcactf{this_is_a_flag}'
+attribution: Written by John Doe, Jane Smith
+value: 25
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{this_is_a_flag}
+hints:
+- Have you tried turning it off and on again?
+- Have you tried forcing an unexpected reboot?
+files:
+- flag.txt
+- a.txt
+state: visible

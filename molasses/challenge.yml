@@ -1,0 +1,19 @@
+name: Molasses
+category: misc
+description: >
+  This GIF shows the flag letter-by-letter but it's really slow and I
+  don't want to wait all day. Maybe there's a faster way to get the flag?
+attribution: Written by Thomas
+value: 50
+type: standard
+version: '0.1'
+image: .
+protocol: null
+host: null
+flags:
+  - bcactf{is_it_gif_or_gif_a51fd7ace416}
+hints:
+  - The flag contains underscores but no hyphens.
+files:
+  - molasses.gif
+state: visible

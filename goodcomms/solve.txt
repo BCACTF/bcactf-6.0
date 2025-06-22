@@ -1,0 +1,1 @@
+listen to the audio and notice ggwave audio: extract/cleanup frequency and then decode using ggwave library, theres a webapp called waver here: https://waver.ggerganov.com/

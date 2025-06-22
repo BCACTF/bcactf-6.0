@@ -1,0 +1,32 @@
+this is made by colin btw just some notes on how i actually solved it
+
+part 1:
+look at the arrows, you can assume white played e4, a bit of time on lichess opening explorer (if thats what its called) can let you guess the opening is the silician dragon
+
+IMPORTANT: you need to count the total arrows to see how many moves were actually shown on the arrows. this can cause misconceptions
+
+one thing to note is that black moved the e pawn. this can help with searching
+
+you can narrow down the opening, then you just need to spend some time on the chessgames database looking through games. also note the rook b8 move from black, can help you in searching
+
+took me probably 30m-1hr to find Stop Dragon My Heart Around
+
+
+
+part 2:
+tbh you can easily guess that it is ABG Commercial Real Estate
+just a google search until you find the matching logo gives you the website, going to contact page gives you the address easily
+
+
+part 3:
+searching the string gives you lyrics. here it is guessy tbh, and i think being clued by chall author helped me a lot, and i think it would have taken much more time wihtout clues
+
+anyways it leads to a reddit suername iwth the artist of the song (ZHOUYIFANBCA) or smth, and you can see that it tells you to join tienxion's discord server in his profile
+
+the server icon is a album cover i think and you search that up to see him commenting the word BMW on the page
+
+
+
+part 1 - time consuming, but nice
+part 2 - easy, nice
+part 3 - kinda cursed ngl, probably the hardest part due to ambiguity

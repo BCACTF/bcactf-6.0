@@ -1,85 +1,82 @@
 #!/usr/bin/env python3
 import sys
 
-def generate_constants(flag):
-    """Generate encrypted constants for the Go binary"""
+def encrypt_flag(flag):
+    """Encrypt flag with a simple but effective multi-stage process"""
+    data = flag.encode()
     
-    # Stage 1: Simple XOR with rotating key
-    stage1_key = [0x42, 0x13, 0x37, 0x89, 0xAB, 0xCD, 0xEF, 0x21]
-    stage1_encrypted = []
-    for i, byte in enumerate(flag.encode()):
-        stage1_encrypted.append(byte ^ stage1_key[i % len(stage1_key)])
+    # Stage 1: XOR with key
+    key1 = [0x13, 0x37, 0x42, 0x69, 0x88, 0xAA, 0xBB, 0xCC]
+    stage1 = []
+    for i, b in enumerate(data):
+        stage1.append(b ^ key1[i % len(key1)])
     
-    # Stage 2: Add/subtract with alternating pattern
-    stage2_encrypted = []
-    for i, byte in enumerate(stage1_encrypted):
-        if i % 2 == 0:
-            stage2_encrypted.append((byte + 0x17) & 0xFF)
-        else:
-            stage2_encrypted.append((byte - 0x23) & 0xFF)
+    # Stage 2: Add with rotating offset
+    stage2 = []
+    for i, b in enumerate(stage1):
+        offset = (i * 7 + 23) & 0xFF
+        stage2.append((b + offset) & 0xFF)
     
-    # Stage 3: Bit rotation
-    final_encrypted = []
-    for i, byte in enumerate(stage2_encrypted):
-        # Rotate left by (i % 8) positions
-        rot = i % 8
-        if rot == 0:
-            rotated = byte
-        else:
-            rotated = ((byte << rot) | (byte >> (8 - rot))) & 0xFF
-        final_encrypted.append(rotated)
+    # Stage 3: Swap nibbles and XOR with position
+    final = []
+    for i, b in enumerate(stage2):
+        # Swap high and low nibbles
+        swapped = ((b & 0x0F) << 4) | ((b & 0xF0) >> 4)
+        # XOR with position-based value
+        pos_xor = (i * 3 + 0x55) & 0xFF
+        final.append(swapped ^ pos_xor)
     
-    # Generate Go constants
-    print("// Generated constants - paste into main.go")
-    print("var encryptedFlag = []byte{", end="")
-    for i, byte in enumerate(final_encrypted):
-        if i % 8 == 0:
-            print("\n\t", end="")
-        print(f"0x{byte:02x}, ", end="")
-    print("\n}")
-    
-    print(f"\nvar flagLength = {len(flag)}")
-    
-    # Verification - decrypt to make sure it works
-    print("\n// Verification:")
-    decrypted = decrypt_flag(final_encrypted)
-    print(f"// Original: {flag}")
-    print(f"// Decrypted: {decrypted}")
-    print(f"// Match: {flag == decrypted}")
+    return final
 
 def decrypt_flag(encrypted):
-    """Verify decryption works correctly"""
-    
-    # Stage 1: Reverse bit rotation
+    """Decrypt flag - reverse of encrypt_flag"""
+    # Stage 1: Reverse nibble swap and position XOR
     stage1 = []
-    for i, byte in enumerate(encrypted):
-        rot = i % 8
-        if rot == 0:
-            rotated = byte
-        else:
-            rotated = ((byte >> rot) | (byte << (8 - rot))) & 0xFF
-        stage1.append(rotated)
+    for i, b in enumerate(encrypted):
+        # Reverse position XOR
+        pos_xor = (i * 3 + 0x55) & 0xFF
+        unxored = b ^ pos_xor
+        # Reverse nibble swap
+        original = ((unxored & 0x0F) << 4) | ((unxored & 0xF0) >> 4)
+        stage1.append(original)
     
-    # Stage 2: Reverse add/subtract operations
+    # Stage 2: Subtract rotating offset
     stage2 = []
-    for i, byte in enumerate(stage1):
-        if i % 2 == 0:
-            stage2.append((byte - 0x17) & 0xFF)
-        else:
-            stage2.append((byte + 0x23) & 0xFF)
+    for i, b in enumerate(stage1):
+        offset = (i * 7 + 23) & 0xFF
+        stage2.append((b - offset) & 0xFF)
     
-    # Stage 3: Reverse XOR with rotating key
-    xor_key = [0x42, 0x13, 0x37, 0x89, 0xAB, 0xCD, 0xEF, 0x21]
+    # Stage 3: Reverse XOR with key
+    key1 = [0x13, 0x37, 0x42, 0x69, 0x88, 0xAA, 0xBB, 0xCC]
     final = []
-    for i, byte in enumerate(stage2):
-        final.append(byte ^ xor_key[i % len(xor_key)])
+    for i, b in enumerate(stage2):
+        final.append(b ^ key1[i % len(key1)])
     
     return bytes(final).decode()
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) != 2:
         print("Usage: python3 genconst.py <flag>")
         sys.exit(1)
     
     flag = sys.argv[1]
-    generate_constants(flag)
+    encrypted = encrypt_flag(flag)
+    
+    print("// Generated constants for main.go")
+    print("var encryptedFlag = []byte{")
+    for i in range(0, len(encrypted), 8):
+        chunk = encrypted[i:i+8]
+        line = "\t" + ", ".join(f"0x{b:02x}" for b in chunk) + ","
+        print(line)
+    print("}")
+    print(f"var flagLength = {len(flag)}")
+    
+    # Verify
+    decrypted = decrypt_flag(encrypted)
+    print(f"\n// Verification:")
+    print(f"// Original:  {flag}")
+    print(f"// Decrypted: {decrypted}")
+    print(f"// Match: {flag == decrypted}")
+
+if __name__ == "__main__":
+    main()

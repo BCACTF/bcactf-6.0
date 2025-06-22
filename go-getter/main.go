@@ -2,157 +2,139 @@ package main
 
 import (
 	"bufio"
-	"crypto/sha256"
+	"crypto/rand"
 	"fmt"
 	"os"
 	"strings"
 )
 
-// Generated encrypted flag - replace with output from genconst.py
+// Generated constants for main.go
 var encryptedFlag = []byte{
-	0x37, 0x9a, 0xb5, 0x3e, 0x6f, 0x11, 0xea, 0x91, 
-	0x89, 0x52, 0x71, 0xbc, 0x4f, 0x7b, 0x2d, 0x97, 
-	0x88, 0x52, 0x6c, 0x26, 0x3e, 0x3b, 0x26, 0xf7, 
-	0x88, 0x7c, 0x74, 0x26, 0x3e, 0xed, 0x66, 0x79, 
-	0x48, 0x88, 0x6c, 0xc6, 0xde, 
+	0xdd, 0x7f, 0xdf, 0x3d, 0x93, 0x04, 0x77, 0x55,
+	0x4a, 0x9b, 0xab, 0x9d, 0xef, 0xcc, 0x5b, 0x71,
+	0xff, 0xe7, 0xeb, 0xb4, 0xb8, 0xc0, 0xff, 0xe1,
+	0x60, 0x10, 0xa7, 0x1b, 0x05, 0xd1, 0x54, 0x3c,
+	0xc0, 0xac, 0xdc, 0xcc, 0x41,
 }
-
 var flagLength = 37
 
-// Obfuscated constants
+// Decoy constants for obfuscation
 const (
-	magicNumber1 = 0x1337
-	magicNumber2 = 0xDEADBEEF
-	checksum1    = 0x42424242
-	checksum2    = 0x13371337
+	magicConst1 = 0xDEADBEEF
+	magicConst2 = 0xCAFEBABE
+	magicConst3 = 0x1337C0DE
 )
 
-// Anti-debug: Simple checksum validation
-func validateEnvironment() bool {
-	h := sha256.New()
-	h.Write([]byte("go-getter-challenge"))
-	hash := h.Sum(nil)
-	return len(hash) == 32 // Always true, but obfuscates intent
+// Anti-tampering check
+func environmentCheck() bool {
+	// Simple entropy check to make analysis harder
+	buf := make([]byte, 4)
+	rand.Read(buf)
+	return len(buf) == 4
 }
 
-// Decryption function - reverse of the encryption in genconst.py
+// Main decryption function
 func decryptFlag(encrypted []byte) string {
-	if !validateEnvironment() {
-		return "Environment validation failed"
+	if !environmentCheck() {
+		return ""
 	}
 
-	// Stage 1: Reverse bit rotation
+	// Stage 1: Reverse nibble swap and position XOR
 	stage1 := make([]byte, len(encrypted))
-	for i, byte := range encrypted {
-		rot := i % 8
-		if rot == 0 {
-			stage1[i] = byte
-		} else {
-			// Rotate right by rot positions (reverse of left rotation)
-			rotated := ((byte >> rot) | (byte << (8 - rot))) & 0xFF
-			stage1[i] = rotated
-		}
+	for i, b := range encrypted {
+		// Reverse position XOR
+		posXor := byte((i*3 + 0x55) & 0xFF)
+		unxored := b ^ posXor
+		// Reverse nibble swap
+		original := ((unxored & 0x0F) << 4) | ((unxored & 0xF0) >> 4)
+		stage1[i] = original
 	}
 
-	// Stage 2: Reverse add/subtract operations
+	// Stage 2: Subtract rotating offset
 	stage2 := make([]byte, len(stage1))
-	for i, byte := range stage1 {
-		if i%2 == 0 {
-			stage2[i] = (byte - 0x17) & 0xFF
-		} else {
-			stage2[i] = (byte + 0x23) & 0xFF
-		}
+	for i, b := range stage1 {
+		offset := byte((i*7 + 23) & 0xFF)
+		stage2[i] = (b - offset) & 0xFF
 	}
 
-	// Stage 3: Reverse XOR with rotating key
-	xorKey := []byte{0x42, 0x13, 0x37, 0x89, 0xAB, 0xCD, 0xEF, 0x21}
+	// Stage 3: Reverse XOR with key
+	key := []byte{0x13, 0x37, 0x42, 0x69, 0x88, 0xAA, 0xBB, 0xCC}
 	final := make([]byte, len(stage2))
-	for i, byte := range stage2 {
-		final[i] = byte ^ xorKey[i%len(xorKey)]
+	for i, b := range stage2 {
+		final[i] = b ^ key[i%len(key)]
 	}
 
 	return string(final)
 }
 
-// Fake flag checker functions for misdirection
-func checkFlag1(input string) bool {
-	return strings.HasPrefix(input, "flag{") && strings.HasSuffix(input, "}")
+// Decoy functions to confuse static analysis
+func checkFormat(input string) bool {
+	return strings.HasPrefix(input, "bcactf{") && strings.HasSuffix(input, "}")
 }
 
-func checkFlag2(input string) bool {
-	if len(input) < 10 {
-		return false
-	}
-	checksum := 0
-	for _, char := range input {
-		checksum += int(char)
-	}
-	return checksum > 1000 // Meaningless check
+func checkLength(input string) bool {
+	return len(input) == flagLength
 }
 
-func obfuscatedCheck(input string) bool {
-	// Another layer of misdirection
-	temp := make([]byte, len(input))
-	for i, char := range input {
-		temp[i] = byte(char) ^ 0xFF
+func checkCharacters(input string) bool {
+	allowed := "abcdefghijklmnopqrstuvwxyz0123456789_{}"
+	for _, c := range input {
+		found := false
+		for _, a := range allowed {
+			if c == a {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return false
+		}
 	}
-	return len(temp) == len(input) // Always true
+	return true
 }
 
-// Main verification function
+// Main verification logic
 func verifyFlag(input string) bool {
-	if len(input) != flagLength {
+	// Basic checks first
+	if !checkFormat(input) || !checkLength(input) || !checkCharacters(input) {
 		return false
 	}
 
-	// Basic format checks (misdirection)
-	if !checkFlag1(input) || !checkFlag2(input) || !obfuscatedCheck(input) {
-		return false
-	}
-
-	// The real check - decrypt and compare
-	decrypted := decryptFlag(encryptedFlag)
-	return input == decrypted
+	// Decrypt the stored flag and compare
+	correctFlag := decryptFlag(encryptedFlag)
+	return input == correctFlag
 }
 
-// Welcome message with some ASCII art
-func printWelcome() {
+func printBanner() {
 	fmt.Println(`
- ██████╗  ██████╗        ██████╗ ███████╗████████╗████████╗███████╗██████╗ 
-██╔════╝ ██╔═══██╗      ██╔════╝ ██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
-██║  ███╗██║   ██║█████╗██║  ███╗█████╗     ██║      ██║   █████╗  ██████╔╝
-██║   ██║██║   ██║╚════╝██║   ██║██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
-╚██████╔╝╚██████╔╝      ╚██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
- ╚═════╝  ╚═════╝        ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
-                                                                             
-                          Reverse Engineering Challenge
-                               Can you find the flag?
-    `)
+ ██████╗  ██████╗       ██████╗ ███████╗████████╗████████╗███████╗██████╗ 
+██╔════╝ ██╔═══██╗     ██╔════╝ ██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
+██║  ███╗██║   ██║     ██║  ███╗█████╗     ██║      ██║   █████╗  ██████╔╝
+██║   ██║██║   ██║     ██║   ██║██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
+╚██████╔╝╚██████╔╝     ╚██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
+ ╚═════╝  ╚═════╝       ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
+`)
 }
 
 func main() {
-	printWelcome()
+	printBanner()
 
-	// Some anti-analysis tricks
-	dummy1 := magicNumber1 ^ magicNumber2
-	dummy2 := checksum1 + checksum2
-	_ = dummy1 + dummy2 // Use the variables to prevent optimization
+	// Anti-analysis: Use the magic constants
+	_ = magicConst1 ^ magicConst2 ^ magicConst3
 
 	fmt.Print("Enter the flag: ")
 	reader := bufio.NewReader(os.Stdin)
 	input, err := reader.ReadString('\n')
 	if err != nil {
-		fmt.Println("Error reading input!")
+		fmt.Println("error reading input")
 		return
 	}
 
 	input = strings.TrimSpace(input)
 
 	if verifyFlag(input) {
-		fmt.Println("🎉 Congratulations! You found the correct flag!")
-		fmt.Println("Great job reverse engineering the Go-Getter challenge!")
+		fmt.Println("\ngood boy.")
 	} else {
-		fmt.Println("❌ Wrong flag. Keep trying!")
-		fmt.Println("Hint: The flag is encrypted using multiple stages...")
+		fmt.Println("\nbad boy.")
 	}
 }

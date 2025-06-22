@@ -3,37 +3,56 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/mman.h>
+#include <sys/wait.h>
+#include <signal.h>
+#include <time.h>
+#include <fcntl.h>
+#include <stdint.h>
 
-// Flag: NIPS{S3lf_M0d1fy1ng_MIPS}
-unsigned char encrypted_flag[] = {
-    0x7A, 0x18, 0xC4, 0x9E, 0x52, 0xF1, 0x3A, 0x81,
-    0x6D, 0xE9, 0x27, 0xB5, 0xA3, 0x45, 0x8C, 0x7D,
-    0x38, 0xF6, 0x1B, 0x59, 0xC7, 0x42, 0x96, 0x0D
-};
+#ifdef __linux__
+#include <sys/ptrace.h>
+#else
+// Fallback definitions for macOS
+#define PTRACE_TRACEME 0
+#define PTRACE_DETACH 11
+extern int ptrace(int request, int pid, void *addr, int data);
+#endif
+
+// Flag will be dynamically encrypted
+unsigned char encrypted_flag[32];
 
 unsigned int key_schedule[4] = {0xDEADBEEF, 0xCAFEBABE, 0xFEEDFACE, 0xC0DEFEED};
+unsigned char target_flag[] = "bcactf{S3lf_M0d1fy1ng_MIPS}";
 
-// The actual MIPS machine code for our validator
-unsigned int validation_code[] = {
-    // Function prologue
-    0x27BDFFD0,   // addiu $sp, $sp, -48        # Adjust stack pointer
-    0xAFBF0028,   // sw $ra, 40($sp)            # Save return address
-    0xAFBE0024,   // sw $fp, 36($sp)            # Save frame pointer
-    0x03A0F021,   // move $fp, $sp              # Set up frame pointer
-
-    // This code will be replaced at runtime with our validation logic
-    // For now, just load zeros into registers and exit
-    0x24020000,   // li $v0, 0                  # Load 0 into $v0 (return value)
-    0x24030000,   // li $v1, 0                  # Clear $v1
-    0x24040000,   // li $a0, 0                  # Clear $a0
-    0x24050000,   // li $a1, 0                  # Clear $a1
-    0x24060000,   // li $a2, 0                  # Clear $a2
+// Template for MIPS machine code
+unsigned char validation_template[] = {
+    // Function prologue - MIPS calling convention
+    0x27, 0xbd, 0xff, 0xe0,        // addiu $sp, $sp, -32    # allocate stack frame
+    0xaf, 0xbf, 0x00, 0x1c,        // sw $ra, 28($sp)        # save return address
+    0xaf, 0xbe, 0x00, 0x18,        // sw $fp, 24($sp)        # save frame pointer
+    0x03, 0xa0, 0xf0, 0x21,        // move $fp, $sp          # set frame pointer
+    0xaf, 0xa4, 0x00, 0x14,        // sw $a0, 20($fp)        # store input parameter
+    
+    // Clear result register
+    0x00, 0x00, 0x10, 0x21,        // move $v0, $zero        # result = 0
+    
+    // This section will be dynamically modified - 32 bytes of NOPs
+    0x00, 0x00, 0x00, 0x00,        // nop                    # placeholder for validation logic
+    0x00, 0x00, 0x00, 0x00,        // nop
+    0x00, 0x00, 0x00, 0x00,        // nop
+    0x00, 0x00, 0x00, 0x00,        // nop
+    0x00, 0x00, 0x00, 0x00,        // nop
+    0x00, 0x00, 0x00, 0x00,        // nop
+    0x00, 0x00, 0x00, 0x00,        // nop
+    0x00, 0x00, 0x00, 0x00,        // nop
     
     // Function epilogue
-    0x8FBF0028,   // lw $ra, 40($sp)            # Restore return address
-    0x8FBE0024,   // lw $fp, 36($sp)            # Restore frame pointer
-    0x27BD0030,   // addiu $sp, $sp, 48         # Reset stack pointer
-    0x03E00008    // jr $ra                     # Return
+    0x03, 0xc0, 0xe8, 0x21,        // move $sp, $fp          # restore stack pointer
+    0x8f, 0xbe, 0x00, 0x18,        // lw $fp, 24($sp)        # restore frame pointer
+    0x8f, 0xbf, 0x00, 0x1c,        // lw $ra, 28($sp)        # restore return address
+    0x27, 0xbd, 0x00, 0x20,        // addiu $sp, $sp, 32     # deallocate stack frame
+    0x03, 0xe0, 0x00, 0x08,        // jr $ra                 # return
+    0x00, 0x00, 0x00, 0x00         // nop (delay slot)
 };
 
 // This function will be modified at runtime
@@ -44,12 +63,12 @@ void __attribute__ ((noinline)) validator(const char* input) {
     exit(1);
 }
 
-// Custom TEA-like cipher for checking
-void transform(unsigned int* v, unsigned int* k) {
+// TEA encryption function
+void tea_encrypt(unsigned int* v, unsigned int* k) {
     unsigned int v0 = v[0], v1 = v[1];
     unsigned int sum = 0, delta = 0x9E3779B9;
     
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 32; i++) {
         sum += delta;
         v0 += ((v1 << 4) + k[0]) ^ (v1 + sum) ^ ((v1 >> 5) + k[1]);
         v1 += ((v0 << 4) + k[2]) ^ (v0 + sum) ^ ((v0 >> 5) + k[3]);
@@ -58,93 +77,309 @@ void transform(unsigned int* v, unsigned int* k) {
     v[0] = v0; v[1] = v1;
 }
 
-// Generate the MIPS validation code dynamically
-unsigned int* generate_mips_validation_code(const char* input, size_t len) {
-    // Allocate memory for our generated code (more than enough for our needs)
-    unsigned int* code = malloc(1024);
+// TEA decryption function
+void tea_decrypt(unsigned int* v, unsigned int* k) {
+    unsigned int v0 = v[0], v1 = v[1];
+    unsigned int sum = 0xC6EF3720, delta = 0x9E3779B9;  // sum = delta * 32
+    
+    for (int i = 0; i < 32; i++) {
+        v1 -= ((v0 << 4) + k[2]) ^ (v0 + sum) ^ ((v0 >> 5) + k[3]);
+        v0 -= ((v1 << 4) + k[0]) ^ (v1 + sum) ^ ((v1 >> 5) + k[1]);
+        sum -= delta;
+    }
+    
+    v[0] = v0; v[1] = v1;
+}
+
+// Initialize encrypted flag at startup
+void init_encrypted_flag() {
+    // Pad the flag to 32 bytes
+    unsigned char padded_flag[32];
+    memset(padded_flag, 0, sizeof(padded_flag));
+    strncpy((char*)padded_flag, (char*)target_flag, strlen((char*)target_flag));
+    
+    // Encrypt in 8-byte blocks
+    for (int i = 0; i < 32; i += 8) {
+        unsigned int block[2];
+        memcpy(block, padded_flag + i, 8);
+        tea_encrypt(block, key_schedule);
+        memcpy(encrypted_flag + i, block, 8);
+    }
+}
+
+// Generate MIPS validation code dynamically
+unsigned char* generate_validation_code(const char* input, size_t len) {
+    // Allocate memory for our generated code
+    unsigned char* code = malloc(1024);
     if (!code) return NULL;
     
     // Copy the template validation code
-    memcpy(code, validation_code, sizeof(validation_code));
+    memcpy(code, validation_template, sizeof(validation_template));
     
-    // Index to where we'll insert our validation logic (after the prologue)
-    int idx = 4;
+    // Index to where we'll insert our validation logic (after prologue, before NOPs)
+    int idx = 24; // After prologue (6 instructions * 4 bytes)
     
-    // Load the input pointer into $a0
-    code[idx++] = 0x27A40030;   // addiu $a0, $sp, 48     # Input string address
+    // Generate MIPS code to validate the input against encrypted flag
     
-    // Initialize validation result to 1 (valid)
-    code[idx++] = 0x24020001;   // li $v0, 1              # Assume valid
+    // Load input pointer from stack into $t0
+    code[idx++] = 0x8f; code[idx++] = 0xc8; code[idx++] = 0x00; code[idx++] = 0x14; // lw $t0, 20($fp)
     
-    // Check each 8-byte block
-    for (size_t i = 0; i < len; i += 8) {
-        // Load 8 bytes from input into $t0, $t1
-        code[idx++] = 0x80880000 + i;        // lb $t0, i($a0)
-        code[idx++] = 0x80890001 + i;        // lb $t1, i+1($a0)
+    // Set up loop counter in $t1
+    code[idx++] = 0x00; code[idx++] = 0x00; code[idx++] = 0x48; code[idx++] = 0x21; // move $t1, $zero
+    
+    // Main validation loop - simplified comparison for MIPS
+    for (size_t i = 0; i < len && i < 26; i += 4) {
+        // Load 4 bytes from input into $t2
+        code[idx++] = 0x8d; code[idx++] = 0x0a; 
+        code[idx++] = (i & 0xFF); code[idx++] = ((i >> 8) & 0xFF); // lw $t2, i($t0)
         
-        // Apply transformation (simplified for space)
-        // In real code, this would be the full sequence of MIPS instructions for
-        // the transform function
-        code[idx++] = 0x01094020;            // add $t0, $t0, $t1
-        code[idx++] = 0x000847C2;            // srl $t0, $t0, 31   # Some operation
+        // Load expected value into $t3 (embed 4 bytes from encrypted_flag)
+        code[idx++] = 0x3c; code[idx++] = 0x0b; // lui $t3, upper_16_bits
+        code[idx++] = (encrypted_flag[i+1] << 8) | encrypted_flag[i]; // lower 16 bits
+        code[idx++] = (encrypted_flag[i+3] << 8) | encrypted_flag[i+2]; // upper 16 bits
+        code[idx++] = 0x35; code[idx++] = 0x6b; // ori $t3, $t3, lower_16_bits
+        code[idx++] = (encrypted_flag[i+1] << 8) | encrypted_flag[i]; // lower 16 bits
+        code[idx++] = (encrypted_flag[i+3] << 8) | encrypted_flag[i+2]; // upper 16 bits
         
-        // Compare with encrypted values
-        code[idx++] = 0x3C080000 + ((encrypted_flag[i] << 8) | encrypted_flag[i+1]);  
-                                            // lui $t0, high_half
-        code[idx++] = 0x35080000 + ((encrypted_flag[i+2] << 8) | encrypted_flag[i+3]);  
-                                            // ori $t0, $t0, low_half
+        // Compare $t2 with $t3
+        code[idx++] = 0x15; code[idx++] = 0x4b; code[idx++] = 0x00; code[idx++] = 0x04; // bne $t2, $t3, fail
+        code[idx++] = 0x00; code[idx++] = 0x00; code[idx++] = 0x00; code[idx++] = 0x00; // nop (delay slot)
         
-        // If not equal, set result to 0 (invalid)
-        code[idx++] = 0x15080003;            // bne $t0, $t0, skip_invalidate
-        code[idx++] = 0x00000000;            // nop
-        code[idx++] = 0x24020000;            // li $v0, 0          # Set invalid
-        code[idx++] = 0x1000000A;            // b exit             # Jump to exit
-        // skip_invalidate:
+        // Increment counter
+        code[idx++] = 0x21; code[idx++] = 0x29; code[idx++] = 0x00; code[idx++] = 0x01; // addi $t1, $t1, 1
     }
     
-    // Exit sequence (already included in the template)
-    // code[idx++] = 0x8FBF0028;            // lw $ra, 40($sp)
-    // code[idx++] = 0x8FBE0024;            // lw $fp, 36($sp)
-    // code[idx++] = 0x27BD0030;            // addiu $sp, $sp, 48
-    // code[idx++] = 0x03E00008;            // jr $ra
+    // Success - set return value to 1
+    code[idx++] = 0x24; code[idx++] = 0x02; code[idx++] = 0x00; code[idx++] = 0x01; // li $v0, 1
+    code[idx++] = 0x10; code[idx++] = 0x00; code[idx++] = 0x00; code[idx++] = 0x02; // b end
+    code[idx++] = 0x00; code[idx++] = 0x00; code[idx++] = 0x00; code[idx++] = 0x00; // nop (delay slot)
+    
+    // Fail label - set return value to 0
+    code[idx++] = 0x00; code[idx++] = 0x00; code[idx++] = 0x10; code[idx++] = 0x21; // move $v0, $zero
+    
+    // End - the template already has the epilogue
     
     return code;
 }
 
-// Anti-debugging measure
-int detect_debugging() {
-    int debugging = 0;
-    
-    // Try to trace ourselves - if we're being debugged, this will fail
+// Multiple anti-debugging measures
+volatile int debug_detected = 0;
+
+// Check for debugger via ptrace
+int check_ptrace() {
+#ifdef __linux__
     if (ptrace(PTRACE_TRACEME, 0, 1, 0) < 0) {
-        debugging = 1;
-    } else {
-        ptrace(PTRACE_DETACH, 0, 1, 0);
+        return 1;
     }
-    
-    return debugging;
+    ptrace(PTRACE_DETACH, 0, 1, 0);
+#else
+    // macOS ptrace has different signature
+    if (ptrace(PTRACE_TRACEME, 0, (void*)1, 0) < 0) {
+        return 1;
+    }
+    ptrace(PTRACE_DETACH, 0, (void*)1, 0);
+#endif
+    return 0;
 }
 
-// Function to obfuscate our code
-void obfuscate_code(unsigned int* code, int len) {
+// Check for debugger via /proc/self/status
+int check_proc_status() {
+    FILE *f = fopen("/proc/self/status", "r");
+    if (!f) return 0;
+    
+    char line[256];
+    while (fgets(line, sizeof(line), f)) {
+        if (strncmp(line, "TracerPid:", 10) == 0) {
+            int tracer_pid = atoi(line + 10);
+            fclose(f);
+            return tracer_pid != 0;
+        }
+    }
+    fclose(f);
+    return 0;
+}
+
+// Timing-based anti-debugging
+int check_timing() {
+    struct timespec start, end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    
+    // Simple operation that should be fast
+    volatile int x = 0;
+    for (int i = 0; i < 1000; i++) {
+        x += i;
+    }
+    
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    long diff = (end.tv_sec - start.tv_sec) * 1000000000L + (end.tv_nsec - start.tv_nsec);
+    
+    // If it takes more than 1ms, probably being debugged
+    return diff > 1000000;
+}
+
+// Check for common debugger environment variables
+int check_env_vars() {
+    char* debug_vars[] = {"GDB", "STRACE", "LTRACE", "LD_PRELOAD", NULL};
+    for (int i = 0; debug_vars[i]; i++) {
+        if (getenv(debug_vars[i])) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// Anti-debugging signal handler
+void sighandler(int sig) {
+    debug_detected = 1;
+    signal(sig, sighandler);
+}
+
+// Comprehensive debugging detection
+int detect_debugging() {
+    // Install signal handler for SIGTRAP
+    signal(SIGTRAP, sighandler);
+    
+    // Multiple checks
+    if (check_ptrace() || check_proc_status() || check_timing() || check_env_vars()) {
+        debug_detected = 1;
+    }
+    
+    // Trigger a trap to see if we're being debugged
+#ifdef __mips__
+    __asm__("break 0");
+#elif __x86_64__
+    __asm__("int $3");
+#elif __aarch64__
+    __asm__("brk #0");
+#else
+    // Generic fallback
+    raise(SIGTRAP);
+#endif
+    
+    return debug_detected;
+}
+
+// Advanced code obfuscation techniques
+void obfuscate_code(unsigned char* code, int len) {
+    // XOR obfuscation with a dynamic key
+    unsigned char xor_key = (unsigned char)((time(NULL) & 0xFF) ^ 0xAA);
+    
     for (int i = 0; i < len; i++) {
-        // Add some junk instructions that don't affect the execution
-        if (i % 5 == 0) {
-            // NOP instruction
-            code[i] = (code[i] & 0xFFFF0000) | 0x0000;
+        // Skip the function prologue and epilogue
+        if (i < 10 || i > len - 10) continue;
+        
+        // Apply XOR obfuscation
+        code[i] ^= xor_key;
+        
+        // Add some junk bytes at strategic locations
+        if (i % 7 == 0 && i + 1 < len) {
+            // Insert a NOP byte
+            memmove(code + i + 1, code + i, len - i - 1);
+            code[i] = 0x90; // NOP instruction
         }
     }
 }
 
+// Polymorphic code transformation
+void morph_code(unsigned char* code, int len) {
+    static int morph_counter = 0;
+    morph_counter++;
+    
+    // Apply different transformations based on morph counter
+    switch (morph_counter % 3) {
+        case 0:
+            // Bit rotation
+            for (int i = 10; i < len - 10; i++) {
+                code[i] = ((code[i] << 1) | (code[i] >> 7)) & 0xFF;
+            }
+            break;
+        case 1:
+            // Byte swapping
+            for (int i = 10; i < len - 11; i += 2) {
+                unsigned char temp = code[i];
+                code[i] = code[i + 1];
+                code[i + 1] = temp;
+            }
+            break;
+        case 2:
+            // Additive cipher
+            for (int i = 10; i < len - 10; i++) {
+                code[i] = (code[i] + (i & 0xFF)) & 0xFF;
+            }
+            break;
+    }
+}
+
+// Function to add control flow obfuscation
+void add_control_flow_obfuscation() {
+    // Create fake execution paths
+    volatile int fake_condition = 0;
+    
+    if (fake_condition) {
+        // This will never execute but confuses static analysis
+        printf("Debug message that should never appear\n");
+        exit(1);
+    }
+    
+    // Add some useless computations
+    volatile int x = 42;
+    for (int i = 0; i < 10; i++) {
+        x = (x * 13 + 7) % 97;
+    }
+}
+
+// Runtime integrity checking
+unsigned int calculate_checksum(unsigned char* data, size_t len) {
+    unsigned int checksum = 0x12345678;
+    for (size_t i = 0; i < len; i++) {
+        checksum = ((checksum << 1) | (checksum >> 31)) ^ data[i];
+    }
+    return checksum;
+}
+
+// Forward declaration
+int main(int argc, char* argv[]);
+
+// Verify code integrity
+int verify_integrity() {
+    // Check if our code section has been tampered with
+    unsigned char* code_start = (unsigned char*)main;
+    size_t code_size = 1024; // Approximate size
+    
+    static unsigned int original_checksum = 0;
+    if (original_checksum == 0) {
+        original_checksum = calculate_checksum(code_start, code_size);
+        return 1; // First run, assume OK
+    }
+    
+    unsigned int current_checksum = calculate_checksum(code_start, code_size);
+    return current_checksum == original_checksum;
+}
+
 int main(int argc, char* argv[]) {
+    // Initialize encrypted flag first
+    init_encrypted_flag();
+    
+    // Add control flow obfuscation
+    add_control_flow_obfuscation();
+    
     if (argc != 2) {
         printf("Usage: %s <flag>\n", argv[0]);
         return 1;
     }
     
-    // Anti-debugging check
-    if (detect_debugging()) {
-        printf("Nice try! No debugging allowed.\n");
+    // Multiple rounds of anti-debugging checks
+    for (int i = 0; i < 3; i++) {
+        if (detect_debugging()) {
+            printf("Nice try! No debugging allowed.\n");
+            return 1;
+        }
+        usleep(10000); // Small delay between checks
+    }
+    
+    // Integrity check
+    if (!verify_integrity()) {
+        printf("Code integrity violation detected!\n");
         return 1;
     }
     
@@ -152,34 +387,48 @@ int main(int argc, char* argv[]) {
     size_t len = strlen(input);
     
     // Input length check
-    if (len != 24) {
+    if (len != 26) {
         printf("Invalid flag length!\n");
         return 1;
     }
     
     // Generate the validation code
-    unsigned int* mips_code = generate_mips_validation_code(input, len);
-    if (!mips_code) {
+    unsigned char* generated_code = generate_validation_code(input, len);
+    if (!generated_code) {
         printf("Memory allocation error\n");
         return 1;
     }
     
-    // Obfuscate the code a bit
-    obfuscate_code(mips_code, sizeof(validation_code)/sizeof(unsigned int));
+    // Apply multiple layers of obfuscation
+    obfuscate_code(generated_code, sizeof(validation_template));
+    morph_code(generated_code, sizeof(validation_template));
     
     // Make the memory executable
     void* page_aligned = (void*)((uintptr_t)validator & ~(getpagesize() - 1));
     if (mprotect(page_aligned, getpagesize(), PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
         printf("Memory protection error\n");
-        free(mips_code);
+        free(generated_code);
         return 1;
     }
     
     // Replace the validator function with our generated code
-    memcpy(validator, mips_code, sizeof(validation_code));
+    memcpy(validator, generated_code, sizeof(validation_template));
+    
+    // Make it read-only after modification (W^X)
+    if (mprotect(page_aligned, getpagesize(), PROT_READ | PROT_EXEC) != 0) {
+        printf("Memory protection error\n");
+        free(generated_code);
+        return 1;
+    }
     
     // Free the temporary code
-    free(mips_code);
+    free(generated_code);
+    
+    // Another anti-debugging check before calling the modified function
+    if (detect_debugging()) {
+        printf("Debugging detected during execution!\n");
+        return 1;
+    }
     
     // Copy input to stack for validation
     char input_copy[32];
@@ -187,12 +436,28 @@ int main(int argc, char* argv[]) {
     input_copy[sizeof(input_copy) - 1] = '\0';
     
     // Call the now-modified function
-    validator(input_copy);
+    int result = ((int(*)(const char*))validator)(input_copy);
     
-    // If validation returns 1, the flag is correct
-    printf("Validation complete!\n");
+    // Check result and validate flag
+    if (result == 1) {
+        // Double-check by decrypting the input manually
+        unsigned char decrypted[32];
+        memset(decrypted, 0, sizeof(decrypted));
+        
+        // Decrypt the input and compare with target flag
+        for (int i = 0; i < 26; i += 8) {
+            unsigned int block[2];
+            memcpy(block, input + i, 8);
+            tea_decrypt(block, key_schedule);
+            memcpy(decrypted + i, block, 8);
+        }
+        
+        if (strncmp((char*)decrypted, (char*)target_flag, 26) == 0) {
+            printf("Congratulations! The flag is correct: %s\n", input);
+            return 0;
+        }
+    }
     
-    // This will only execute if validation doesn't exit
-    printf("Congratulations! The flag is correct: %s\n", input);
-    return 0;
+    printf("Invalid flag!\n");
+    return 1;
 }

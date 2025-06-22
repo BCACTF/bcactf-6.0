@@ -1,7 +1,7 @@
 name: SMILES Please!
 categories:
   - crypto
-value: 100
+value: 125
 # Alternatively:
 flag: bcactf{nepetalactone}
 

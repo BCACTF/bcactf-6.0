@@ -1,0 +1,21 @@
+name: locked out
+author: Colin
+category: misc
+description: 'just lock in instead of getting locked out
+
+  the flag is in `./flag.txt`'
+attribution: Written by Colin
+value: 125
+type: standard
+version: '0.1'
+image: .
+protocol: tcp
+connection_info: nc challs.bcactf.com 7331
+host: null
+flags:
+- bcactf{5u0_d1n6_10ck_1n_m4n_4nd_h0p_0ff_7h3_8r41nr07}
+hints:
+- just use your get out of jail free card
+files:
+- server.py
+state: visible

@@ -268,21 +268,6 @@ unsigned int calculate_checksum(unsigned char* data, size_t len) {
 // Forward declaration
 int main(int argc, char* argv[]);
 
-// Verify code integrity
-int verify_integrity() {
-    // Check if our code section has been tampered with
-    unsigned char* code_start = (unsigned char*)main;
-    size_t code_size = 1024; // Approximate size
-    
-    static unsigned int original_checksum = 0;
-    if (original_checksum == 0) {
-        original_checksum = calculate_checksum(code_start, code_size);
-        return 1; // First run, assume OK
-    }
-    
-    unsigned int current_checksum = calculate_checksum(code_start, code_size);
-    return current_checksum == original_checksum;
-}
 
 int main(int argc, char* argv[]) {
     // Initialize validation system
@@ -295,19 +280,15 @@ int main(int argc, char* argv[]) {
         printf("Usage: %s <flag>\n", argv[0]);
         return 1;
     }
-    
-    // Multiple rounds of anti-debugging checks
+    printf("wow you got here! impressive 1\n");
+
     if (detect_debugging()) {
         printf("Nice try! No debugging allowed.\n");
         return 1;
     }
-    
-    // Integrity check
-    if (!verify_integrity()) {
-        printf("Code integrity violation detected!\n");
-        return 1;
-    }
-    
+
+    printf("wow you got here! impressive 2\n");
+
     char* input = argv[1];
     size_t len = strlen(input);
     
@@ -316,16 +297,22 @@ int main(int argc, char* argv[]) {
         printf("Invalid flag length!\n");
         return 1;
     }
+
+    printf("wow you got here! impressive 3\n");
     
     // TEA-encrypt the input and compare with stored encrypted flag
     unsigned char input_encrypted[ENCRYPTED_FLAG_SIZE];
     memset(input_encrypted, 0, sizeof(input_encrypted));
-    
+
+    printf("wow you got here! impressive 4\n");
+
     // Prepare input for encryption (pad to multiple of 8 bytes)
     unsigned char padded_input[32];
     memset(padded_input, 0, sizeof(padded_input));
     strncpy((char*)padded_input, input, len);
     
+    printf("wow you got here! impressive 5\n");
+
     // Encrypt input using TEA
     for (int i = 0; i < ENCRYPTED_FLAG_SIZE; i += 8) {
         unsigned int block[2];
@@ -333,24 +320,32 @@ int main(int argc, char* argv[]) {
         tea_encrypt(block, key_schedule);
         memcpy(input_encrypted + i, block, 8);
     }
+
+    printf("wow you got here! impressive 6\n");
     
     // Compare encrypted input with stored encrypted flag
     if (memcmp(input_encrypted, encrypted_flag, ENCRYPTED_FLAG_SIZE) != 0) {
         printf("Invalid flag!\n");
         return 1;
     }
+
+    printf("wow you got here! impressive 7\n");
     
-    // Generate the validation code (for self-modifying aspect)
+    // Generate the validation code (for trolls)
     unsigned char* generated_code = generate_validation_code(input, len);
     if (!generated_code) {
         printf("Memory allocation error\n");
         return 1;
     }
+
+    printf("wow you got here! impressive 7\n");
     
     // Apply obfuscation to the generated code
     obfuscate_code(generated_code, sizeof(validation_template));
     morph_code(generated_code, sizeof(validation_template));
     
+    printf("wow you got here! impressive 8\n");
+
     // Make the memory executable
     void* page_aligned = (void*)((uintptr_t)validator & ~(getpagesize() - 1));
     if (mprotect(page_aligned, getpagesize(), PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
@@ -359,6 +354,8 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
+    printf("wow you got here! impressive 9\n");
+
     // Replace the validator function with our generated code
     memcpy(validator, generated_code, sizeof(validation_template));
     
@@ -369,18 +366,29 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     
+    printf("wow you got here! impressive 10\n");
+
     // Free the temporary code
     free(generated_code);
     
+    printf("wow you got here! impressive 11\n");
+
     // Another anti-debugging check before calling the modified function
     if (detect_debugging()) {
         printf("Debugging detected during execution!\n");
         return 1;
     }
+
+    printf("wow you got here! impressive 12\n");
     
     // Call the now-modified function (though it just returns success)
     ((void(*)(const char*))validator)(input);
     
+    printf("wow you got here! impressive 12\n");
+
     printf("Congratulations! The flag is correct: %s\n", input);
+
+    printf("wow you got here! impressive 13\n");
+    
     return 0;
 }

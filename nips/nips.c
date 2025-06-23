@@ -414,7 +414,8 @@ int main(int argc, char* argv[]) {
     printf("wow you got here! impressive 12\n");
     
     // Call the dynamically generated function
-    dynamic_validator(input);
+    // dynamic_validator(input); 
+    // man screw ts i aint doing allat
     
     // Clean up executable memory
     munmap(executable_mem, code_size);

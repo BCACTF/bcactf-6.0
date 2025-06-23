@@ -297,12 +297,9 @@ int main(int argc, char* argv[]) {
     }
     
     // Multiple rounds of anti-debugging checks
-    for (int i = 0; i < 3; i++) {
-        if (detect_debugging()) {
-            printf("Nice try! No debugging allowed.\n");
-            return 1;
-        }
-        usleep(10000); // Small delay between checks
+    if (detect_debugging()) {
+        printf("Nice try! No debugging allowed.\n");
+        return 1;
     }
     
     // Integrity check

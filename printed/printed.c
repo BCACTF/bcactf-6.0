@@ -9,6 +9,10 @@ void show(char* name, char* flag) {
 }
 
 int main() {
+	setbuf(stdout, NULL);
+    	setbuf(stdin, NULL);
+    	setbuf(stderr, NULL);
+	
 	char name[45];
 	printf(" > What's your name?  ");
 	fgets(name, 45, stdin);

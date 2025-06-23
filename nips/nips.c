@@ -377,25 +377,26 @@ int main(int argc, char* argv[]) {
     
     printf("wow you got here! impressive 8\n");
 
-    // Make the memory executable
-    void* page_aligned = (void*)((uintptr_t)validator & ~(getpagesize() - 1));
-    if (mprotect(page_aligned, getpagesize(), PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
-        printf("Memory protection error\n");
+    // Allocate executable memory instead of modifying existing function
+    size_t code_size = sizeof(validation_template);
+    void* executable_mem = mmap(NULL, code_size, PROT_READ | PROT_WRITE | PROT_EXEC, 
+                               MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    
+    if (executable_mem == MAP_FAILED) {
+        printf("Memory allocation error for executable code\n");
         free(generated_code);
         return 1;
     }
     
     printf("wow you got here! impressive 9\n");
 
-    // Replace the validator function with our generated code
-    memcpy(validator, generated_code, sizeof(validation_template));
+    // Copy the generated code to executable memory
+    memcpy(executable_mem, generated_code, code_size);
     
-    // Make it read-only after modification (W^X)
-    if (mprotect(page_aligned, getpagesize(), PROT_READ | PROT_EXEC) != 0) {
-        printf("Memory protection error\n");
-        free(generated_code);
-        return 1;
-    }
+    printf("wow you got here! impressive 9.5\n");
+    
+    // Update validator to point to our executable memory
+    void (*dynamic_validator)(const char*) = (void (*)(const char*))executable_mem;
     
     printf("wow you got here! impressive 10\n");
 
@@ -412,8 +413,11 @@ int main(int argc, char* argv[]) {
 
     printf("wow you got here! impressive 12\n");
     
-    // Call the now-modified function (though it just returns success)
-    ((void(*)(const char*))validator)(input);
+    // Call the dynamically generated function
+    dynamic_validator(input);
+    
+    // Clean up executable memory
+    munmap(executable_mem, code_size);
     
     printf("wow you got here! impressive 13\n");
 

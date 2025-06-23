@@ -415,11 +415,11 @@ int main(int argc, char* argv[]) {
     // Call the now-modified function (though it just returns success)
     ((void(*)(const char*))validator)(input);
     
-    printf("wow you got here! impressive 12\n");
+    printf("wow you got here! impressive 13\n");
 
     printf("Congratulations! The flag is correct: %s\n", input);
 
-    printf("wow you got here! impressive 13\n");
+    printf("wow you got here! impressive 14\n");
     
     return 0;
 }

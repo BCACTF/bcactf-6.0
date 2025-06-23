@@ -162,27 +162,55 @@ void sighandler(int sig) {
     signal(sig, sighandler);
 }
 
-// Comprehensive debugging detection
+// Stack canary for tampering detection
+static volatile unsigned int stack_canary = 0xDEADC0DE;
+
+// Simple but effective debugging detection
 int detect_debugging() {
-    // Install signal handler for SIGTRAP
-    signal(SIGTRAP, sighandler);
+    // Check stack canary integrity
+    if (stack_canary != 0xDEADC0DE) {
+        debug_detected = 1;
+        return 1;
+    }
     
-    // Multiple checks
-    if (check_ptrace() || check_proc_status() || check_timing() || check_env_vars()) {
+    // Simple timing check - less sensitive than before
+    struct timespec start, end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    
+    // Do some work
+    volatile int sum = 0;
+    for (int i = 0; i < 10000; i++) {
+        sum += (i * 13 + 7) % 97;
+    }
+    
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    long diff = (end.tv_sec - start.tv_sec) * 1000000000L + (end.tv_nsec - start.tv_nsec);
+    
+    // If it takes more than 10ms, might be debugged (more lenient)
+    if (diff > 10000000) {
         debug_detected = 1;
     }
     
-    // Trigger a trap to see if we're being debugged
-#ifdef __mips__
-    __asm__("break 0");
-#elif __x86_64__
-    __asm__("int $3");
-#elif __aarch64__
-    __asm__("brk #0");
-#else
-    // Generic fallback
-    raise(SIGTRAP);
-#endif
+    // Check for obvious debug environment variables
+    if (check_env_vars()) {
+        debug_detected = 1;
+    }
+    
+    // Anti-tampering: verify our own checksum
+    static int first_run = 1;
+    static unsigned int original_checksum = 0;
+    
+    if (first_run) {
+        // Calculate checksum of main function area (first 1000 bytes)
+        original_checksum = calculate_checksum((unsigned char*)main, 1000);
+        first_run = 0;
+    } else {
+        // Verify checksum hasn't changed
+        unsigned int current_checksum = calculate_checksum((unsigned char*)main, 1000);
+        if (current_checksum != original_checksum) {
+            debug_detected = 1;
+        }
+    }
     
     return debug_detected;
 }

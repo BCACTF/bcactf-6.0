@@ -10,14 +10,7 @@
 #include <stdint.h>
 #include "flag_constants.h"
 
-#ifdef __linux__
 #include <sys/ptrace.h>
-#else
-// Fallback definitions for macOS
-#define PTRACE_TRACEME 0
-#define PTRACE_DETACH 11
-extern int ptrace(int request, int pid, void *addr, int data);
-#endif
 
 // Global validation state
 static int validation_initialized = 0;
@@ -309,7 +302,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (detect_debugging()) {
-        printf("nips\n");
+        printf("nips:(\n");
         return 1;
     }
 
@@ -318,7 +311,7 @@ int main(int argc, char* argv[]) {
     
     // Input length check
     if (len != ORIGINAL_FLAG_SIZE) {
-        printf("nips\n");
+        printf("nips!\n");
         return 1;
     }
     
@@ -342,7 +335,7 @@ int main(int argc, char* argv[]) {
     
     // Compare encrypted input with stored encrypted flag
     if (memcmp(input_encrypted, encrypted_flag, ENCRYPTED_FLAG_SIZE) != 0) {
-        printf("nips\n");
+        printf("nips...\n");
         return 1;
     }
     

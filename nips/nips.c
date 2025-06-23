@@ -33,6 +33,9 @@ unsigned char validation_template[] = {
     0x00, 0x00, 0x00, 0x00         // nop (delay slot)
 };
 
+// Forward declaration
+int main(int argc, char* argv[]);
+
 // This function will be modified at runtime
 void __attribute__ ((noinline)) validator(const char* input) {
     // This is a placeholder that will be overwritten
@@ -164,6 +167,14 @@ void sighandler(int sig) {
 
 // Stack canary for tampering detection
 static volatile unsigned int stack_canary = 0xDEADC0DE;
+// Runtime integrity checking
+unsigned int calculate_checksum(unsigned char* data, size_t len) {
+    unsigned int checksum = 0x12345678;
+    for (size_t i = 0; i < len; i++) {
+        checksum = ((checksum << 1) | (checksum >> 31)) ^ data[i];
+    }
+    return checksum;
+}
 
 // Simple but effective debugging detection
 int detect_debugging() {
@@ -273,7 +284,7 @@ void add_control_flow_obfuscation() {
     
     if (fake_condition) {
         // This will never execute but confuses static analysis
-        printf("Debug message that should never appear\n");
+        printf("how TF did you end up here\n");
         exit(1);
     }
     
@@ -284,17 +295,9 @@ void add_control_flow_obfuscation() {
     }
 }
 
-// Runtime integrity checking
-unsigned int calculate_checksum(unsigned char* data, size_t len) {
-    unsigned int checksum = 0x12345678;
-    for (size_t i = 0; i < len; i++) {
-        checksum = ((checksum << 1) | (checksum >> 31)) ^ data[i];
-    }
-    return checksum;
-}
 
-// Forward declaration
-int main(int argc, char* argv[]);
+
+
 
 
 int main(int argc, char* argv[]) {

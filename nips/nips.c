@@ -39,8 +39,8 @@ int main(int argc, char* argv[]);
 // This function will be modified at runtime
 void __attribute__ ((noinline)) validator(const char* input) {
     // This is a placeholder that will be overwritten
-    printf("Validating input...\n");
-    printf("Invalid flag!\n");
+    printf("yips yips yips?\n");
+    printf("nips nips nips!\n");
     exit(1);
 }
 
@@ -284,7 +284,6 @@ void add_control_flow_obfuscation() {
     
     if (fake_condition) {
         // This will never execute but confuses static analysis
-        printf("how TF did you end up here\n");
         exit(1);
     }
     
@@ -294,9 +293,6 @@ void add_control_flow_obfuscation() {
         x = (x * 13 + 7) % 97;
     }
 }
-
-
-
 
 
 
@@ -311,38 +307,29 @@ int main(int argc, char* argv[]) {
         printf("Usage: %s <flag>\n", argv[0]);
         return 1;
     }
-    printf("wow you got here! impressive 1\n");
 
     if (detect_debugging()) {
-        printf("Nice try! No debugging allowed.\n");
+        printf("nips\n");
         return 1;
     }
-
-    printf("wow you got here! impressive 2\n");
 
     char* input = argv[1];
     size_t len = strlen(input);
     
     // Input length check
     if (len != ORIGINAL_FLAG_SIZE) {
-        printf("Invalid flag length!\n");
+        printf("nips\n");
         return 1;
     }
-
-    printf("wow you got here! impressive 3\n");
     
     // TEA-encrypt the input and compare with stored encrypted flag
     unsigned char input_encrypted[ENCRYPTED_FLAG_SIZE];
     memset(input_encrypted, 0, sizeof(input_encrypted));
 
-    printf("wow you got here! impressive 4\n");
-
     // Prepare input for encryption (pad to multiple of 8 bytes)
     unsigned char padded_input[32];
     memset(padded_input, 0, sizeof(padded_input));
     strncpy((char*)padded_input, input, len);
-    
-    printf("wow you got here! impressive 5\n");
 
     // Encrypt input using TEA
     for (int i = 0; i < ENCRYPTED_FLAG_SIZE; i += 8) {
@@ -352,30 +339,23 @@ int main(int argc, char* argv[]) {
         memcpy(input_encrypted + i, block, 8);
     }
 
-    printf("wow you got here! impressive 6\n");
     
     // Compare encrypted input with stored encrypted flag
     if (memcmp(input_encrypted, encrypted_flag, ENCRYPTED_FLAG_SIZE) != 0) {
-        printf("Invalid flag!\n");
+        printf("nips\n");
         return 1;
     }
-
-    printf("wow you got here! impressive 7\n");
     
     // Generate the validation code (for trolls)
     unsigned char* generated_code = generate_validation_code(input, len);
     if (!generated_code) {
-        printf("Memory allocation error\n");
         return 1;
     }
-
-    printf("wow you got here! impressive 7\n");
     
     // Apply obfuscation to the generated code
     obfuscate_code(generated_code, sizeof(validation_template));
     morph_code(generated_code, sizeof(validation_template));
-    
-    printf("wow you got here! impressive 8\n");
+
 
     // Allocate executable memory instead of modifying existing function
     size_t code_size = sizeof(validation_template);
@@ -383,35 +363,27 @@ int main(int argc, char* argv[]) {
                                MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
     
     if (executable_mem == MAP_FAILED) {
-        printf("Memory allocation error for executable code\n");
         free(generated_code);
         return 1;
     }
-    
-    printf("wow you got here! impressive 9\n");
+
 
     // Copy the generated code to executable memory
     memcpy(executable_mem, generated_code, code_size);
-    
-    printf("wow you got here! impressive 9.5\n");
-    
+
     // Update validator to point to our executable memory
     void (*dynamic_validator)(const char*) = (void (*)(const char*))executable_mem;
-    
-    printf("wow you got here! impressive 10\n");
 
     // Free the temporary code
     free(generated_code);
     
-    printf("wow you got here! impressive 11\n");
 
     // Another anti-debugging check before calling the modified function
     if (detect_debugging()) {
-        printf("Debugging detected during execution!\n");
+        printf("nips.\n");
         return 1;
     }
 
-    printf("wow you got here! impressive 12\n");
     
     // Call the dynamically generated function
     // dynamic_validator(input); 
@@ -419,12 +391,9 @@ int main(int argc, char* argv[]) {
     
     // Clean up executable memory
     munmap(executable_mem, code_size);
-    
-    printf("wow you got here! impressive 13\n");
 
-    printf("Congratulations! The flag is correct: %s\n", input);
 
-    printf("wow you got here! impressive 14\n");
+    printf("yips yips yips!");
     
     return 0;
 }

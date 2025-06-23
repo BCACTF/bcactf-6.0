@@ -1,0 +1,16 @@
+name: lovetorturev2
+author: Arnav
+category: osint
+description: recently, I Guess i walked Around For a bit. I might have Been alone, Or i Might have walked A long, Never ending Amazing time with someone….
+attribution: Written by Arnav
+value: 150
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{gio42}
+files:
+- useful.pdf
+state: visible

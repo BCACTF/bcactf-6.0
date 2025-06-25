@@ -1,0 +1,18 @@
+name: nips
+author: Colin
+category: rev
+description: nips nips nips mips mips mips
+attribution: Written by Colin
+value: 200
+type: standard
+version: '0.1'
+image: null
+protocol: null
+host: null
+flags:
+- bcactf{S3lf_M0d1fy1ng_MIPS}
+hints:
+- learn mips rn
+files:
+- output/nips
+state: visible
